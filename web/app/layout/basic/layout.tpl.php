@@ -1,6 +1,6 @@
 <?php
 /**
- * @param function file_skin_include_poea($file_arr, $data_arr)
+ * @param function mapc_file_skin_include_poea($file_arr, $data_arr)
  */
 ?>
 <!DOCTYPE html>
@@ -28,7 +28,7 @@
 
 			}
 		?>
-		<?php if(!empty($head_file)) { file_skin_include_poea($head_file, $head_file_data); } ?>
+		<?php if(!empty($head_file)) { mapc_file_skin_include_poea($head_file, $head_file_data); } ?>
 	    <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<style type="text/css">
@@ -70,7 +70,7 @@
 
         <div class="col-xs-12 col-md-8">
             
-<?php if(!empty($section_file)) { file_skin_include_poea($section_file, $section_data); } ?>
+<?php if(!empty($section_file)) { mapc_file_skin_include_poea($section_file, $section_data); } ?>
 
         </div>
 

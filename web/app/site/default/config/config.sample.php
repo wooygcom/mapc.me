@@ -7,6 +7,8 @@ if(!defined('__MAPC__')) { exit(); }
 
 { // BLOCK:argument_arrange:2012080901:사용자 입력값 (또는 GET값 중 필요한 부분) 처리(환경 설정에서 필요한 부분은 사용하고 나머지는 버림)
 
+	error_reporting(0);	// 에러출력
+
     $temp = array();
 
 	// $_REQUEST['core_modl']
