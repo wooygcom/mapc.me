@@ -33,7 +33,7 @@ if(!defined('__MAPC__')) { exit(); }
 
 { // BLOCK:include_library:2013-03-28:필요한 라이브러리 첨부
 
-    include(LIBRARY_PATH . 'mapc/file_skin_include_poea.func.php');
+    include(LIBRARY_PATH . 'mapc/file_skin_include.func.php');
 
 } // BLOCK
 
@@ -43,7 +43,7 @@ if(!defined('__MAPC__')) { exit(); }
     switch($CONFIG['show']) {
 
         case 'embed':   // embed 일 경우 head태그 없이 본문만 바로 출력
-            mapc_file_skin_include_poea($section_file, $section_data);
+            mapc_file_skin_include($section_file, $section_data);
             break;
 
         default:

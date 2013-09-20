@@ -1,6 +1,6 @@
 <?php
 /**
- * @param function mapc_file_skin_include_poea($file_arr, $data_arr)
+ * @param function mapc_file_skin_include($file_arr, $data_arr)
  */
 ?>
 <!DOCTYPE html>
@@ -28,16 +28,13 @@
 
 			}
 		?>
-		<?php if(!empty($head_file)) { mapc_file_skin_include_poea($head_file, $head_file_data); } ?>
+		<?php if(!empty($head_file)) { mapc_file_skin_include($head_file, $head_file_data); } ?>
 	    <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<style type="text/css">
 			body {
 				padding-top: 60px;
 				padding-bottom: 40px;
-			}
-			.sidebar-nav {
-				padding: 9px 0;
 			}
 		</style>
 	</head>
@@ -70,7 +67,7 @@
 
         <div class="col-xs-12 col-md-8">
             
-<?php if(!empty($section_file)) { mapc_file_skin_include_poea($section_file, $section_data); } ?>
+<?php if(!empty($section_file)) { mapc_file_skin_include($section_file, $section_data); } ?>
 
         </div>
 

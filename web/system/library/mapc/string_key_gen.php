@@ -1,6 +1,6 @@
 <?php
 /**
- * string_key_gen_saiw
+ * string_key_gen
  *
  * Generate Key value
  *
@@ -8,7 +8,7 @@
  * @param int $str_size Size of Characters(without prefix)
  */
 
-function mapc_string_key_gen_saiw($str_size = 12, $prefix = '')
+function mapc_string_key_gen($str_size = 12, $prefix = '')
 {
 
 	//removed number 0, capital o, number 1 and small L

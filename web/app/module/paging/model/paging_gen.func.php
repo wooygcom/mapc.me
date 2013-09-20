@@ -18,7 +18,7 @@
 	 * @return int   $first 시작할 때의 글번호
 	 * @return array $range prev 5.6.7.8.9 next <- 이 경우에 array(5,6,7,8,9)
 	 */
-	function mapc_paging($arg) {
+	function module_paging_gen($arg) {
 
 		$total	= $arg['total'];
 		$curr	= $arg['curr'];
