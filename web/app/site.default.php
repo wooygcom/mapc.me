@@ -7,15 +7,17 @@ if(!defined('__MAPC__')) { exit(); }
 
 { // BLOCK:path_set:2012080901:경로지정
 
+	define('SITE_CODE', 'default');
+
 	// 기본디렉토리, 아래의 디렉토리 위치를 다른 곳으로 변경할 경우 이 값을 변경해줘야 함
 	// 디렉토리를 지정할 때는 언제나 뒷부분에 /(슬래시)를 붙여야 합니다. (dir1/(O), dir2(X))
 	define('ROOT_PATH', '../');
 
 	define('APP_PATH',  ROOT_PATH.'app/');		// 애플리케이션(프로그램 모음) 디렉토리, Application Directory
-		define('LAYOUT_PATH', APP_PATH .'layout/');
-		define('MODULE_PATH', APP_PATH .'module/');	// 모듈 디렉토리, Module Directory
-		define('RES_PATH',  APP_PATH .'res/');	// Resources
-		define('SITE_PATH',   APP_PATH .'site/default/');	// Specialize for each site, You can change this if you use another site.
+		define('LAYOUT_PATH', APP_PATH . 'layout/');
+		define('MODULE_PATH', APP_PATH . 'module/');	// 모듈 디렉토리, Module Directory
+		define('RES_PATH',  APP_PATH . 'res/');	// Resources
+		define('SITE_PATH',   APP_PATH . 'site/' . SITE_CODE . '/');	// Specialize for each site, You can change this if you use another site.
 			define('CONFIG_PATH',  SITE_PATH . 'config/');
 
 	define('SYSTEM_PATH',  ROOT_PATH.'system/');
