@@ -4,7 +4,7 @@ if(!defined('__MAPC__')) { exit(); }
 require(INIT_PATH . 'common.head.init.php');
 { // MODEL : Start
 
-	$section_file['dashboard'] = $URL['skin'] . 'basic/dashboard.view.php';
+	$section_file['dashboard'] = $PATH['core']['skin'] . 'basic/dashboard.view.php';
 	$section_data['dashboard']['message']		= 'Hello, world';
 	$section_data['dashboard']['message_link']	= 'http://wooyg.com/';
 

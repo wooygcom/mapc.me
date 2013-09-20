@@ -76,16 +76,17 @@ if(!defined('__MAPC__')) { exit(); }
 { // BLOCK:path_config:20121202:.....
 
 	$PATH = array();
+	$PATH['core']['skin']	= SITE_PATH . 'view/';
 	$PATH['core']['log']	= TEMP_PATH . 'log/';	// 로그 저장용 (시스템 사용에 관한 기록들)
 	$PATH['core']['sess']	= TEMP_PATH . 'sess/';// 세션 저장용
 
 	$URL = array();
 	// ROOT (상대주소를 사용할 경우에는 빈칸 또는 ./, 절대 주소를 사용할때는 웹상의URL을 적는다)
-	$URL['root'] = eregi_replace("\/[^/]*\.php$", "/", $_SERVER['PHP_SELF']);
+	$URL['core']['root'] = eregi_replace("\/[^/]*\.php$", "/", $_SERVER['PHP_SELF']);
 	// 기본페이지 (기본페이지?변수1=값1&변수2=값2 와 같은 형태로 호출됨)
-	$URL['main'] = $URL['root'] . 'index.php';
-	$URL['site'] = $URL['root'] . 'site/' . SITE_CODE . '/';
-	$URL['skin'] = $URL['site'] . 'view/';
+	$URL['core']['main'] = $URL['core']['root'] . 'index.php';
+	$URL['core']['site'] = $URL['core']['root'] . 'site/' . SITE_CODE . '/';
+	$URL['core']['skin'] = $URL['core']['site'] . 'view/';
 
 } // BLOCK
 
