@@ -15,6 +15,10 @@ require_once(LANG_PATH . $CONFIG['lang'].'.php');
 require_once(LIBRARY_PATH . 'mapc/common.func.php');
 require_once(LIBRARY_PATH . 'mapc/db.func.php');
 
+// 사용자 입력값 체크
+$_GET  = mapc_common_check_var($_GET);
+$_POST = mapc_common_check_var($_POST);
+
 // DB 연결
 $CONFIG_DB['handler'] = $CONFIG_DB['handler'] ? $CONFIG_DB['handler'] : mapc_db_connect($CONFIG_DB);
 
