@@ -75,3 +75,5 @@ if(!defined('__MAPC__')) { exit(); }
 } // BLOCK
 
 // end of file
+
+// git fetch test
