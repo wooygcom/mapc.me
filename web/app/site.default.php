@@ -76,4 +76,4 @@ if(!defined('__MAPC__')) { exit(); }
 
 // end of file
 
-// git fetch test
+// git fetch test : server
