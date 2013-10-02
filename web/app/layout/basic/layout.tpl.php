@@ -56,7 +56,7 @@
 <?= $publish_data['head']['menu']; ?>
 
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="#login">로그인</a></li>
+            <li class="active"><a href="<?= $URL['user']['root'] . '&core_page=login'; ?>">로그인</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -66,8 +66,12 @@
     <div class="container">
 
         <div class="col-xs-12 col-md-8">
-            
-<?php if(!empty($section_file)) { mapc_file_skin_include($section_file, $section_data); } ?>
+
+<!-- 본문:H -->
+<?php
+	include($section_file);
+?>
+<!-- 본문:T -->
 
         </div>
 

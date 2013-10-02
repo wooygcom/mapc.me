@@ -15,6 +15,14 @@ require_once(LANG_PATH . $CONFIG['lang'].'.php');
 require_once(LIBRARY_PATH . 'mapc/common.func.php');
 require_once(LIBRARY_PATH . 'mapc/db.func.php');
 
+// 호출한 모듈의 환경설정
+if($CONFIG['module']) {
+	// module/모듈명/config/config.php
+	include_once(MODULE_PATH . $CONFIG['module'] . '/config/config.php');
+	// module/모듈명/config/lang.언어코드.php
+	include_once(MODULE_PATH . $CONFIG['module'] . '/config/lang.' . $CONFIG['lang'] . '.php');
+}
+
 // 사용자 입력값 체크
 $_GET  = mapc_common_check_var($_GET);
 $_POST = mapc_common_check_var($_POST);

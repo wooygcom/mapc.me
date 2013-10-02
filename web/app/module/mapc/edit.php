@@ -10,8 +10,6 @@ require(INIT_PATH.'common.head.init.php');
 
 	{ // BLOCK:module_include:20120912:필요한 모듈 첨부
 
-		require_once(MODULE_PATH	. 'mapc/config/config_mapc.php');
-
 	} // BLOCK
 
 
@@ -53,10 +51,7 @@ require(INIT_PATH.'common.tail.init.php');
 { // View : Head
 
     // #todo /data/mapc/사용자 디렉토리에서 가져오게끔... 없으면 default
-    $section_file['mapc_edit']                      = $PATH['mapc']['root'] . 'view/basic/edit.view.php';
-    $section_data['mapc_edit']['dc_edit_run_url']   = $URL['mapc']['edit_run'];
-
-	$publish_data['layout_path'] = LAYOUT_PATH . $CONFIG['layout'] . '/';
+    $section_file = $PATH['mapc']['root'] . 'view/basic/edit.view.php';
 	include_once(PROC_PATH . 'publish.proc.php');
 
 } // View : Tail

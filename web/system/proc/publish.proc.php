@@ -40,6 +40,12 @@ if(!defined('__MAPC__')) { exit(); }
 
 { // BLOCK:include_layout:20121202:레이아웃파일 불러오기
 
+	if(empty($publish_data['layout_path'])) {
+
+		$publish_data['layout_path'] = LAYOUT_PATH . $CONFIG['layout'] . '/';
+
+	}
+
     switch($CONFIG['show']) {
 
         case 'embed':   // embed 일 경우 head태그 없이 본문만 바로 출력

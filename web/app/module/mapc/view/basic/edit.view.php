@@ -1,5 +1,5 @@
 <section>
-<form method="post" action="<?= $arg['dc_edit_run_url']; ?>" role="form" enctype="multipart/form-data">
+<form method="post" action="<?= $URL['mapc']['edit_run']; ?>" role="form" enctype="multipart/form-data">
 
     <div class="form-group">
         <label>
@@ -31,22 +31,22 @@
     <div class="form-group">
         <div class="checkbox-inline">
             <label>
-                <input type="radio" name="data_type" value="content_to_text" checked="checked" /> 원문을 텍스트 파일로
+                <input type="radio" name="data_type" value="file" /> 새파일
             </label>
         </div>
         <div class="checkbox-inline">
             <label>
-                <input type="radio" name="data_type" value="file" /> 파일 올리기
-            </label>
-        </div>
-        <div class="checkbox-inline">
-            <label>
-                <input type="radio" name="data_type" value="file_uploaded" /> 이미 올린 파일 선택
+                <input type="radio" name="data_type" value="file_uploaded" /> 파일선택
             </label>
         </div>
         <div class="checkbox-inline">
             <label>
                 <input type="radio" name="data_type" value="url" /> URL
+            </label>
+        </div>
+        <div class="checkbox-inline">
+            <label>
+                <input type="radio" name="data_type" value="content_to_text" checked="checked" /> 마크다운
             </label>
         </div>
 
