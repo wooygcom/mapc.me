@@ -1,5 +1,5 @@
 <section>
-<form method="post" action="<?= $URL['mapc']['edit_run']; ?>" role="form" enctype="multipart/form-data">
+<form method="post" action="<?= $URL['mapc']['edit_act']; ?>" role="form" enctype="multipart/form-data">
 
     <div class="form-group">
         <label>
@@ -12,7 +12,7 @@
     	<label>
     		원문
     	</label>
-    	<textarea name="post_content" class="wymeditor form-control"></textarea>
+    	<textarea name="post_content" class="wymeditor form-control" style="height: 150px;"></textarea>
     </div>
 
     <div class="form-group">
@@ -24,151 +24,187 @@
 
     <div class="form-group">
         <label>
-            자원의 위치(원문이 없을 경우 필요)
+            자원의 형태
         </label>
+
+        <div class="checkbox-inline">
+            <label>
+                <input type="radio" name="data_type" value="file" class="f_data_type" /> 파일
+            </label>
+        </div>
+        <div class="checkbox-inline">
+            <label>
+                <input type="radio" name="data_type" value="file_uploaded" class="f_data_type" /> 파일(서버)
+            </label>
+        </div>
+        <div class="checkbox-inline">
+            <label>
+                <input type="radio" name="data_type" value="url" class="f_data_type" /> URL
+            </label>
+        </div>
+        <div class="checkbox-inline">
+            <label>
+                <input type="radio" name="data_type" value="text" class="f_data_type" checked="checked" /> 문자
+            </label>
+        </div>
+
+        <!-- URL (원자료의 코드 또는 URL을 적을 때) -->
+        <div id="data_type_url_awqs" style="display:none;">
+            <input type="text" name="rdf_about" value="<?= $dc['rdf_about']; ?>" class="form-control" />
+        </div>
+
+        <!-- 새파일 (새로 업로드 할 때) -->
+        <div id="data_type_file_awqs" style="display:none;">
+        <!-- jquery-file-upload -->
+            <input id="fileupload" type="file" name="post_file[]" multiple="multiple">
+<?php
+/*
+                <script src="<?= RES_PATH; ?>jquery-file-upload/vendor/jquery.ui.widget.js"></script>
+                <script src="<?= RES_PATH; ?>jquery-file-upload/jquery.iframe-transport.js"></script>
+                <script src="<?= RES_PATH; ?>jquery-file-upload/jquery.fileupload.js"></script>
+                <script>
+                $(function () {
+                    $('#fileupload').fileupload({
+                        dataType: 'json',
+                        done: function (e, data) {
+                            $.each(data.result.files, function (index, file) {
+                                $('<p />').text(file.name).appendTo(document.body);
+                            });
+                        }
+                    });
+                });
+                </script>
+*/
+?>
+        <!-- jquery-file-upload -->
+        </div>
+
+        <!-- 기존 파일 선택 -->
+        <div id="data_type_file_uploaded_awqs" style="display:none;">
+        </div>
+
+        <!-- 마크다운 선택 -->
+        <div id="data_type_text_awqs" style="display:none;">
+        </div>
+
     </div>
 
     <div class="form-group">
-        <div class="checkbox-inline">
-            <label>
-                <input type="radio" name="data_type" value="file" /> 새파일
-            </label>
-        </div>
-        <div class="checkbox-inline">
-            <label>
-                <input type="radio" name="data_type" value="file_uploaded" /> 파일선택
-            </label>
-        </div>
-        <div class="checkbox-inline">
-            <label>
-                <input type="radio" name="data_type" value="url" /> URL
-            </label>
-        </div>
-        <div class="checkbox-inline">
-            <label>
-                <input type="radio" name="data_type" value="content_to_text" checked="checked" /> 마크다운
-            </label>
-        </div>
+    	<label>
+    		분류
+<?php
+// #TODO 분류를 불러오는 기능
+?>
+    	</label>
+    	<input type="text" name="meta[mapc_cate]" value="<?= $meta['mapc_cate']; ?>" class="form-control" />
+    </div>
 
-        <!-- 일반텍스트 (원자료의 코드 또는 URL을 적을 때) -->
-        <input type="text" name="rdf_about" value="<?= $dc['rdf_about']; ?>" class="form-control" />
-        <!-- 화일(업로드 할 때) -->
-        <!-- jquery-file-upload -->
-        <input id="fileupload" type="file" name="post_file[]" multiple="multiple">
-        <script src="<?= RES_PATH; ?>jquery-file-upload/vendor/jquery.ui.widget.js"></script>
-        <script src="<?= RES_PATH; ?>jquery-file-upload/jquery.iframe-transport.js"></script>
-        <script src="<?= RES_PATH; ?>jquery-file-upload/jquery.fileupload.js"></script>
-        <script>
-        $(function () {
-            $('#fileupload').fileupload({
-                dataType: 'json',
-                done: function (e, data) {
-                    $.each(data.result.files, function (index, file) {
-                        $('<p />').text(file.name).appendTo(document.body);
-                    });
-                }
-            });
-        });
-        </script>
-        <!-- jquery-file-upload -->
+    <div class="form-group">
+    	<label>
+    		디렉토리(물리적분류)
+<?php
+// #TODO 서버의 디렉토리 구성을 불러오는 기능
+?>
+    	</label>
+    	<input type="text" name="meta[mapc_directory]" value="<?= $meta['mapc_directory']; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		주제
     	</label>
-    	<input type="text" name="dc[subject]" value="<?= $dc['dc_subject']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_subject]" value="<?= $dc['dc_subject']; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		요약설명(요약설명이 없을 경우, 원문의 앞부분이 들어갑니다.)
     	</label>
-    	<input type="text" name="dc[description]" value="<?= $dc['dc_description']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_description]" value="<?= $dc['dc_description']; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		형식(자원의 구현 방식)
     	</label>
-    	<input type="text" name="dc[format]" value="<?= $dc['dc_format']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_format]" value="<?= $dc['dc_format']; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label class="control-label">
     		기고자(#todo 지은이와 동일인일 경우 체크)
     	</label>
-    	<input type="text" name="dc[contributor]" value="<?= $dc['dc_contributor']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_contributor]" value="<?= $dc['dc_contributor']; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		언어
     	</label>
-    	<input type="text" name="dc[language]" value="<?= $dc['dc_language']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_language]" value="<?= $dc['dc_language']; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		유형(내용물의 성격, 장르)
     	</label>
-    	<input type="text" name="dc[type]" value="<?= $dc['dc_type']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_type]" value="<?= $dc['dc_type']; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		날짜(ISO 8601)
     	</label>
-    	<input type="text" name="dc[date]" value="<?= $dc['dc_date']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_date]" value="<?= $dc['dc_date']; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		지은이
     	</label>
-    	<input type="text" name="dc[creator]" value="<?= $dc['dc_creator']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_creator]" value="<?= $dc['dc_creator']; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		발행처
     	</label>
-    	<input type="text" name="dc[publisher]" value="<?= $dc['dc_publisher']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_publisher]" value="<?= $dc['dc_publisher']; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		식별자
     	</label>
-    	<input type="text" name="dc[identifier]" value="<?= $dc['dc_identifier']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_identifier]" value="<?= $dc['dc_identifier']; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		타 자원과의 관계
     	</label>
-    	<input type="text" name="dc[relation]" value="<?= $dc['dc_relation']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_relation]" value="<?= $dc['dc_relation']; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		출처
     	</label>
-    	<input type="text" name="dc[source]" value="<?= $dc['dc_source']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_source]" value="<?= $dc['dc_source']; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		권한
     	</label>
-    	<input type="text" name="dc[rights]" value="<?= $dc['dc_rights']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_rights]" value="<?= $dc['dc_rights']; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		범위
     	</label>
-    	<input type="text" name="dc[coverage]" value="<?= $dc['dc_coverage']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_coverage]" value="<?= $dc['dc_coverage']; ?>" class="form-control" />
     </div>
 
 
@@ -181,3 +217,35 @@
 </form>
 
 </section>
+
+<script type="text/javascript">
+
+$( ".f_data_type" ).click(function() {
+    var data_type = $( this ).val();
+    $("#data_type_file_awqs").hide();
+    $("#data_type_file_uploaded_awqs").hide();
+    $("#data_type_url_awqs").hide();
+    $("#data_type_text_awqs").hide();
+
+    switch(data_type) {
+
+        case 'file':
+            $("#data_type_file_awqs").show();
+            break;
+
+        case 'file_uploaded':
+            $("#data_type_file_uploaded_awqs").show();
+            break;
+
+        case 'url':
+            $("#data_type_url_awqs").show();
+            break;
+
+        case 'text':
+            $("#data_type_text_awqs").show();
+            break;
+
+    }
+
+});
+</script>

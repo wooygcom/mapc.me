@@ -12,10 +12,11 @@
 	function mapc_common_check_var($data, $level = 'strict') {
 
 		foreach($data as $key => $var) {
-			$var = strip_tags($var);
+
 			$var = str_replace(array('<','>'), array('[',']'), $var);
 
 			$data[$key] = $var;
+
 		}
 
 		return $data;
