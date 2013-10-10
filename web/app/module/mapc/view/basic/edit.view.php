@@ -5,7 +5,7 @@
         <label>
     		제목
     	</label>
-    	<input type="text" name="post_title" value="<?= $arg['post_title']; ?>" class="form-control" />
+    	<input type="text" name="post_title" value="<?= $meta['dc_title'][0]; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
@@ -58,7 +58,7 @@
 			<label>
 				URL
 			</label>
-			<input type="text" name="rdf_about" value="<?= $arg['rdf_about']; ?>" class="form-control" />
+			<input type="text" name="rdf_about" value="<?= $meta['rdf_about'][0]; ?>" class="form-control" />
         </div>
 
         <!-- 새파일 (새로 업로드 할 때) -->
@@ -106,7 +106,7 @@
 			// #TODO 제목입력할 때 자동으로 파일이름이 들어가도록(영문으로 변환)
 		?>
 		</label>
-		<input type="text" name="slug" value="<?= $arg['slug']; ?>" class="form-control" />
+		<input type="text" name="slug" value="<?= $meta['mapc_slug']; ?>" class="form-control" />
 	</div>
 
     <div class="form-group">
@@ -138,98 +138,98 @@
     	<label>
     		주제
     	</label>
-    	<input type="text" name="meta[dc_subject]" value="<?= $dc['dc_subject']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_subject]" value="<?= $meta['dc_subject'][0]; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		요약설명(요약설명이 없을 경우, 원문의 앞부분이 들어갑니다.)
     	</label>
-    	<input type="text" name="meta[dc_description]" value="<?= $dc['dc_description']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_description]" value="<?= $meta['dc_description'][0]; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		형식(자원의 구현 방식)
     	</label>
-    	<input type="text" name="meta[dc_format]" value="<?= $dc['dc_format']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_format]" value="<?= $meta['dc_format'][0]; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label class="control-label">
     		기고자(#todo 지은이와 동일인일 경우 체크)
     	</label>
-    	<input type="text" name="meta[dc_contributor]" value="<?= $dc['dc_contributor']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_contributor]" value="<?= $meta['dc_contributor'][0]; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		언어
     	</label>
-    	<input type="text" name="meta[dc_language]" value="<?= $dc['dc_language']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_language]" value="<?= $meta['dc_language'][0]; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		유형(내용물의 성격, 장르)
     	</label>
-    	<input type="text" name="meta[dc_type]" value="<?= $dc['dc_type']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_type]" value="<?= $meta['dc_type'][0]; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		날짜(ISO 8601)
     	</label>
-    	<input type="text" name="meta[dc_date]" value="<?= $dc['dc_date']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_date]" value="<?= $meta['dc_date'][0]; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		지은이
     	</label>
-    	<input type="text" name="meta[dc_creator]" value="<?= $dc['dc_creator']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_creator]" value="<?= $meta['dc_creator'][0]; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		발행처
     	</label>
-    	<input type="text" name="meta[dc_publisher]" value="<?= $dc['dc_publisher']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_publisher]" value="<?= $meta['dc_publisher'][0]; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		식별자
     	</label>
-    	<input type="text" name="meta[dc_identifier]" value="<?= $dc['dc_identifier']; ?>" class="form-control" />
+    	<input type="text" name="dc_identifier" value="<?= $meta['dc_identifier'][0]; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		타 자원과의 관계
     	</label>
-    	<input type="text" name="meta[dc_relation]" value="<?= $dc['dc_relation']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_relation]" value="<?= $meta['dc_relation'][0]; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		출처
     	</label>
-    	<input type="text" name="meta[dc_source]" value="<?= $dc['dc_source']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_source]" value="<?= $meta['dc_source'][0]; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		권한
     	</label>
-    	<input type="text" name="meta[dc_rights]" value="<?= $dc['dc_rights']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_rights]" value="<?= $meta['dc_rights'][0]; ?>" class="form-control" />
     </div>
 
     <div class="form-group">
     	<label>
     		범위
     	</label>
-    	<input type="text" name="meta[dc_coverage]" value="<?= $dc['dc_coverage']; ?>" class="form-control" />
+    	<input type="text" name="meta[dc_coverage]" value="<?= $meta['dc_coverage'][0]; ?>" class="form-control" />
     </div>
 
 <!-- ========== 메타데이타 : tail ========== -->

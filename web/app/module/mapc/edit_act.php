@@ -48,65 +48,64 @@ require(INIT_PATH . 'common.head.init.php');
 
 		$save_dir    = $PATH['mapc']['data'] . $arg['meta']['mapc_directory'];
 
-	    if(empty($_POST['dc_identifier'])) {
+	    if(empty($arg['uid'])) {
 	       $is_new_post = TRUE;
+        }
+
+        switch($arg['data_type']) {
+
+            case 'markdown':
+                $file_name = $arg['slug'] . '.md';
+                break;
+
+            case 'text':
+                $file_name = $arg['slug'] . '.txt';
+                break;
+
+            case 'url':
+                // #TODO URL은 원본파일 없이 $rdf_about가 URL형태인지만 체크(업로드는 하지 않고 rdf만 생성);
+                $file_name = $arg['slug'];
+                break;
+
+        }
+
+        // markdown, text 파일로 저장할 경우
+        if($arg['data_type'] == 'markdown' || $arg['data_type'] == 'text') {
+
+            $fp = fopen($save_dir . $file_name, 'w');
+            fwrite($fp, $arg['content']);
+            fclose($fp);
+
+        } elseif($arg['data_type'] == 'file') {
+
+            foreach($_FILES['post_file']['name'] as $key => $var) {
+
+                $upload_file = basename($_FILES['post_file']['name'][$key]);
+                $file_info   = pathinfo($upload_file);
+                $file_name   = $file_info['basename'];
+                $final_file  = $save_dir . $file_name;
+
+                // 디렉토리가 없을 경우 생성
+                if(!is_dir($save_dir)){
+                    @mkdir($save_dir, 0777);
+                }
+
+                if (move_uploaded_file($_FILES['post_file']['tmp_name'][$key], $final_file)) {
+
+                    echo "Done.\n";
+
+                } else {
+
+                    print "Error!\n";
+
+                }
+
+            }
+
         }
 
        // 새로등록 할 경우
 	   if($is_new_post) {
-
-			switch($arg['data_type']) {
-
-				case 'markdown':
-					$file_name = $arg['slug'] . '.md';
-					break;
-
-				case 'text':
-					$file_name = $arg['slug'] . '.txt';
-					break;
-
-				case 'url':
-					// #TODO URL은 원본파일 없이 $rdf_about가 URL형태인지만 체크(업로드는 하지 않고 rdf만 생성);
-					$file_name = $arg['slug'];
-					break;
-
-			}
-
-
-			// markdown, text 파일로 저장할 경우
-			if($arg['data_type'] == 'markdown' || $arg['data_type'] == 'text') {
-
-				$fp = fopen($save_dir . $file_name, 'w');
-				fwrite($fp, $arg['content']);
-				fclose($fp);
-
-			} elseif($arg['data_type'] == 'file') {
-
-				foreach($_FILES['post_file']['name'] as $key => $var) {
-
-					$upload_file = basename($_FILES['post_file']['name'][$key]);
-					$file_info   = pathinfo($upload_file);
-					$file_name   = $file_info['basename'];
-					$final_file  = $save_dir . $file_name;
-
-					// 디렉토리가 없을 경우 생성
-					if(!is_dir($save_dir)){
-						@mkdir($save_dir, 0777);
-					}
-
-					if (move_uploaded_file($_FILES['post_file']['tmp_name'][$key], $final_file)) {
-
-						echo "Done.\n";
-
-					} else {
-
-						print "Error!\n";
-
-					}
-
-				}
-
-			}
 
     		$query = "
     			INSERT `mapc_post`
@@ -145,6 +144,7 @@ require(INIT_PATH . 'common.head.init.php');
 
 	{ // BLOCK:dc_file_make:2012080901:메타데이타(더블린코어) 파일 생성
 
+        $arg['meta']['dc_description'] = (!empty($arg['meta']['dc_description'])) ? $arg['meta']['dc_description'] : mb_strimwidth($arg['content'], '0', '255', '...', 'utf-8');
 		$fp = fopen($save_dir . $file_name . '.rdf', 'w');
 
 		$doc = new DOMDocument('1.0', 'utf-8');
@@ -173,47 +173,73 @@ require(INIT_PATH . 'common.head.init.php');
 		$title = $doc->createElement('dc:title', $arg['title']);
 		$title = $desc->appendChild($title);
 
-		$subject = $doc->createElement('dc:subject', $arg['meta']['dc_subject']);
-		$subject = $desc->appendChild($subject);
-
 		$description = $doc->createElement('dc:description', $arg['meta']['dc_description']);
 		$description = $desc->appendChild($description);
 
-		$contributor = $doc->createElement('dc:contributor', $arg['meta']['dc_contributor']);
-		$contributor = $desc->appendChild($contributor);
+        if(!empty($arg['meta']['dc_subject'])) {
+            $subject = $doc->createElement('dc:subject', $arg['meta']['dc_subject']);
+            $subject = $desc->appendChild($subject);
+        }
 
-		$language = $doc->createElement('dc:language', $arg['meta']['dc_language']);
-		$language = $desc->appendChild($language);
+        if(!empty($arg['meta']['dc_contributor'])) {
+            $contributor = $doc->createElement('dc:contributor', $arg['meta']['dc_contributor']);
+            $contributor = $desc->appendChild($contributor);
+        }
 
-		$format = $doc->createElement('dc:format', $arg['meta']['dc_format']);
-		$format = $desc->appendChild($format);
+        if(!empty($arg['meta']['dc_language'])) {
+            $language = $doc->createElement('dc:language', $arg['meta']['dc_language']);
+            $language = $desc->appendChild($language);
+        }
 
-		$type = $doc->createElement('dc:type', $arg['meta']['dc_type']);
-		$type = $desc->appendChild($type);
+        if(!empty($arg['meta']['dc_format'])) {
+            $format = $doc->createElement('dc:format', $arg['meta']['dc_format']);
+            $format = $desc->appendChild($format);
+        }
 
-		$date = $doc->createElement('dc:date', $arg['meta']['dc_date']);
-		$date = $desc->appendChild($date);
+        if(!empty($arg['meta']['dc_type'])) {
+            $type = $doc->createElement('dc:type', $arg['meta']['dc_type']);
+            $type = $desc->appendChild($type);
+        }
 
-		$creator = $doc->createElement('dc:creator', $arg['meta']['dc_creator']);
-		$creator = $desc->appendChild($creator);
+        if(!empty($arg['meta']['dc_data'])) {
+            $date = $doc->createElement('dc:date', $arg['meta']['dc_date']);
+            $date = $desc->appendChild($date);
+        }
 
-		$publisher = $doc->createElement('dc:publisher', $arg['meta']['dc_publisher']);
-		$publisher= $desc->appendChild($publisher);
+        if(!empty($arg['meta']['dc_creator'])) {
+            $creator = $doc->createElement('dc:creator', $arg['meta']['dc_creator']);
+            $creator = $desc->appendChild($creator);
+        }
 
-		$relation = $doc->createElement('dc:relation', $arg['meta']['dc_relation']);
-		$relation = $desc->appendChild($relation);
+        if(!empty($arg['meta']['dc_publisher'])) {
+            $publisher = $doc->createElement('dc:publisher', $arg['meta']['dc_publisher']);
+            $publisher= $desc->appendChild($publisher);
+        }
 
-		$source = $doc->createElement('dc:source', $arg['meta']['dc_source']);
-		$source = $desc->appendChild($source);
+        if(!empty($arg['meta']['dc_relation'])) {
+            $relation = $doc->createElement('dc:relation', $arg['meta']['dc_relation']);
+            $relation = $desc->appendChild($relation);
+        }
 
-		$rights = $doc->createElement('dc:rights', $arg['meta']['dc_rights']);
-		$rights = $desc->appendChild($rights);
+        if(!empty($arg['meta']['dc_source'])) {
+            $source = $doc->createElement('dc:source', $arg['meta']['dc_source']);
+            $source = $desc->appendChild($source);
+        }
 
-		$coverage = $doc->createElement('dc:coverage', $arg['meta']['dc_coverage']);
-		$coverage = $desc->appendChild($coverage);
+        if(!empty($arg['meta']['dc_rights'])) {
+            $rights = $doc->createElement('dc:rights', $arg['meta']['dc_rights']);
+            $rights = $desc->appendChild($rights);
+        }
 
-		$creator = $doc->createElement('dc:creator', $arg['meta']['dc_creator']);
-		$creator = $desc->appendChild($creator);
+        if(!empty($arg['meta']['dc_coverage'])) {
+            $coverage = $doc->createElement('dc:coverage', $arg['meta']['dc_coverage']);
+            $coverage = $desc->appendChild($coverage);
+        }
+
+        if(!empty($arg['meta']['dc_creator'])) {
+            $creator = $doc->createElement('dc:creator', $arg['meta']['dc_creator']);
+            $creator = $desc->appendChild($creator);
+        }
 
 		$contents = $doc->saveXML();
 

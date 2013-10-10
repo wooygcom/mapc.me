@@ -10,20 +10,30 @@ require(INIT_PATH.'common.head.init.php');
 
 	{ // BLOCK:module_include:20120912:필요한 모듈 첨부
 
+        include_once($PATH['mapc']['root'] . 'model/mapc_dc_get.func.php');
+
 	} // BLOCK
 
 
 	{ // BLOCK:arg_check:2012081701:넘어온 값 점검
 
 		// 글의 고유값, Unique ID of article
-		$mapc_uid = $_REQUEST['mapc_uid'];
+		$mapc_uid  = $_REQUEST['mapc_uid'];
+		// 글 URL
+		$mapc_slug = $_REQUEST['mapc_slug'];
 		// 카테고리, Category
-		$mapc_cate= $_REQUEST['mapc_cate'];
+		$mapc_cate = $_REQUEST['mapc_cate'];
 
 	} // BLOCK
 
 
     { // BLOCK:meta_get:20130921:메타데이터 가져오기
+
+$option = array();
+$option['dir'] = $PATH['mapc']['data'];
+$option['slug']= $mapc_slug;
+
+$meta = mapc_dc_get($mapc_uid, $option);
 
 		// #TODO
 /*
