@@ -10,3 +10,5 @@
 
 	<button class="btn btn-lg btn-primary btn-block" type="submit"><?= $LANG['user']['signin']; ?></button>
 </form>
+
+<a href="<?= $URL['user']['join']; ?>">회원가입</a>

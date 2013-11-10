@@ -5,11 +5,11 @@
 	 * 페이징 함수
 	 *
 	 * @param  str $arg['total'] 전체 row수
-	 * @param  str $arg['curr']  현재 글번호(선택사항)
 	 * @param  str $arg['url']   연결하려는 곳 주소~
 	 * @param  str $arg['page']  현재 페이지
-	 * @param  str $arg['pageSet'] 한페이지에 출력할 글 수
-	 * @param  str $arg['blockSet'] 한번에 출력할 페이지수 (5로 하면 -> prev 1.2.3.4.5 next)
+	 * @param  str $arg['curr']  현재 글번호(선택)
+	 * @param  str $arg['pageSet'] 한페이지에 출력할 글 수 (선택)
+	 * @param  str $arg['blockSet'] 한번에 출력할 페이지수 (선택)(5로 하면 -> prev 1.2.3.4.5 next)
 	 *
 	 * @return str   $url   연결하려는 주소~
 	 * @return int   $prev  이전 페이지

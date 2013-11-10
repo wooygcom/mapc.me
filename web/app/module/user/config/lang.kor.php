@@ -18,5 +18,7 @@
 	$LANG['user']['signin']   = '로그인';
 	$LANG['user']['alt_login_info_save'] = '로그인 정보를 저장합니다.';
 	$LANG['user']['alt_signin']	= '로그인 해주세요.';
+	$LANG['user']['alt_signin_success'] = '로그인 성공';
+	$LANG['user']['alt_signin_error']   = '로그인 에러';
 
 // end of file

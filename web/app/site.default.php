@@ -14,6 +14,7 @@ if(!defined('__MAPC__')) { exit(); }
 	define('ROOT_PATH', '../');
 
 	define('APP_PATH',  ROOT_PATH.'app/');		// 애플리케이션(프로그램 모음) 디렉토리, Application Directory
+		define('ADMIN_PATH',  APP_PATH . 'admin/');	// 관리자 프로그램 모음, Admin Directory
 		define('LAYOUT_PATH', APP_PATH . 'layout/');
 		define('MODULE_PATH', APP_PATH . 'module/');	// 모듈 디렉토리, Module Directory
 		define('RES_PATH',  APP_PATH . 'res/');	// Resources
@@ -39,16 +40,13 @@ if(!defined('__MAPC__')) { exit(); }
 	 * 제목, 인코딩, 시간대 처럼
 	 * 관리자가 변경은 가능하지만 추가 또는 삭제하면 않되는 설정값들
 	 */
-	if(is_file(CONFIG_PATH . 'config.php')) {
-		include_once(CONFIG_PATH . 'config.php');
-	} else {
-		include_once(CONFIG_PATH . 'config.sample.php');
-	}
+	include_once(CONFIG_PATH . 'config.php');
 
 	/**
 	 * 사용자환경설정
 	 *
-	 * 특별한 경우에만 사용되어지는 환경설정
+	 * 사용자의 입맛에 맞게 추가할 환경설정들
+	 * 특정 모듈에 관한 환경설정들...
 	 */
 	if(is_file(CONFIG_PATH . 'custom.php')) {
 		include_once(CONFIG_PATH . 'custom.php');
@@ -62,7 +60,11 @@ if(!defined('__MAPC__')) { exit(); }
 
 { // BLOCK:page_load:2012080901:페이지 불러오기
 
-	if($CONFIG['module']) {
+	if($CONFIG['admin']) {
+
+		include_once( ADMIN_PATH . $CONFIG['admin'] . '/' . $CONFIG['page'] . '.php' );
+
+	} else if($CONFIG['module']) {
 
 		include_once( MODULE_PATH . $CONFIG['module'] . '/' . $CONFIG['page'] . '.php' );
 

@@ -5,22 +5,23 @@
  * @param string $user_id
  * @param string $user_passwd
  * @param object $option['dbh'];
+ * @param string $option['pass_key']; crypt함수에 써먹을 키값
  *
  * @return string $return['result'] success/fail
  * @return string $return['status'] normal/banned
  */
 
-function mapc_user_login_act($user_id, $user_passwd, $option)
+function mapc_user_login_act(&$user_id, &$user_passwd, &$option)
 { // BLOCK:login_proc:20131005:로그인 처리
 
-	$dbh = $option['dbh'];
+	$pass_key = $option['pass_key'];
+	$dbh      = $option['dbh'];
 
 	// 있는 계정인지 확인
 	$query = "
-		SELECT `user_id`, `user_email`, `user_type`, `user_status`
+		SELECT `user_id`, `user_passwd`, `user_email`, `user_type`, `user_status`
 		  FROM `mapc_user`
 		 WHERE user_id     = '". $user_id . "'
-		   AND user_passwd = '". $user_passwd . "'
 		";
 	$sth = $dbh->prepare($query);
 	$sth->execute();
@@ -30,20 +31,21 @@ function mapc_user_login_act($user_id, $user_passwd, $option)
 	if(empty($login_result)) {
 
 		$return['result'] = 'fail';
+		$return['status'] = 'no_user';
 
 	} else if ($login_result['user_status'] == 'banned') { // #TODO 접근금지된 회원 처리
 
+		$return['result'] = 'fail';
 		$return['status'] = 'banned';
 
-	} else {
+	} else if (crypt($_POST['user_passwd'].$pass_key, $login_result['user_passwd']) == $login_result['user_passwd']) {
 
 		// 에러 없으면 로그인
-		$_SESSION['mapc_user_id']     = $login_result['user_id'];
-		$_SESSION['mapc_user_type']   = $login_result['user_type'];
-		$_SESSION['mapc_user_status'] = $login_result['user_status'];
-
 		$return['result'] = 'success';
-		$return['status'] = 'normal';
+
+		$return['id']     = $login_result['user_id'];
+		$return['type']   = $login_result['user_type'];
+		$return['status'] = $login_result['user_status'];
 
 	}
 

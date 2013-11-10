@@ -3,8 +3,7 @@ mapc.me
 
 정의
 ----
-1. MapC.me = PHP Codebone
-2. MapC.me = Dublin core와 Docbook을 사용하는 CMS
+MapC.me = PHP Codebone
 
 특징
 ----

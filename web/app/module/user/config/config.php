@@ -9,7 +9,12 @@ $MODULE['user']['installed'] = TRUE;
 $PATH['user']['root']	= MODULE_PATH . 'user/';
 $PATH['user']['view']	= MODULE_PATH . 'user/view/';
 
-$URL['user']['root']        = $URL['core']['root'] . '?core_modl=user';
+$URL['user']['root']  = $URL['core']['root'] . '?core_modl=user';
+
+$URL['user']['login']     = $URL['user']['root'] . '&core_page=login';
+$URL['user']['login_act'] = $URL['user']['root'] . '&core_page=login_act';
+$URL['user']['join']      = $URL['user']['root'] . '&core_page=join';
+$URL['user']['join_act']  = $URL['user']['root'] . '&core_page=join_act';
 
 
 /**

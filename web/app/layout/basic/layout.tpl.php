@@ -34,14 +34,27 @@
 		<style type="text/css">
 			body {
 				padding-top: 60px;
-				padding-bottom: 40px;
+			}
+			.col-md-8 {
+				padding: 0px 10px 0px 0px;
+			}
+			.credit {
+				text-align: center;
+				padding-top: 10px;
+			}
+			#footer {
+				margin-top:35px;
+			}
+
+			.panel-info {
+				padding:10px;
 			}
 		</style>
 	</head>
 	<body>
 
     <!-- Fixed navbar -->
-    <div class="navbar navbar-default navbar-fixed-top">
+    <header class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -49,7 +62,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<?= $URL['core']['root']; ?>">MapC.me</a>
+          <a class="navbar-brand" href="<?= $URL['core']['root']; ?>">MapC.me CMS</a>
         </div>
         <div class="navbar-collapse collapse">
 
@@ -60,12 +73,12 @@
           </ul>
         </div><!--/.nav-collapse -->
       </div>
-    </div>
+    </header>
 
 
     <div class="container">
 
-        <div class="col-xs-12 col-md-8">
+        <div class="col-md-8">
 
 <!-- 본문:H -->
 <?php
@@ -75,14 +88,20 @@
 
         </div>
 
-        <div class="col-xs-6 col-md-4" id="sidebar" role="navigation">
+        <div class="col-md-4 panel panel-info" id="sidebar" role="navigation">
 
 <?= $publish_data['head']['menu_sub']; ?>
 
-        </div><!--/.well -->
+        </div><!--/.panel -->
 
     </div><!--/.container-->
 
+
+    <div id="footer" class="navbar-inverse">
+      <div class="container">
+        <p class="text-muted credit">Copyright OOO</p>
+      </div>
+    </div>
 
 	</body>
 

@@ -16,15 +16,7 @@
 
 	function module_menu_convert($param = array(), $option = array()) {
 
-		if ( ! empty($option['title']) ) {
-
-			$title = '<li class="nav-header">' . $option['title'] . '</li>';
-
-		} else {
-
-			$title = '';
-
-		}
+		$option['first'] = true;
 
 		$return = '<ul class="'.$option['menu_class'].'">'
 				. $title
@@ -38,6 +30,7 @@
 	function module_menu_convert_sub($param = array(), $option = array()) {
 
 		$recursion = __FUNCTION__;
+		$return = '';
 
 		if( ! is_array($param) ) {
 
@@ -65,8 +58,20 @@
 		// _title, _link이외의 값들(서브메뉴)가 있을 경우 && submenu option이 TRUE일 경우(서브메뉴 출력할 경우)
 		} elseif(count($param) > 2 && $option['submenu']) {
 
-			$return  = '<li ' . $style . '><a href="' . $param['_link'] . '">' . $param['_title'] . '</a>' . "\n";
-			$return .= '<ul>' . "\n";
+			if($option['first'] && ( ! empty($param['_title'])) ) {
+
+				$style = ' class="nav-header"';
+				$option['first'] = false;
+
+				$return .= '<li ' . $style . '>' . $param['_title'] . '</li>';
+				$return .= '<ul>' . "\n";
+
+			} else {
+
+				$return .= '<li ' . $style . '><a href="' . $param['_link'] . '">' . $param['_title'] . '</a>' . "\n";
+				$return .= '<ul>' . "\n";
+
+			}
 
 			foreach($param as $key => $var) {
 
