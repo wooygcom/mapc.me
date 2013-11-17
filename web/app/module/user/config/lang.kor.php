@@ -13,12 +13,21 @@
 	 */
 
 	$LANG = isset($LANG) ? $LANG : array();
+	$LANG['user']['name']     = '이름';
 	$LANG['user']['email']    = '이메일';
-	$LANG['user']['password'] = '암호';
-	$LANG['user']['signin']   = '로그인';
-	$LANG['user']['alt_login_info_save'] = '로그인 정보를 저장합니다.';
-	$LANG['user']['alt_signin']	= '로그인 해주세요.';
-	$LANG['user']['alt_signin_success'] = '로그인 성공';
-	$LANG['user']['alt_signin_error']   = '로그인 에러';
+	$LANG['user']['passwd'] = '암호';
+	$LANG['user']['passwd_confirm'] = '암호확인';
+	$LANG['user']['sign_up']   = '회원가입';
+	$LANG['user']['sign_in']   = '로그인';
+	$LANG['user']['sign_out']  = '로그아웃';
+	$LANG['user']['alt_sign_in_info_save'] = '로그인 정보를 저장합니다.';
+	$LANG['user']['alt_sign_in']	= '로그인 해주세요.';
+	$LANG['user']['alt_sign_in_success'] = '로그인 성공';
+	$LANG['user']['alt_sign_in_error']   = '로그인 에러';
+	$LANG['user']['alt_sign_up_success'] = '회원가입 성공';
+	$LANG['user']['alt_sign_up_error']   = '회원가입 에러';
+
+	$LANG['user']['alt_email_not_valid']= '이메일 값이 올바르지 않습니다.';
+	$LANG['user']['alt_passwd_confirm_not_same'] = '비밀번호와 비밀번호확인이 일치하지 않습니다.';
 
 // end of file

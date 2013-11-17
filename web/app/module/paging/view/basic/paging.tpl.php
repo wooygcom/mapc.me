@@ -1,10 +1,11 @@
 <!-- 페이징 : B -->
 <style type="text/css">
 	pagination {
-		spacing: -100px -100px 0px 0px;
+		padding: 1200px 0px 0px 0px;
 	}
 </style>
-<ul class="pagination pagination-centered">
+
+<ul class="pagination centered">
 <?php
 
 	if ($prev) {

@@ -31,7 +31,7 @@
 	// PHPSESSID 가 틀리면 로그아웃
 	if (($_REQUEST['PHPSESSID']) && ($_REQUEST['PHPSESSID'] != session_id())) {
 
-		echo 'Login Again, Please.'; exit;
+		echo 'Sign in Again, Please.'; exit;
 
 	}
 

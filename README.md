@@ -4,6 +4,7 @@ mapc.me
 정의
 ----
 MapC.me = PHP Codebone
+(Mapc.me는 기본 코드 모음이고 이를 활용한 프로젝트인 Mapc.me.cms가 진행중입니다.)
 
 특징
 ----

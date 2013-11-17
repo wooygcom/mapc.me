@@ -21,9 +21,9 @@
 	$CODE['core']['lang']['zho'] = '中國語';
 
 
-	// 현재 사용하는 언어
 	$LANG = isset($LANG) ? $LANG : array();
 
+	// 현재 사용하는 언어
 	$LANG['core']['sys_lang'] = '한국어';
 	// 사이트 제목
 	$LANG['core']['sys_title'] = '사이트제목';
