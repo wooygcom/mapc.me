@@ -9,7 +9,7 @@
 <?php
 
 	if ($prev) {
-		echo '<li><a href="'.$url.'&page='.$prev.'">&laquo;</a></li>';
+		echo '<li><a href="'.$url.'&mapc_page='.$prev.'">&laquo;</a></li>';
 	} else {
 		echo '<li><a href="#">&laquo;</a></li>';
 	}
@@ -26,7 +26,7 @@
 	}
 
 	if ($next) {
-		echo '<li><a href="'.$url.'&page='.$next.'">&raquo;</a></li>';
+		echo '<li><a href="'.$url.'&mapc_page='.$next.'">&raquo;</a></li>';
 	} else {
 		echo '<li><a href="#">&raquo;</a></li>';
 	}

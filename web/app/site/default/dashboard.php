@@ -1,11 +1,11 @@
 <?php
 if(!defined('__MAPC__')) { exit(); }
 
-require(INIT_PATH . 'common.head.init.php');
+require(INIT_PATH . 'init.head.php');
 { // MODEL : Start
 
 } // MODEL : Finish
-require(INIT_PATH . 'common.tail.init.php');
+require(INIT_PATH . 'init.tail.php');
 
 { // View : Start
 

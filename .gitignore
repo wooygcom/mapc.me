@@ -1,3 +1,7 @@
 .gitignore
 *.bak
 /web/temp/sess/*
+
+/*.project
+
+/.settings

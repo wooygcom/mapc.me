@@ -5,7 +5,7 @@ if(!defined('__MAPC__')) { exit(); }
  * 모듈명
  */
 
-require(INIT_PATH.'common.head.init.php');
+require(INIT_PATH.'init.head.php');
 { // Model : Head
 
 	{ // BLOCK:module_include:20120912:필요한 모듈 첨부
@@ -23,7 +23,7 @@ require(INIT_PATH.'common.head.init.php');
 	} // BLOCK
 
 } // Model : Tail
-require(INIT_PATH.'common.tail.init.php');
+require(INIT_PATH.'init.tail.php');
 
 // ======================================================================
 

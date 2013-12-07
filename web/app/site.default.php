@@ -19,7 +19,12 @@ if(!defined('__MAPC__')) { exit(); }
 		define('MODULE_PATH', APP_PATH . 'module/');	// 모듈 디렉토리, Module Directory
 		define('RES_PATH',  APP_PATH . 'res/');	// Resources
 		define('SITE_PATH',   APP_PATH . 'site/' . SITE_CODE . '/');	// Specialize for each site, You can change this if you use another site.
-			define('CONFIG_PATH',  SITE_PATH . 'config/');
+
+        if(is_dir(SITE_PATH . 'config/')) { // 실제 config 디렉토리가 있을 경우 [config]이 환경설정 디렉터리
+            define('CONFIG_PATH', SITE_PATH . 'config/');
+        } else { // config 디렉토리가 없을 경우 [config.sample] 디렉토리가 환경설정 디렉터리
+            define('CONFIG_PATH', SITE_PATH . 'config.sample/');
+        }
 
 	define('SYSTEM_PATH',  ROOT_PATH.'system/');
 		define('INIT_PATH',    SYSTEM_PATH .'init/');

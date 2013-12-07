@@ -23,11 +23,6 @@
 
 	$LANG = isset($LANG) ? $LANG : array();
 
-	// 현재 사용하는 언어
-	$LANG['core']['sys_lang'] = '한국어';
-	// 사이트 제목
-	$LANG['core']['sys_title'] = '사이트제목';
-
 	$LANG['core']['suc_submit'] = '처리되었습니다.';
 	$LANG['core']['err_submit'] = '처리 중 에러가 발생했습니다.';
 
