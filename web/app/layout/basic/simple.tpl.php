@@ -1,12 +1,21 @@
 <?php
 /**
  * @param function mapc_file_skin_include($file_arr, $data_arr)
+ * @param string $_SESSION['mapc_user_id'] user ID
+ * @param string $_SESSION['mapc_user_type'] user Type (nor, adm, mng)
+ * @param string $_SESSION['mapc_user_status'] (normal, vip, banned, etc...)
  */
+if($_SESSION['mapc_user_id']) {
+	$sign_inout_title = $LANG['user']['sign_out'];
+	$sign_inout_url   = $URL['user']['sign_out'];
+} else {
+	$sign_inout_title = $LANG['user']['sign_in'];
+	$sign_inout_url   = $URL['user']['sign_in'];
+}
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title><?= $CONFIG['title']['default']; ?></title>
         <?php
             if(is_array($publish_data['head']['css'])) {
 
@@ -28,9 +37,6 @@
 
             }
         ?>
-        <?php if(!empty($head_file)) { mapc_file_skin_include($head_file, $head_file_data); } ?>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style type="text/css">
             body {
                 padding-top: 60px;
@@ -46,7 +52,11 @@
                 padding-top: 10px;
             }
         </style>
-        </style>
+        <?php
+            foreach($publish_data['headhook'] as $key => $var) {
+                include($var . $key);
+            }
+        ?>
     </head>
     <body class="pre-scrollable">
 
@@ -54,19 +64,19 @@
     <header class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="navbar-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<?= $URL['core']['root']; ?>"><?= $CONFIG['title']['default']; ?></a>
+          <a class="navbar-brand" href="<?= $URL['core']['root']; ?>"><?= $CONFIG['meta']['title']; ?></a>
         </div>
         <div class="navbar-collapse collapse">
 
 <?= $publish_data['head']['menu']; ?>
 
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="<?= $URL['user']['sign_in']; ?>">로그인</a></li>
+            <li class="active"><a href="<?= $sign_inout_url; ?>"><?= $sign_inout_title; ?></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -75,7 +85,7 @@
 
     <div class="container">
 
-        <div class="col-md-8 centered">
+        <div class="centered">
 
 <!-- 본문:H -->
 <?php
@@ -90,7 +100,7 @@
 
     <div id="footer" class="navbar-inverse">
       <div class="container">
-        <p class="text-muted credit">Copyright OOO</p>
+        <p class="text-muted credit">Copyright <?= $CONFIG['meta']['copyright']; ?></p>
       </div>
     </div>
 

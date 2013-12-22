@@ -40,6 +40,8 @@ if(!defined('__MAPC__')) { exit(); }
 
 { // BLOCK:include_layout:20121202:레이아웃파일 불러오기
 
+    $publish_data['head']['meta'] = (! empty($publish_data['head']['meta'])) ? $publish_data['head']['meta'] : $CONFIG['meta'];
+
 	if(empty($publish_data['layout_path'])) {
 
 		$publish_data['layout_path'] = LAYOUT_PATH . $CONFIG['layout'] . '/default.tpl.php';

@@ -23,12 +23,13 @@
     $MENU['sitemap']['mainmenu2']['_sub']['menu2']['_title'] = '메뉴2';
     $MENU['sitemap']['mainmenu2']['_sub']['menu2']['_link']  = '#';
 
-    $MENU['admin']['main']['_title'] = '관리'; // #TODO 관리자도 추가하기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // #TODO 관리자 메뉴 링크 추가하기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    $MENU['admin']['main']['_title'] = '관리';
     $MENU['admin']['main']['_link']  = '#';
 
-    $MENU['admin']['user']['_title'] = '사용자'; // #TODO 관리자도 추가하기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    $MENU['admin']['user']['_title'] = '사용자';
     $MENU['admin']['user']['_link']  = '#';
-    $MENU['admin']['user']['_sub']['_title'] = '사용자리스트'; // #TODO 관리자도 추가하기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    $MENU['admin']['user']['_sub']['_title'] = '사용자리스트';
     $MENU['admin']['user']['_sub']['_link']  = '#';
 
 

@@ -41,8 +41,8 @@
 		// 현재 페이지 일 경우, current_page = TRUE
 		if($param['_key'] == $option['page_current']) {
 
-			$current_page = TRUE;
-			$style = ' class="active"';
+			$current_page = true;
+			$style = ' class="active" ';
 
 		}
 
@@ -60,11 +60,15 @@
 
 			if($option['first'] && ( ! empty($param['_title'])) ) {
 
-				$style = ' class="nav-header"';
+				$style = ' class="dropdown" ';
 				$option['first'] = false;
 
-				$return .= '<li ' . $style . '>' . $param['_title'] . '</li>';
-				$return .= '<ul>' . "\n";
+                if($option['dropdown']) {
+                    $return .= '<li ' . $style . '><a href="#dummy" class="dropdown-toggle" data-toggle="dropdown">' . $param['_title'] . '</a>';
+                    $return .= '<ul class="dropdown-menu">' . "\n";
+                } else {
+                    $return .= '<li ' . $style . '>' . $param['_title'] . '<ul>';
+                }
 
 			} else {
 

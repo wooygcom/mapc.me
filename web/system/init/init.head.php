@@ -41,10 +41,8 @@ $CONFIG_DB['handler'] = $CONFIG_DB['handler'] ? $CONFIG_DB['handler'] : mapc_db_
 
 { // BLOCK:session_setup:20121231:세션설정
 
-	$temp = array();
-	$temp['save_session_path'] = $PATH['core']['sess'];
-	$temp['cookie_domain']     = '';
 	require_once(PROC_PATH . 'session.proc.php');
+    unset($temp);
 
 	// 사용자정보
 	// #TODO get user information 사용자정보 가져오기
