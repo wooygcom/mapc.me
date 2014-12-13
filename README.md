@@ -1,6 +1,10 @@
 mapc.me
 =======
 
+당분간 [MAPC.me.cms](https://github.com/wooygcom/mapc.me.cms)로 들어오세요.
+--------------------------------------
+
+
 정의
 ----
 MapC.me = PHP Codebone
