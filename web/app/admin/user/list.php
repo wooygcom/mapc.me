@@ -5,7 +5,7 @@ if(!defined('__MAPC__')) { exit(); }
  * 회원 리스트
  */
 
-require(INIT_PATH . 'init.head.php');
+require(INIT_PATH . 'init.admin.php');
 { // Model : Head
 
 	{ // BLOCK:SEARCH:20131101:검색조건 만들기
@@ -20,7 +20,7 @@ require(INIT_PATH . 'init.head.php');
 
 		$query = "
 			SELECT `user_seq`, `user_uid`, `user_name`, `user_id`, `user_type`, `user_email`, `user_sign_up_date`, `user_sign_in_date_latest`, `user_status`, `user_etc`
-			  FROM mapc_user
+			  FROM " . $CONFIG_DB['prefix'] . "user_info
 			" . $search . "
 			 ORDER BY user_sign_up_date
 			  DESC LIMIT :page, :pageSet
@@ -51,6 +51,7 @@ require(INIT_PATH . 'init.head.php');
 
 		include_once(MODULE_PATH . 'paging/config/config.php');
 		include_once(MODULE_PATH . 'paging/model/paging_gen.func.php');
+        include_once(LIBRARY_PATH . 'mapc/file_skin_include.func.php');
 
 		$arg['total'] = $CONFIG_DB['handler']->query('SELECT FOUND_ROWS();')->fetch(PDO::FETCH_COLUMN);
 
@@ -66,7 +67,6 @@ require(INIT_PATH . 'init.head.php');
 	} // BLOCK
 
 } // Model : Tail
-require(INIT_PATH . 'init.tail.php');
 
 // ======================================================================
 
@@ -74,8 +74,7 @@ require(INIT_PATH . 'init.tail.php');
 
 	{ // BLOCK:echo_view:20130923:화면출력
 
-		$section_file = $PATH_ADMIN['user']['root'] . 'view/basic/list.view.php';
-		include_once(PROC_PATH . 'publish.proc.php');
+		$active_key = 'user';
 
 	}
 

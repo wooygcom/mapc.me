@@ -14,17 +14,20 @@
 function mapc_user_sign_in_act(&$user_id, &$user_passwd, &$option)
 { // BLOCK:login_proc:20131005:로그인 처리
 
-	$pass_key = $option['pass_key'];
-	$dbh      = $option['dbh'];
+    global $CONFIG_DB;
+
+	$dbh = $option['dbh'];
+    $user_passwd = hash($option['encrypt_method'], $user_passwd.$option['pass_key']);
 
 	// 있는 계정인지 확인
 	$query = "
-		SELECT `user_uid`,  `user_id`, `user_passwd`, `user_email`, `user_type`, `user_status`
-		  FROM `mapc_user`
-		 WHERE user_id     = '". $user_id . "'
+		SELECT `user_uid`,  `user_id`, `user_passwd`, `user_email`, `user_type`, `user_status`, `fk_user_group_uid` as user_group
+		  FROM `" . $CONFIG_DB['prefix'] . "user_info`
+		 WHERE user_id     = ?
 		";
+
 	$sth = $dbh->prepare($query);
-	$sth->execute();
+	$sth->execute( array($user_id) );
 	$sign_in_result = $sth->fetch(PDO::FETCH_ASSOC);
 
 	// 에러가 나면 에러 내용에 따라 에러메시지 출력
@@ -38,7 +41,7 @@ function mapc_user_sign_in_act(&$user_id, &$user_passwd, &$option)
 		$return['result'] = 'fail';
 		$return['status'] = 'banned';
 
-	} else if (crypt($_POST['user_passwd'].$pass_key, $sign_in_result['user_passwd']) == $sign_in_result['user_passwd']) {
+	} else if ($user_passwd == $sign_in_result['user_passwd']) {
 
 		// 에러 없으면 로그인
 		$return['result'] = 'success';
@@ -46,7 +49,8 @@ function mapc_user_sign_in_act(&$user_id, &$user_passwd, &$option)
 		$return['uid']    = $sign_in_result['user_uid'];
 		$return['id']     = $sign_in_result['user_id'];
 		$return['type']   = $sign_in_result['user_type'];
-		$return['status'] = $sign_in_result['user_status'];
+        $return['status'] = $sign_in_result['user_status'];
+        $return['group']  = $sign_in_result['user_group'];
 
 	}
 

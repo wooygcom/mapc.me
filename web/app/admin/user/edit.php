@@ -5,7 +5,7 @@ if(!defined('__MAPC__')) { exit(); }
  * 회원가입
  */
 
-require(INIT_PATH . 'init.head.php');
+require(INIT_PATH . 'init.db.php');
 { // Model : Head
 
 	{ // BLOCK:module_include:20120912:필요한 파일 첨부
@@ -13,7 +13,6 @@ require(INIT_PATH . 'init.head.php');
 	} // BLOCK
 
 } // Model : Tail
-require(INIT_PATH . 'init.tail.php');
 
 // ======================================================================
 

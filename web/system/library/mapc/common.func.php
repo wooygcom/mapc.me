@@ -10,7 +10,7 @@
      * @param string $level 변환시키려는급 (strict, normal...)
 	 */
 
-	function mapc_common_check_var($data, $level = 'strict') {
+	function mapc_common_check_var($data, $level = 'normal') {
 
         if(is_array($data)) {
             foreach($data as $key => $var) {

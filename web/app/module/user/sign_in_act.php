@@ -7,7 +7,7 @@ if(!defined('__MAPC__')) { exit(); }
  * 
  */
 
-require(INIT_PATH . 'init.head.php');
+require(INIT_PATH . 'init.db.php');
 { // Model : Head
 
 	{ // BLOCK:process:20131004:로그인 프로세스
@@ -22,13 +22,13 @@ require(INIT_PATH . 'init.head.php');
 		$option['dbh']      = $CONFIG_DB['handler'];
 		// 로그인에 필요한 키값
 		$option['pass_key'] = $CONFIG_SECRET['pass_key'];
+        $option['encrypt_method'] = $CONFIG_SECRET['encrypt_method'];
 
 		$sign_in_return = mapc_user_sign_in_act($user_id, $user_passwd, $option);
 
 	} // BLOCK
 
 } // Model : Tail
-require(INIT_PATH . 'init.tail.php');
 
 // ======================================================================
 
@@ -41,21 +41,24 @@ require(INIT_PATH . 'init.tail.php');
 			$_SESSION['mapc_user_uid']    = $sign_in_return['uid'];
 			$_SESSION['mapc_user_id']     = $sign_in_return['id'];
 			$_SESSION['mapc_user_type']   = $sign_in_return['type'];
-			$_SESSION['mapc_user_status'] = $sign_in_return['status'];
+            $_SESSION['mapc_user_status'] = $sign_in_return['status'];
+            $_SESSION['mapc_user_group']  = $sign_in_return['group'];
 
-			echo $LANG['user']['alt_sign_in_success'];
+            $VIEW['url']     = $_POST['link_to'] ? $_POST['link_to'] : $URL['core']['root'];
+            $VIEW['message'] = _('로그인 되었습니다..');
+            $display_type = 'html_alert';
 
-		} else {
+        } else {
 
-			unset($_SESSION);
+            unset($_SESSION);
 
-			echo $LANG['user']['alt_sign_in_error'] ;
+            $VIEW['message'] = _('아이디와 비밀번호를 확인해주세요.');
+            $VIEW['url']     = $URL['core']['root'];
+            $display_type = 'html_alert';
 
 		}
 
 	} // BLOCK
-
-	header("Location: " . $URL['core']['root']);
 
 } // View : Tail
 

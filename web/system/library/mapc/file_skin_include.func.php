@@ -18,7 +18,7 @@ function mapc_file_skin_include($file, $data = array()) {
 
 	extract($data);
 	include($file);
-	
+
 }
 
 // this is it

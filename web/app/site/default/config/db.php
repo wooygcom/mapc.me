@@ -10,7 +10,7 @@
 	$CONFIG_DB['name']   = 'dbname';
 	$CONFIG_DB['user']   = 'dbuser';
 	$CONFIG_DB['pass']   = 'dbpasswd';
-	$CONFIG_DB['prefix'] = 'mapc_';
+	$CONFIG_DB['prefix'] = 'mc_';
 	$CONFIG_DB['encode'] = 'utf8';
 
 	$CONFIG_DB['page_set']  = 10; // 한 페이지에 출력하는 row수

@@ -8,7 +8,7 @@ if(!defined('__MAPC__')) { exit(); }
 $PATH_ADMIN['user']['root']	= ADMIN_PATH . 'user/';
 $PATH_ADMIN['user']['view']	= ADMIN_PATH . 'user/view/';
 
-$URL_ADMIN['user']['root']  = $URL['core']['root'] . '?core_admn=user';
+$URL_ADMIN['user']['root']  = $URL['core']['root'] . 'admin-user/';
 
 
 /**

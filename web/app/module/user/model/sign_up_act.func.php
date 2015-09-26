@@ -14,40 +14,66 @@
 function mapc_user_sign_up_act(&$arg, &$option)
 { // BLOCK:sign_up_proc:20131005:회원가입 처리
 
-	$dbh      = $option['dbh'];
-	$pass_key = $option['pass_key'];
+    global $CONFIG;
+    global $CONFIG_DB;
 
+	$dbh      = $CONFIG_DB['handler'];
+
+    $user_id      = $arg['user_id'];
 	$user_type   = 'normal';
 	$user_status = 'normal';
-	$user_passwd = crypt($arg['user_passwd'].$pass_key);
+	$user_passwd = hash($option['encrypt_method'], $arg['user_passwd'].$option['pass_key']);
 	$today       = date('Y-m-d H:i:s');
+    $group = $option['group'];
 
 	$query = "
-		INSERT INTO mapc_user
-		   SET user_uid    = ?
-		     , user_name   = ?
-			 , user_id     = ?
-		     , user_passwd = ?
-			 , user_type   = ?
-			 , user_status = ?
-			 , user_sign_up_date = ?
-			 , user_sign_in_date_latest = ?
-			 , user_email  = ?
+		INSERT INTO " . $CONFIG_DB['prefix'] . "user_info
+		   SET user_uid    = ?,
+		     user_name   = ?,
+			 user_id     = ?,
+		     user_passwd = ?,
+			 user_type   = ?,
+			 user_status = ?,
+			 user_sign_up_date = ?,
+			 user_sign_in_date_latest = ?,
+			 user_email  = ?,
+			 fk_user_group_uid = ?
 		";
 	$sth    = $dbh->prepare($query);
 	$result = $sth->execute(
 		array(
 			$arg['user_uid'],
 			$arg['user_name'],
-			$arg['user_email'],
+			$user_id,
 			$user_passwd,
 			$user_type,
 			$user_status,
 			$today,
 			$today,
-			$arg['user_email']
+			$arg['user_email'],
+			$group
 		)
 	);
+
+	// insert metadata(if exists)
+	$query = "
+		INSERT INTO " . $CONFIG_DB['prefix'] . "user_infometa
+		   set usermeta_user_uid = ?, 
+		       usermeta_lang     = ?, 
+		       usermeta_key      = ?,
+		       usermeta_value    = ?
+		";
+	$sth    = $dbh->prepare($query);
+	foreach($arg['meta'] as $key => $var) {
+		$result = $sth->execute(
+			array(
+				$arg['user_uid'],
+				$option['lang'],
+				$key,
+				$var
+			)
+		);
+	}
 
 	$return['result'] = $result;
 

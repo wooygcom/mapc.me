@@ -11,19 +11,32 @@
 	 * @param string	$option['menu_class']	- ul로 출력할 경우 ul의 class 이름
 	 * @param boolean	$option['submenu']		- submenu 출력여부... TRUE, FALSE
 	 */
-	// #TODO 이미 cache파일로 만들었을 경우 그 파일을 그대로 include (ie. module_menu_convert($param, $option('page_current' => 'userid_iwp2', 'display' => 'ul')));
+	// #TODO 이미 cache파일로 만들었을 경우 그 파일을 그대로 include (ie. module_menu_convert($menu, $option('page_current' => 'userid_iwp2', 'display' => 'ul')));
 	// #TODO cache파일로 만들 경우 $style['page_current'] = 'active'; <li $style['intro']>INTRO</li>
 
-	function module_menu_convert($param = array(), $option = array()) {
+	function module_menu_convert($menu = array(), $option = array()) {
 
-		$option['first'] = true;
+		switch($menu['_type']) {
 
-		$return = '<ul class="'.$option['menu_class'].'">'
-				. $title
-				. module_menu_convert_sub($param, $option)
-				. '</ul>';
+			// $
+			case 'html':
+				return $menu['_content'];
 
-		return $return;
+				break;
+
+			default:
+				$option['first'] = true;
+
+				$return = '<ul class="'.$option['menu_class'].'">'
+						. $title
+						. module_menu_convert_sub($menu, $option)
+						. '</ul>';
+
+				return $return;
+
+				break;
+
+		}
 
 	}
 

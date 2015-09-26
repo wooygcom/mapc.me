@@ -1,7 +1,0 @@
-<IfModule mod_rewrite.c>
-	Options +FollowSymLinks
-	RewriteEngine On
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteCond %{REQUEST_FILENAME} !-d
-	RewriteRule ^/?([a-zA-Z_]+)/([a-zA-Z_]+)$ index.php?core_modl=$1&core_page=$2 [L,QSA]
-</IfModule>

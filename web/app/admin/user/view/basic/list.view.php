@@ -6,6 +6,7 @@
 	  <th>이메일</th>
 	  <th>가입일</th>
 	  <th>최근접속일</th>
+	  <th>-</th>
 	</tr>
   </thead>
   <tbody>
@@ -30,6 +31,14 @@ if(is_array($post_list)) {
 		<td>
 			<?= $var['user_sign_in_date_latest'];  ?>
 		</td>
+		<td>
+			<a href="#dummy" class="proc_open_control_popup" data-user="<?= $var['user_uid']; ?>">관리</a>
+			<div id="user-detail-pop-<?= $var['user_uid']; ?>" style="display:none;">
+				<a href="<?= $URL_ADMIN['user']['root']; ?>&core_page=group&user_uid=<?= $var['user_uid']; ?>">그룹</a>
+				<a href="<?= $URL_ADMIN['user']['root']; ?>&core_page=auth&user_uid=<?= $var['user_uid']; ?>">권한</a>
+				<a href="<?= $URL_ADMIN['user']['root']; ?>&core_page=menu&user_uid=<?= $var['user_uid']; ?>">메뉴</a>
+			</div>
+		</td>
 	</tr>
 
 <?php
@@ -42,3 +51,11 @@ if(is_array($post_list)) {
 <?php
 	mapc_file_skin_include($TPL_DATA['paging']['file'], $TPL_DATA['paging']['data']);
 ?>
+
+<script>
+$(".proc_open_control_popup").click(function() {
+    var user_id = $(this).data("user");
+    console.log(user_id);
+    $("#user-detail-pop-" + user_id).toggle();
+});
+</script>

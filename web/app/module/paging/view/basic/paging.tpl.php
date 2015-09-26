@@ -1,8 +1,8 @@
 <!-- 페이징 : B -->
 <style type="text/css">
-	pagination {
-		padding: 1200px 0px 0px 0px;
-	}
+    .pagination {
+        margin-top: 0px;
+    }
 </style>
 
 <ul class="pagination centered">

@@ -5,27 +5,20 @@ if(!defined('__MAPC__')) { exit(); }
  * 회원가입
  */
 
-require(INIT_PATH . 'init.head.php');
+require(INIT_PATH . 'init.db.php');
 { // Model : Head
 
-	{ // BLOCK:module_include:20120912:필요한 파일 첨부
+    { // BLOCK:data:20150215:필요한 값들 설정하기
+
+        $VIEW['body']['user_group'] = $ARGS['user_group'];
 
 	} // BLOCK
 
 } // Model : Tail
-require(INIT_PATH . 'init.tail.php');
 
 // ======================================================================
 
 { // View : Head
-
-	{ // BLOCK:echo_view:20130923:화면출력
-
-		$publish_data['layout_path'] = LAYOUT_PATH . $CONFIG['layout'] . '/simple.tpl.php';
-		$section_file = $PATH['user']['root'] . 'view/basic/sign_up.view.php';
-		include_once(PROC_PATH . 'publish.proc.php');
-
-	}
 
 } // View : Tail
 
