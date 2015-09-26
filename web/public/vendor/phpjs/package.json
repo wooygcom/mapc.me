@@ -1,0 +1,39 @@
+{
+  "name": "phpjs",
+  "version": "1.3.2",
+  "license": "MIT",
+  "description": "php.js offers community built php functions in javascript",
+  "homepage": "http://phpjs.org",
+  "author": "Kevin van Zonneveld <kevin@vanzonneveld.net>",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "dependencies": {
+    "cli": "^0.9.0",
+    "deep-equal": "^1.0.0",
+    "deep-equal-with-difflet": "^0.1.2",
+    "glob": "^5.0.14",
+    "js-beautify": "^1.5.10",
+    "jscs": "^2.0.0",
+    "mocha": "^2.2.5",
+    "npm-check-updates": "^2.0.4",
+    "send": "^0.13.0",
+    "underscore": "^1.8.3"
+  },
+  "keywords": [
+    "php",
+    "js",
+    "phpjs"
+  ],
+  "bugs": {
+    "url": "https://github.com/kvz/phpjs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kvz/phpjs.git"
+  },
+  "readmeFilename": "README.md",
+  "scripts": {
+    "test": "make test"
+  }
+}
