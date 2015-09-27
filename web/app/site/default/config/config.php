@@ -20,9 +20,9 @@ if(!defined('__MAPC__')) { exit(); }
     $CONFIG['layout_admin'] = 'admin';    // Admin layout
     $CONFIG['skin']   = 'basic';    // 기본 스킨
     $CONFIG['lang']   = 'kor';
-    $CONFIG['smtp']['server'] = 'smtp.gmail.com';
-    $CONFIG['smtp']['user_id']= 'wooyg.test@gmail.com';
-    $CONFIG['smtp']['passwd'] = 'dufwjd55';
+    $CONFIG['smtp']['server'] = 'smtp.serveraddress';
+    $CONFIG['smtp']['user_id']= 'smtpuser@server.addr';
+    $CONFIG['smtp']['passwd'] = 'password';
     $CONFIG['smtp']['secure'] = 'tls';
     $CONFIG['smtp']['port']   = '587';
 
