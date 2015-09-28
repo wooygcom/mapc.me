@@ -11,11 +11,12 @@
  * @return string $arg['data_dir'] 데이터 저장 전체 경로
  */
 {
-	$arg['user_dir'] = !empty($_SESSION['mapc_user_uid']) ? $_SESSION['mapc_user_uid'] . '/' : 'default/';
 
     // 관리자의 기본 디렉토리는 default/
-    if($_SESSION['mapc_user_type'] == 'admin') {
+    if($_SESSION['mapc_user_type'] == 'admin' || $_SESSION['mapc_user_type'] == 'master' || empty($_SESSION['mapc_user_uid'])) {
         $arg['user_dir'] = 'default/';
+    } else {
+        $arg['user_dir'] = $_SESSION['mapc_user_uid'] . '/';
     }
 
 	$arg['data_dir'] = $PATH['mapc']['data'] . $arg['user_dir'];
@@ -23,4 +24,5 @@
     // 디렉토리 구분자로 슬래시(/)를 인식못하는 OS의 경우 백슬래시로 바꿔줌
     $tmp_dir_name = (PHP_OS == 'WINNT') ? str_replace("/", "\\", $arg['data_dir']) : $arg['data_dir'];
     @mkdir($tmp_dir_name, 0777);
+
 }

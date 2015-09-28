@@ -3,7 +3,7 @@
 <form action="<?= $_SERVER['PHP_SELF']; ?>" method="post" onsubmit="return frm_submit(this);">
 
   <div class="form-group">
-    <textarea class="form-control"></textarea>
+    <textarea class="form-control" rows="20"><?= file_get_contents(__DIR__ . '/../../../LICENSE.md'); ?></textarea>
   </div>
   <div class="checkbox">
     <label>

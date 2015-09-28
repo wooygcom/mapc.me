@@ -12,16 +12,18 @@ require(INIT_PATH . 'init.auth.php');
 
     { // BLOCK:arg_check:20140405:넘김값 정리
 
-        $scrap_type        = $ARGS['scrap_type'];
-        $scrap_option_db   = $ARGS['scrap_option_db'];
-        $scrap_option_rdf  = $ARGS['scrap_option_rdf'];
-        $scrap_option_thum = $ARGS['scrap_option_thum'];
+        $scrap_type        = $_POST['scrap_type'];
+        $scrap_option_db   = $_POST['scrap_option_db'];
+        $scrap_option_rdf  = $_POST['scrap_option_rdf'];
+        $scrap_option_thum = $_POST['scrap_option_thum'];
 
     } // BLOCK
 
     { // BLOCK:include_file20140406:화일 불러오기
 
         include_once($PATH['mapc']['root'] . 'model/dc_make.func.php');
+        include_once($PATH['mapc']['root'] . 'model/thum_make.func.php');
+        include_once(LIBRARY_PATH . 'mapc/string_key_gen.func.php');
 
 	} // BLOCK
 
@@ -84,7 +86,6 @@ require(INIT_PATH . 'init.auth.php');
 				$delay_time = 0;
 
                 foreach($dir_list as $each_file) {
-
 /*
 					$delay_time++;
 
@@ -173,8 +174,6 @@ require(INIT_PATH . 'init.auth.php');
 
                             case 'image':
                                 { // BLOCK:make_thum:20131122:thumnail 만들기
-
-                                    include_once($PATH['mapc']['root'] . 'model/thum_make.func.php');
 
                                     $option['min'] = 768;
                                     $option['max'] = 1024;
@@ -328,9 +327,7 @@ require(INIT_PATH . 'init.auth.php');
                                 $arg['meta']['dc_date'][]    = $tmp_date;
 								$arg['meta']['dc_created'][] = $tmp_date;
 
-                                unset($tmp1);
-                                unset($tmp2);
-                                unset($tmp_date);
+                                unset($tmp1,$tmp2,$tmp_date);
 
                                 break;
 
@@ -384,7 +381,6 @@ require(INIT_PATH . 'init.auth.php');
 
                             $title = $title ? $title : $file_info['filename'];
                             // UID값 지정
-                            include_once(LIBRARY_PATH . 'mapc/string_key_gen.php');
                             $arg['meta']['dc_identifier'][] = 'mapc ' . mapc_string_key_gen(20);
                             // 화일명
                             $arg['meta']['rdf_about']  = $file_info['basename'];

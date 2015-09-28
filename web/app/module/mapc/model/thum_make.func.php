@@ -11,13 +11,16 @@
  * @param string $option['copyright'] 카피라이트 그림
  *
  * @return bool $return 성공여부 (함수가 실행됨과 동시에 썸네일을 만들고 저장하는 방식이라 특별한 리턴값이 필요없음)
- * 
- * @exam
+ */
+
+{ // BLOCK:example:20150922
+/*
     $option['min'] = 480;
     $option['max'] = 640;
     $option['copyright'] = $arg['data_dir'] . 'custom/copyright.png';
     module_mapc_thum_make($save_dir, $save_dir_thum, $file_name, $mime_type[1], $option);
- */
+*/
+} // BLOCK
 
 function module_mapc_thum_make($path_original, $path_thum, $file_name, $mime_type, $option = array('max' => 1024, 'min' => 768)) {
 

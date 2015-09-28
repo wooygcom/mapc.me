@@ -37,7 +37,7 @@ function module_mapc_convert_file($type, $origin_file, &$content, $option = arra
 
 			$md_content = file_get_contents($origin_file);
 			// 마크다운 변환 : $content_html = Parsedown::instance()->parse($content);
-            require_once LIBRARY_PATH . 'parsedown/Parsedown.php';
+            require_once VENDOR_PATH . 'erusev/parsedown/Parsedown.php';
             $parse = new Parsedown;
             $parse->setImagePath($path_info . '/');
             $content_html = $parse->parse($md_content);
