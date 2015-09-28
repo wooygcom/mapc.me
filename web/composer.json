@@ -1,0 +1,24 @@
+{
+    "name": "wooyg/mapcme",
+    "description": "The Mapcme Framework.",
+    "keywords": ["framework", "mapcme", "cms"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": ">=5.5.9",
+        "erusev/parsedown": "*",
+        "phpmailer/phpmailer": "^5.2"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+    },
+    "config": {
+        "preferred-install": "dist"
+    }
+}

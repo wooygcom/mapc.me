@@ -1,0 +1,164 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-11-10 18:34+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: app/admin_skaq/admin/config/menu.main.php:8
+msgid "관리"
+msgstr ""
+
+#: app/admin_skaq/admin/config/menu.main.php:11
+msgid "사이트정보"
+msgstr ""
+
+#: app/admin_skaq/admin/config/menu.main.php:13
+msgid "모듈"
+msgstr ""
+
+#: app/admin_skaq/admin/config/menu.main.php:15
+msgid "페이지"
+msgstr ""
+
+#: app/admin_skaq/admin/config/menu.main.php:19
+#: app/admin_skaq/admin/config/menu.main.php:24
+msgid "사용자"
+msgstr ""
+
+#: app/admin_skaq/admin/config/menu.main.php:22
+msgid "그룹"
+msgstr ""
+
+#: app/admin_skaq/admin/config/menu.main.php:27
+msgid "메뉴"
+msgstr ""
+
+#: app/admin_skaq/admin/config/menu.main.php:30
+msgid "전체"
+msgstr ""
+
+#: app/admin_skaq/admin/config/menu.main.php:32
+msgid "회원별"
+msgstr ""
+
+#: app/admin_skaq/admin/config/menu.main.php:35
+msgid "맵시"
+msgstr ""
+
+#: app/admin_skaq/admin/config/menu.main.php:38
+msgid "리스트"
+msgstr ""
+
+#: app/layout/basic/html_default.tpl.php:9
+#: app/layout/basic/html_simple.tpl.php:9
+msgid "나가기"
+msgstr ""
+
+#: app/layout/basic/html_default.tpl.php:12
+#: app/layout/basic/html_simple.tpl.php:12
+#: app/module/user/view/basic/sign_in.view.php:5
+#: app/module/user/view/basic/sign_in.view.php:26
+msgid "들어가기"
+msgstr ""
+
+#: app/layout/basic/html_message.view.php:63
+msgid "처음으로"
+msgstr ""
+
+#: app/module/user/sign_in_act.php:46
+msgid "로그인 되었습니다."
+msgstr ""
+
+#: app/module/user/sign_in_act.php:53
+msgid "회원가입에 문제가 발생했습니다."
+msgstr ""
+
+#: app/module/user/sign_out.php:27
+msgid "로그아웃 되었습니다."
+msgstr ""
+
+#: app/module/user/sign_up_act.php:32
+msgid "암호와 암호확인은 같아야 합니다."
+msgstr ""
+
+#: app/module/user/sign_up_act.php:37
+msgid "이메일 형태가 올바르지 않습니다."
+msgstr ""
+
+#: app/module/user/sign_up_act.php:54
+msgid "회원가입을 축하합니다."
+msgstr ""
+
+#: app/module/user/view/basic/sign_in.view.php:9
+#: app/module/user/view/basic/sign_in.view.php:11
+#: app/module/user/view/basic/sign_in.view.php:50
+#: app/module/user/view/basic/sign_in.view.php:52
+msgid "이메일"
+msgstr ""
+
+#: app/module/user/view/basic/sign_in.view.php:16
+#: app/module/user/view/basic/sign_in.view.php:18
+#: app/module/user/view/basic/sign_in.view.php:57
+#: app/module/user/view/basic/sign_in.view.php:59
+msgid "암호"
+msgstr ""
+
+#: app/module/user/view/basic/sign_in.view.php:22
+msgid "사용자 정보를 저장합니다."
+msgstr ""
+
+#: app/module/user/view/basic/sign_in.view.php:37
+#: app/module/user/view/basic/sign_in.view.php:70
+msgid "가입"
+msgstr ""
+
+#: app/module/user/view/basic/sign_in.view.php:43
+#: app/module/user/view/basic/sign_in.view.php:45
+msgid "이름"
+msgstr ""
+
+#: app/module/user/view/basic/sign_in.view.php:64
+#: app/module/user/view/basic/sign_in.view.php:66
+msgid "암호 확인"
+msgstr ""
+
+#: app/site/mapcme_cms/config.sample/config.php:60
+msgid "사이트 제목"
+msgstr ""
+
+#: app/site/mapcme_cms/config.sample/config.php:63
+msgid "[YOURSITEDOMAIN].com"
+msgstr ""
+
+#: app/site/mapcme_cms/config.sample/config.php:66
+msgid "MAPC"
+msgstr ""
+
+#: app/site/mapcme_cms/config.sample/config.php:69
+msgid "사이트 주제1"
+msgstr ""
+
+#: app/site/mapcme_cms/config.sample/config.php:72
+msgid "사이트 설명"
+msgstr ""
+
+#: app/site/mapcme_cms/config.sample/config.php:75
+msgid "권한자"
+msgstr ""
+
+#: app/site/mapcme_cms/config.sample/config.php:78
+msgid "글쓴이"
+msgstr ""
