@@ -1,0 +1,43 @@
+{
+  "name": "mapc.me",
+  "version": "0.0.0",
+  "homepage": "http://wooyg.com/",
+  "description": "Pure PHP Framework",
+  "keywords": [
+    "CMS",
+    "Wiki",
+    "PHP",
+    "Framework"
+  ],
+  "authors": [
+    "Woo Yeon-geun"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "admin-lte": "~2.2.1",
+    "bootstrap": "~3.3.5",
+    "bxslider": "*",
+    "ckeditor": "~4.5.3",
+    "dropzone": "~4.0.1",
+    "fullcalendar": "~2.3.2",
+    "fullpage": "~2.7.1",
+    "ionic": "~1.1.0",
+    "jquery": "~2.1.4",
+    "jquery-ui": "~1.11.4",
+    "jquery-ui-bootstrap": "~0.2.5",
+    "jquery-validation": "~1.14.0",
+    "jtable": "~2.4.0",
+    "metro": "~3.0.9",
+    "moment": "~2.10.6",
+    "photoswipe": "~4.1.0",
+    "phpjs": "*",
+    "raphael": "~2.1.4"
+  }
+}
