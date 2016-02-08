@@ -1,0 +1,10 @@
+npm-debug.log
+tools/_temp/*
+_octopress/_deploy
+build/
+nbproject
+.project
+.gitup.dat
+node_modules/
+.DS_Store
+.idea

@@ -1,0 +1,1 @@
+<?php/** * * 화면출력 * * 화면출력에 필요한 선처리 그리고 레이아웃 불러오기 * */if(!defined('__MAPC__')) { exit(); }return include(str_replace('/site/'.SITE_CODE.'/', '/site/default/', __FILE__));// end of file
