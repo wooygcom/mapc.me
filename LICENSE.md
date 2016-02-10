@@ -1,4 +1,6 @@
 GNU GENERAL PUBLIC LICENSE
+(당장은 GPL을 쓰지만 2.0부터는 MIT로 바뀔 예정입니다.)
+(It will change to "MIT license after version 2.0)
 ==========================
 Version 3, 29 June 2007
 ==========================
