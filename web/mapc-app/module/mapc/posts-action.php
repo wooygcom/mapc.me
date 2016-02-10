@@ -18,17 +18,16 @@ require(INIT_PATH.'init.db.php');
     $title   = $_POST['post-title'];
     $content = $_POST['post-content'];
     $url     = $_POST['post-url'];
+    $contentType = $_POST['post-content-type'];
 
     switch ($_POST['_method']) {
         case 'post':
 /*
-$origin_url 원본의 URL
-
 상황1
     마크다운이 들어 올 때
     origin은 content의 내용 그대로
 상황2
-    마크다운 + 마크다운 안에 [그림](그림주소) 가 들어 있을 때
+    마크다운 + 마크다운 안에 [그림](로컬주소) 가 들어 있을 때
     해결책 1
         마크다운 내부의 [화일이름]img/image.gif(이미지의 상대주소)를
         [화일이름](file&file-id=FILEID)형태로 변경
@@ -39,6 +38,8 @@ $origin_url 원본의 URL
 상황3
     내용안에 외부사이트가 있을 때(og태그) 가져오기
     $origin_url 고 $meta['about'] 은 해당 URL을 저장
+상황4
+    여러화일이 업로드됐을 경우
 
 `post_seq`, `post_uid`, `post_lang`
 `post_title`, `post_content`, `post_content_type`, `post_origin_type`, `post_origin_server`, `post_origin_url`
@@ -51,8 +52,16 @@ URL 외부 사이트
 이미지
 */
 
-            // #TODO 자동처리
-                // - 제목이 안들어왔을 때... (앞 80글자를 제목으로)
+            // 자동처리 - 제목이 안들어왔을 때... (앞 80글자를 제목으로)
+            if(empty($title)) {
+                switch($contentType) {
+                    case 'text/markdown':
+                        // #TODO "==" 직전 첫번째 줄
+                    default:
+                        substr($content, 0, 80);
+                        break;
+                }
+            }
             // #TODO 자동처리
                 // - 내용이 안들어왔을 때... (URL이 들어온 경우 해당URL을 분석한 뒤 그 사이트에서 제목과 내용을 긁어옴)
             // #TODO 자동처리

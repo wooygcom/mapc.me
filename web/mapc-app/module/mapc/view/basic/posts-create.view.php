@@ -32,7 +32,15 @@ title, creator, subject, description, publisher, contributor, date, type, format
     <input type="hidden" name="link-to" value="<?= $_SERVER['REQUEST_URI']; ?>" />
     <input type="hidden" name="post-uid" value="<?= $VIEW['postInfo']['post_uid']; ?>" />
     <input type="hidden" name="post-lang" value="<?= $VIEW['postInfo']['post_lang']; ?>" />
-    <input type="hidden" name="meta[rdf_about]" value="<?= $VIEW['postMetaInfo']['rdf_about'][0]; ?>" />
+
+    <div class="form-group">
+        <label for="post-content-icaz">
+            내용
+        </label>
+        <textarea id="post-content-icaz" name="post-content" class="form-control wymeditor" style="height: 300px;"><?= htmlspecialchars($VIEW['postInfo']['post_content']); ?></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-lg btn-block"><?= _('확인'); ?></button>
 
     <div class="form-group">
         <label for="post-title-icaz">
@@ -40,27 +48,44 @@ title, creator, subject, description, publisher, contributor, date, type, format
         </label>
         <input id="post-title-icaz" name="post-title" value="<?= htmlspecialchars($VIEW['postInfo']['post_title']); ?>" type="text" class="form-control" />
     </div>
-    <div class="form-group">
-        <label for="post-content-icaz">
-            내용
-        </label>
-        <textarea id="post-content-icaz" name="post-content" class="form-control wymeditor" style="height: 300px;"><?= htmlspecialchars($VIEW['postInfo']['post_content']); ?></textarea>
-    </div>
-    <div class="form-group">
-        <label for="post-icaz">
-            URL
-        </label>
-        <input id="post-url-icaz" name="post-url" value="<?= htmlspecialchars($VIEW['postInfo']['post_origin_url']); ?>" type="text" class="form-control" />
-    </div>
     <div class="checkbox">
         <label>
             <input id="mapc-slug-change-by-title-owqa" name="mapc_slug_change_by_title" type="checkbox" <?= $checked['mapc_slug_change_by_title']; ?> /> 제목이 바뀌면 저장 화일명도 바꾸기
         </label>
     </div>
+    <div class="form-group">
+        <label for="post-content-type-icaz">
+            내용형식(text/html, text/markdown, etc...)
+        </label>
+        <select id="post-content-type-icaz" name="content-type" class="form-control">
+            <option value="text/markdown"><?= _('마크다운'); ?></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="post-icaz">
+            원본위치
+        </label>
+        <input id="post-url-icaz" name="post-url" value="<?= htmlspecialchars($VIEW['postInfo']['post_origin_url']); ?>" type="text" class="form-control" />
+    </div>
+
     <button type="submit" class="btn btn-primary btn-lg btn-block"><?= _('확인'); ?></button>
+
 </form>
 
-
+<?php
+/*
+    <input type="hidden" name="meta[rdf_about]" value="<?= $VIEW['postMetaInfo']['rdf_about'][0]; ?>" />
+URL
+    youtube
+    daum pot
+    naver tvcast
+화일업로드
+    이미지
+    동영상
+    음악
+    마크다운
+*/
+?>
 
 
 
