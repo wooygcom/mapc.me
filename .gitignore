@@ -1,5 +1,5 @@
 # Files for deveopment
-!develop/
+develop/*
 
 web/mapc-public/npm/*
 web/mapc-public/vendor/*
