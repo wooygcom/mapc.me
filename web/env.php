@@ -39,7 +39,7 @@ if(!defined("__MAPC__")) { exit(); }
     define('ROOT_URL', pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_DIRNAME) . '/');    // 웹에서 접근할 때의 ROOT 주소
     define('DOMAIN', str_replace('www.', '', $_SERVER['HTTP_HOST']));
     define('HOST',   explode('.', DOMAIN)[0]);
-    if($_SERVER['REMOTE_ADDR'] == '175.196.104.211a') {
+    if($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
         ini_set("display_errors","On");
         error_reporting(E_ALL);
         define('TESTMODE', true);
