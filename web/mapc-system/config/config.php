@@ -20,6 +20,8 @@ $config['favicon']  = 'favicon.ico';
 $config['upload_dir'] = '';
 $config['layout'] = 'core';
 
+//
+
 return $config;
 
 // this is it

@@ -50,7 +50,7 @@ Git 사용방법
     2. git commit -m "바꾼내용"
     3. git push origin master
 삭제
-    1. git rm -r --cached
+    1. git rm -r --cached .
 
 
 프로그램 구동절차
