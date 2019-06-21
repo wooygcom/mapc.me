@@ -28,16 +28,21 @@ mapc.me
 2. 의존성도구 설치
 
     Composer, npm
+
 3. Git Clone
 
-    git clone https://github.com/wooygcom/mapc.me.git
+    ```
+    $ git clone https://github.com/wooygcom/mapc.me.git
+    ```
 
 4. composer update
 
-    cd MAPC_ME_ROOT/web
-    composer update (또는 php composer.phar update)
-    npm install
-    npx webpack
+    ```
+    $ cd MAPC_ME_ROOT/web
+    $ composer update (또는 php composer.phar update)
+    $ npm install
+    $ npx webpack
+    ```
 
 5. 접속
 
