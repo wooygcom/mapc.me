@@ -25,7 +25,6 @@ class Users {
 	}
 
 	public function create() {}
-	public function search() {}
 	public function update() {}
 	public function show() {
 		$sql = 'SELECT * FROM `mc_user_info` WHERE 1';

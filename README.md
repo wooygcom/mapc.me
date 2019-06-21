@@ -29,18 +29,11 @@ mapc.me
     git clone https://github.com/wooygcom/mapc.me.git
 4. composer update
     cd MAPC_ME_ROOT/web
-    composer update
+    composer update (또는 php composer.phar update)
     npm install
     npx webpack
-5. 설정
-    mapc-system/config/
-        * custom.php 삭제, 필요한 경우 config.php 를 복사
-        * routes.php 삭제, 필요한 경우 routes.default.php를 복사
-    mapc-app/
-        * common/, test/ 를 제외한 디렉토리 삭제
-        * 필요한 경우 test도 삭제
-    mapc-data/
-        * 불필요한 화일삭제
+5. 접속
+    http://접속주소/mapc.me/web/mapc-public/
 
 
 Git 사용방법

@@ -1,40 +1,83 @@
 <?php
 namespace Mapc\Common;
 
-// #TODO class Users extends Model (common/models/BareModel.php)
+use Mapc\Common\Bare;
+
 /**
- * User Model
+ * Posts Model
  * @version 0.1
  */
-class Posts {
+class Posts extends Bare {
 
 	private $db;
+	private $dbObj;
 
 	public $posts;
 
 	public $uuid;
 	public $post_uid;
 	public $lang;
+    public $title;
+    public $content;
+
 	public $key;
 	public $value;
 	public $desc;
 	public $etc;
 
 	public function __construct($args = []) {
-		$this->db = $args['db'];
-		$posts = $this->db->getRedBean()->dispense('mc_mapc_post');
+
+		$this->db        = $args['db']->getRedBean();
+		$this->table     = $args['table'];
+		$this->tableMeta = $args['tableMeta'];
+		$this->dbObj     = $this->db->dispense($this->table);
+		$temp->title = 'asdf';
+		$temp->content = 'asdfaaa';
+var_dump($temp);
+		var_dump($this->dbObj->store($temp));
+
+		return $this->dbObj;
+
 	}
 
-	public function create() {}
-	public function search() {}
-	public function update() {}
-	public function show() {
-		$sql = 'SELECT * FROM `mc_user_info` WHERE 1';
-		$this->users = $this->db->getAll($sql);
+    public function create($var) {
 
-		return $this->users;
+    	$this->dbObj->store($var);
+    	var_dump($this->dbObj);
+
+    }
+
+    public function read() {
+
+		$sql = ' SELECT * FROM ' . $this->table;
+
+		//$this->posts = $this->db->getAll($sql);
+
+		return $this->posts;
+
+    }
+
+    public function update() {}
+
+	public function delete() {}
+
+	public function createExtensions(array $args = []) {
+
+		foreach($args as $arg) {
+
+			$this->createExtension($arg);
+
+		}
+
 	}
-	public function destroy() {}
+
+	public function createExtension(array $args = []) {}
+
+    public function readExtensions(array $args = []) {}
+
+	public function updateExtension(array $args = []) {}
+
+	public function deleteExtension($key = '') {}
 
 } // class
 

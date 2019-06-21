@@ -1,7 +1,16 @@
 Controllers
 ==================================================
 
-controllers/package.php
+작동방식
+--------------------------------------------------
+
+1. config/routes.php의 설정에 따라
+  controllers/packageController.php에서
+  controllers/package/module.php 호출
+2. package전체에서 사용하는 선처리, 후처리 할 것이 있으면 packageController.php에서
+  module안에서만 필요한건 module.php에서 처리
+
+controllers/packageController.php
 --------------------------------------------------
 ```
 <?php

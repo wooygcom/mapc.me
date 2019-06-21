@@ -16,10 +16,9 @@ class Bare {
 
     public function __construct() {}
     public function create() {}
-    public function search() {}
+    public function read() {}
     public function update() {}
-    public function show() {}
-    public function destroy() {}
+    public function delete() {
 
 } // class
 
@@ -31,5 +30,5 @@ Construct
 --------------------------------------------------
     public function __construct($args = []) {
         $this->db = $args['db'];
-        $user = $this->db->getRedBean()->dispense('mc_user_info');
+        $user = $this->db->getRedBean()->dispense('TABLE');
     }
