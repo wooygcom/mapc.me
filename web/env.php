@@ -4,7 +4,6 @@ if(!defined("__MAPC__")) { exit(); }
 { // BLOCK:basic_config:20150807:기본값지정
 
     // make false before publish
-    define('DEBUG_MODE', false);
     define('DEFAULT_VENDOR', 'common');
     define('DEFAULT_MODULE', 'index');
 
@@ -22,7 +21,7 @@ if(!defined("__MAPC__")) { exit(); }
     define('APP_PATH',    ROOT_PATH . 'mapc-app' . DS);      // 애플리케이션(프로그램 모음) 디렉토리, Application Directory
     define('SYSTEM_PATH', ROOT_PATH . 'mapc-system' . DS);      // 애플리케이션(프로그램 모음) 디렉토리, Application Directory
     {
-        define('CONFIG_PATH', SYSTEM_PATH . 'config.smu' . DS);
+        define('CONFIG_PATH', SYSTEM_PATH . 'config' . DS);
         define('PROC_PATH',   SYSTEM_PATH . 'proc' . DS);
         define('LIBRARY_PATH',   SYSTEM_PATH . 'library' . DS);
     }
