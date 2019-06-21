@@ -13,5 +13,10 @@ web/temp/*
 
 web/vendor/*
 
+web/mapc-system/*
+!web/mapc-system/config
+!web/mapc-system/library
+!web/mapc-system/proc
+
 web/mapc-app/*
 !web/mapc-app/common

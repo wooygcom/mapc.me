@@ -20,8 +20,6 @@ $config['favicon']  = 'favicon.ico';
 $config['upload_dir'] = '';
 $config['layout'] = 'core';
 
-$config['daum_api']['rest_api_key'] = '30cd4d150e8340b969fe8ef2058f8bbc';
-
 return $config;
 
 // this is it
