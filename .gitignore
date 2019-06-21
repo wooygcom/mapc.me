@@ -1,0 +1,17 @@
+# Files for deveopment
+!develop/
+
+web/mapc-public/npm/*
+web/mapc-public/vendor/*
+web/node_modules/*
+
+# Upload directory
+web/mapc-data/*
+
+# Cache, Session files
+web/temp/*
+
+web/vendor/*
+
+web/mapc-app/*
+!web/mapc-app/common
