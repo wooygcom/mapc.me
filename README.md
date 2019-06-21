@@ -22,28 +22,44 @@ mapc.me
 설치방법
 -------------------------------------------------------------------------------
 1. 데몬설치
+
     Apache, PHP, MySQL 설치
+
 2. 의존성도구 설치
+
     Composer, npm
 3. Git Clone
+
     git clone https://github.com/wooygcom/mapc.me.git
+
 4. composer update
+
     cd MAPC_ME_ROOT/web
     composer update (또는 php composer.phar update)
     npm install
     npx webpack
+
 5. 접속
+
     http://접속주소/mapc.me/web/mapc-public/
 
 
 Git 사용방법
 -------------------------------------------------------------------------------
-푸쉬
+* 푸쉬
+
     1. git add .
     2. git commit -m "바꾼내용"
     3. git push origin master
-삭제
+
+* 삭제
+
     1. git rm -r --cached .
+
+
+
+이 아래는 편집중입니다.
+-------------------------------------------------------------------------------
 
 
 프로그램 구동절차

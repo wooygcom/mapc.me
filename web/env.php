@@ -3,16 +3,21 @@ if(!defined("__MAPC__")) { exit(); }
 
 { // BLOCK:basic_config:20150807:기본값지정
 
-    error_reporting(E_ALL);
-
     // make false before publish
-    define('DEBUG_MODE', false);
     define('DEFAULT_VENDOR', 'common');
     define('DEFAULT_MODULE', 'index');
-    if($_SERVER['REMOTE_ADDR'] == '175.196.104.211') {
+
+    if($_SERVER['REMOTE_ADDR'] == '175.196.104.211a') {
+
         define('TESTMODE', true);
-        //ini_set("display_errors","On");
+        ini_set("display_errors","On");
+
+    } else {
+
+        error_reporting(0);
+
     }
+
 } // BLOCK
 
 { // BLOCK:path_set:2012080901:경로지정

@@ -36,9 +36,9 @@ switch ($routes['module']) {
 
 	default:
 
-		$routes['module'] = $mapcArgs[2];
+		$routes['module'] = $mapcArgs[2] ? $mapcArgs[2] : DEFAULT_MODULE;
 		$routes['id']     = $mapcArgs[3];
-		$routes['action'] = $mapcArgs[4];
+		$routes['action'] = $mapcArgs[4] ? $mapcArgs[4] : DEFAULT_ACTION;
 		$routes['args']   = array_slice($mapcArgs, 4);
 
 		// #TODO URI 자동 인식하게끔 /
