@@ -3,6 +3,7 @@ mapc.me
 
 정의
 -------------------------------------------------------------------------------
+
 * MapC.me = PHP Codebone + CMS With Dublin core
 
 
@@ -16,6 +17,30 @@ mapc.me
 * Easy update for site manager
 
 * Fast running time
+
+
+설치방법
+-------------------------------------------------------------------------------
+1. 데몬설치
+    Apache, PHP, MySQL 설치
+2. 의존성도구 설치
+    Composer, npm
+3. Git Clone
+    git clone https://github.com/wooygcom/mapc.me.git
+4. composer update
+    cd MAPC_ME_ROOT/web
+    composer update
+    npm install
+    npx webpack
+5. 설정
+    mapc-system/config/
+        * custom.php 삭제, 필요한 경우 config.php 를 복사
+        * routes.php 삭제, 필요한 경우 routes.default.php를 복사
+    mapc-app/
+        * common/, test/ 를 제외한 디렉토리 삭제
+        * 필요한 경우 test도 삭제
+    mapc-data/
+        * 불필요한 화일삭제
 
 
 디렉토리 구조
@@ -34,24 +59,6 @@ mapc.me
 
 3. 화면출력(또는 결과반환)
     /app/*/view/*
-
-
-설치방법
--------------------------------------------------------------------------------
-
-1. 데몬설치
-    Apache, PHP, MySQL 설치
-2. 의존성도구 설치
-    Composer, npm
-3. 설정
-    mapc-system/config/
-        * custom.php 삭제, 필요한 경우 config.php 를 복사
-        * routes.php 삭제, 필요한 경우 routes.default.php를 복사
-    mapc-app/
-        * common/, test/ 를 제외한 디렉토리 삭제
-        * 필요한 경우 test도 삭제
-    mapc-data/
-        * 불필요한 화일삭제
 
 
 
