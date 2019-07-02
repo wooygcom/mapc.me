@@ -4,8 +4,6 @@ if(!defined('__MAPC__')) { exit(); }
 // #TODO APP/controlloer, models, views를 autoload에서 불러올 수 있게...
 session_start();
 
-include(APP_PATH . 'common/models/usersModel.php');
-
 use Mapc\Common\User as MapcUser;
 
 $user = new MapcUser;

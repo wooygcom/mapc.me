@@ -18,17 +18,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $group2 = $_POST['group2'];
 
     if($group) {
-        $uploads_dir .= '/' . $_POST['group'];
+        $uploads_dir .= DS . $_POST['group'];
         $args  .= $argSep . 'group=' . $group;
         $argSep = '&';
     }
     if($_POST['group2']) {
-        $uploads_dir .= '/' . $_POST['group2'];
+        $uploads_dir .= DS . $_POST['group2'];
         $args  .= $argSep . 'group2=' . $group2;
         $argSep = '&';
     }
 
-    $uploads_dir_real = $uploads_dir . '/' . $dir_Y . '/' . $dir_m . '/' . $dir_d . '/';
+    $uploads_dir_real = $uploads_dir . DS . $dir_Y . DS . $dir_m . DS . $dir_d . DS;
 	$allowed_ext = array('jpg','jpeg','png','gif');
 
 	// 변수 정리
@@ -95,18 +95,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$dir_d = substr($filename, 6, 2);
 
     if($group) {
-        $uploads_dir .= '/' . $group;
+        $uploads_dir .= DS . $group;
     }
     if($group2) {
-        $uploads_dir .= '/' . $group2;
+        $uploads_dir .= DS . $group2;
     }
-    $uploads_dir_real = $uploads_dir . '/' . $dir_Y . '/' . $dir_m . '/' . $dir_d . '/';
+    $uploads_dir_real = $uploads_dir . DS . $dir_Y . DS . $dir_m . DS . $dir_d . DS;
 
 	if(is_file($uploads_dir_real . $filename_thumb)) {
         $imgpath = $uploads_dir_real . $filename_thumb;
     } else {
         $imgpath = $uploads_dir_real . $filename;
     }
+
 
     // Get the mimetype for the file
     $finfo = finfo_open(FILEINFO_MIME_TYPE);  

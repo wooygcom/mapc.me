@@ -1,90 +1,96 @@
 <?php
 namespace Mapc\Common;
 
+include(LIBRARY_PATH . 'image_thumbnail.php');
+
+/**
+ * $fileObj = new Files(DATA_PATH);
+ * $fileObj->file($_FILES['uploadfiles']); // input name="uploadfiles[]"
+ * $fileObj->upload();
+ */
 class Files {
 
-    public $uploadsDir;
-    public $filename;
+    public $uploadDir;
+    public $files; // $_FILES['filename'][] : 여러개 파일을 올릴 때 쓰는 변수
+    public $file;  // $_FILES['filename'] : 하나의 파일만 올릴 때 쓰는 변수
+    public $fileCount;
+    public $fileUrls = [];
+    public $group; // 파일 업로드 디렉토리 구분용 (예. file.jpg&group=a -> a/file.jpg)
 
     public function __construct($args = []) {
-        //
+
+        $this->group     = $args['group'];
+        $temp = ($this->group) ? $this->group . DIRECTORY_SEPARATOR : '';
+        $this->uploadDir = $args['uploadDir'] . DIRECTORY_SEPARATOR . $temp;
+
     }
-    public function read() {}
-    public function upload() {
 
-        include(LIBRARY_PATH . 'image_thumbnail.php');
+    public function file($files) {
 
-        $dir_Y = date('Y');
-        $dir_m = date('m');
-        $dir_d = date('d');
+        $this->files     = $files;
+        $this->fileCount = count($files['name']);
 
-        $args   = '';
-        $argSep = '?';
-        $group  = $_POST['group'];
-        $group2 = $_POST['group2'];
+    }
 
-        if($group) {
-            $uploads_dir .= '/' . $_POST['group'];
-            $args  .= $argSep . 'group=' . $group;
-            $argSep = '&';
+    public function check($args) {
+        // #TODO 파일검사
+    }
+
+    public function uploads($files = []) {
+
+        foreach($this->files['name'] as $key => $var) {
+
+            $args = [
+                'name'     => $this->files['name'][$key],
+                'tmp_name' => $this->files['tmp_name'][$key],
+                'type'     => $this->files['type'][$key],
+                'size'     => $this->files['size'][$key]
+                ];
+
+            $check  = $this->check($args);
+            $result = $this->upload($args);
+
         }
-        if($_POST['group2']) {
-            $uploads_dir .= '/' . $_POST['group2'];
-            $args  .= $argSep . 'group2=' . $group2;
-            $argSep = '&';
-        }
 
-        $uploads_dir_real = $uploads_dir . '/' . $dir_Y . '/' . $dir_m . '/' . $dir_d . '/';
+        return $result;
+
+    }
+
+    public function upload($args) {
+
+        $result = true;
+
+        $filename = $args['name'];
+
+        $ext      = array_pop(explode('.', $filename));
+        $uniqid   = uniqid();
+        $server_filename = date('Ymd-His') . '-' . $uniqid . '.' . $ext;
+        $server_filename_thumb = date('Ymd-His') . '-' . $uniqid . '.thumb.' . $ext;
+
+        $uploads_dir_real = $this->uploadDir . DIRECTORY_SEPARATOR . date('Y') . DIRECTORY_SEPARATOR . date('m') . DIRECTORY_SEPARATOR . date('d') . DIRECTORY_SEPARATOR;
+        // #TODO allowed_ext는 별도의 내부변수로 만들것!!!!!!!!!!!
         $allowed_ext = array('jpg','jpeg','png','gif');
 
-        // 변수 정리
-        $error = $_FILES['file']['error'];
-        $name  = $_FILES['file']['name'];
-        $ext   = array_pop(explode('.', $name));
-        $uniqid = uniqid(); // 파일명에 들어갈 고유값
-
-        // 오류 확인
-        if( $error != UPLOAD_ERR_OK ) {
-            switch( $error ) {
-                case UPLOAD_ERR_INI_SIZE:
-                case UPLOAD_ERR_FORM_SIZE:
-                    echo "파일이 너무 큽니다. ($error)";
-                    break;
-                case UPLOAD_ERR_NO_FILE:
-                    echo "파일이 첨부되지 않았습니다. ($error)";
-                    break;
-                default:
-                    echo "파일이 제대로 업로드되지 않았습니다. ($error)";
-            }
-            exit;
-        }
-
-        // 확장자 확인
-        if( !in_array(strtolower($ext), $allowed_ext) ) {
-            echo "허용되지 않는 확장자입니다.";
-            exit;
-        }
-
-        // #TODO 파일명에 들어가는 날짜를 원글의 글쓴날의 날짜로 대체~!!! date함수 대신 원글Ymd로 대체~!!!!!
-        $server_filename = date('Ymd-His') . '.' . $uniqid . '.' . $ext;
-        $server_filename_thumb = date('Ymd-His') . '.' . $uniqid . '.thumb.' . $ext;
-
         if(! is_dir($uploads_dir_real)) {
-            mkdir($uploads_dir_real, 0777, true);
+            mkdir($uploads_dir_real, 0755, true);
         }
 
-        // 파일 이동
-        move_uploaded_file( $_FILES['file']['tmp_name'], $uploads_dir_real . $server_filename );
-        // #TODO jpg 이외의 파일도 썸네일 만들어지도록~
-        if($ext == 'jpg') {
+        if(move_uploaded_file($args['tmp_name'], $uploads_dir_real . DIRECTORY_SEPARATOR . $server_filename)) {
+
+            // 파일 정보 출력
+            $this->fileUrls[] = ROOT_URL . 'common/files/' . $server_filename . '?group=' . $this->group;
             imageThumbnail(
                 $uploads_dir_real . $server_filename,
                 $uploads_dir_real . $server_filename_thumb
             );
+
+        } else {
+
+            $result = false;
+
         }
 
-        // 파일 정보 출력
-        echo ROOT_URL . 'common/files/' . $server_filename . $args;
+        return $result;
 
     }
 

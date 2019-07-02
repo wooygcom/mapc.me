@@ -142,20 +142,22 @@
           </ul>
         </li>
 <?php
-if(TESTMODE) {
+if(DEBUG) {
 ?>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-th"></i> <span>지회관리</span>
+            <i class="fa fa-th"></i> <span>내용관리</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu active">
+            <li><a href="/_go/<?= $campDetail['option2']; ?>"><i class="fa fa-circle-o"></i>활동소식등록</a></li>
+            <!--
             <li><a href="<?= ROOT_URL; ?>smu/camps/"><i class="fa fa-circle-o"></i>전체보기</a></li>
-            <li><a href="<?= ROOT_URL; ?>test/pages/new"><i class="fa fa-circle-o"></i>지회추가</a></li>
             <li><a href="<?= ROOT_URL; ?>test/pages"><i class="fa fa-circle-o"></i>읍면동관리</a></li>
             <li><a href="<?= ROOT_URL; ?>intro/edit"><i class="fa fa-circle-o"></i>사업일지</a></li>
+          -->
           </ul>
         </li>
 <?php

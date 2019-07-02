@@ -13,7 +13,6 @@ switch ($routes['module']) {
 		$routes['option'] = $mapcArgs[4];
 		$routes['args']   = array_slice($mapcArgs, 5);
 
-
 		// POST값이 들어오면 "실행"
 		if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -57,7 +56,7 @@ switch ($routes['module']) {
 
 		} elseif(empty($routes['id'])) {
 
-			$routes['callback'] = $routes['module'] . '/index';
+			$routes['callback'] = $routes['module'] . '/list';
 
 		} elseif( $routes['id'] == 'new' ) {
 

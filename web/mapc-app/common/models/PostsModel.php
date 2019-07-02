@@ -2,6 +2,7 @@
 namespace Mapc\Common;
 
 use Mapc\Common\Bare;
+use \RedBeanPHP\R as Rb;
 
 /**
  * Posts Model
@@ -9,8 +10,8 @@ use Mapc\Common\Bare;
  */
 class Posts extends Bare {
 
-	private $db;
-	private $dbObj;
+	protected $db;
+	protected $dbObj;
 
 	public $posts;
 
@@ -27,23 +28,21 @@ class Posts extends Bare {
 
 	public function __construct($args = []) {
 
-		$this->db        = $args['db']->getRedBean();
+		$this->db        = $args['db'];
 		$this->table     = $args['table'];
 		$this->tableMeta = $args['tableMeta'];
-		$this->dbObj     = $this->db->dispense($this->table);
-		$temp->title = 'asdf';
-		$temp->content = 'asdfaaa';
-var_dump($temp);
-		var_dump($this->dbObj->store($temp));
+		$this->dbObj     = $this->db->getRedBean()->dispense($this->table);
 
 		return $this->dbObj;
 
 	}
 
-    public function create($var) {
-
-    	$this->dbObj->store($var);
-    	var_dump($this->dbObj);
+	/**
+	 * @param $vars['postsVar']
+	 * @param $vars['postsExtVar']
+	 * `id`, `post_uid`, `post_lang`, `post_title`, `post_content`, `post_origin_type`, `post_origin_server`, `post_origin_url`, `post_write_date`, `post_edit_date_latest`, `post_status`, `post_user_uid`, `post_etc`
+	 */
+    public function create($vars = []) {
 
     }
 
@@ -61,23 +60,13 @@ var_dump($temp);
 
 	public function delete() {}
 
-	public function createExtensions(array $args = []) {
+	public function createMeta(array $args = []) {}
 
-		foreach($args as $arg) {
+    public function readMeta(array $args = []) {}
 
-			$this->createExtension($arg);
+	public function updateMeta(array $args = []) {}
 
-		}
-
-	}
-
-	public function createExtension(array $args = []) {}
-
-    public function readExtensions(array $args = []) {}
-
-	public function updateExtension(array $args = []) {}
-
-	public function deleteExtension($key = '') {}
+	public function deleteMeta($key = '') {}
 
 } // class
 

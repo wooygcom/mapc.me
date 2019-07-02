@@ -5,7 +5,19 @@ if(! function_exists(imageThumbnail)) {
         $width_limit  = 1024; // 원하는 가로길기 limit값 
         $height_limit = 1024; // 원하는 세로길기 limit값
   
-        $src_img = ImageCreateFromJPEG($file); //JPG파일로부터 이미지를 읽어옵니다
+        $fileinfo = pathinfo($file);
+        $ext = strtolower($fileinfo['extension']);
+
+        if($ext == 'jpg' || $ext == 'jpeg') {
+            $src_img = ImageCreateFromJPEG($file); //JPG파일로부터 이미지를 읽어옵니다
+        } elseif($ext == 'png') {
+            $src_img = ImageCreateFromPng($file);
+        } elseif($ext == 'gif') {
+            $src_img = ImageCreateFromGif($file);
+        } else {
+            echo 'extension Error';
+            exit;
+        }
 
         $imgsize = getimagesize($file); 
         $img_width = $imgsize[0]; 
