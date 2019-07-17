@@ -1,12 +1,10 @@
 <?php
 namespace Mapc\Common;
 
-include(LIBRARY_PATH . 'image_thumbnail.php');
-
 /**
- * $fileObj = new Files(DATA_PATH);
+ * $fileObj = new Files(['group' => 'activities', 'uploadDir' => '../../mapc.me/mapc-data/smu/']);
  * $fileObj->file($_FILES['uploadfiles']); // input name="uploadfiles[]"
- * $fileObj->upload();
+ * $fileObj->uploads(); // 하나만 올릴 경우 $fileObj->upload();
  */
 class Files {
 
@@ -79,10 +77,12 @@ class Files {
 
             // 파일 정보 출력
             $this->fileUrls[] = ROOT_URL . 'common/files/' . $server_filename . '?group=' . $this->group;
-            imageThumbnail(
-                $uploads_dir_real . $server_filename,
-                $uploads_dir_real . $server_filename_thumb
-            );
+            if(function_exists('imageThumbnail')) {
+                imageThumbnail (
+                    $uploads_dir_real . $server_filename,
+                    $uploads_dir_real . $server_filename_thumb
+                );
+            }
 
         } else {
 

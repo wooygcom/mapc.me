@@ -32,7 +32,7 @@ define('__MAPC__', true);
 	 * Load page
 	 *
 	 */
-	include(APP_PATH . $ROUTES['vendor'] . '/index.php');
+	include(APP_PATH . $ROUTES['vendor'] . DS . 'index.php');
 
 } // BLOCK
 

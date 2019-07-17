@@ -22,13 +22,13 @@ switch ($routes['module']) {
 		        case 'patch':
 		        case 'delete':
 		       	default:
-		        	$routes['callback'] = $routes['module'] . '/exec';
+		        	$routes['callback'] = $routes['module'] . DS . 'exec';
 		            break;
 		    }
 
 		} else {
 
-			$routes['callback'] = $routes['module'] . '/' . $routes['action'];
+			$routes['callback'] = $routes['module'] . DS . $routes['action'];
 
 		}
 		break;
@@ -50,25 +50,25 @@ switch ($routes['module']) {
 		        case 'patch':
 		        case 'delete':
 		       	default:
-		        	$routes['callback'] = $routes['module'] . '/exec';
+		        	$routes['callback'] = $routes['module'] . DS . 'exec';
 		            break;
 		    }
 
 		} elseif(empty($routes['id'])) {
 
-			$routes['callback'] = $routes['module'] . '/list';
+			$routes['callback'] = $routes['module'] . DS . 'list';
 
 		} elseif( $routes['id'] == 'new' ) {
 
-			$routes['callback'] = $routes['module'] . '/edit';
+			$routes['callback'] = $routes['module'] . DS . 'edit';
 
 		} elseif(! empty($routes['action']) ) {
 
-			$routes['callback'] = $routes['module'] . '/' . $routes['action'];
+			$routes['callback'] = $routes['module'] . DS . $routes['action'];
 
 		} else {
 
-			$routes['callback'] = $routes['module'] . '/detail';
+			$routes['callback'] = $routes['module'] . DS . 'detail';
 
 		}
 
