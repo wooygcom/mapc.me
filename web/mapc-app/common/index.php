@@ -11,7 +11,7 @@
 
     /**
      *
-     * Get Controller
+     * Get Controller...
      *
      */
     include(__DIR__ . '/controllers/' . $ROUTES['module'] . 'Controller.php');
