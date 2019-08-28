@@ -1,19 +1,19 @@
 <?php
 $config = [
-    'title'       = '사이트제목';
-    'site_url'    = $_SERVER['REQUEST_URI'];
-    'description' = 'site description';
-    'type'        = 'website';
-    'og_image'    = 'http://sample/images/img.png';
-    'og_image_type'   = 'image/png';
-    'og_image_width'  = '1024';
-    'og_image_height' = '768';
-    'author'   = '우연근';
-    'keywords' = '키워드, 키워드2';
-    'favicon'  = 'favicon.ico';
+    'title'       => '사이트제목',
+    'site_url'    => $_SERVER['REQUEST_URI'],
+    'description' => 'site description',
+    'type'        => 'website',
+    'og_image'    => 'http://sample/images/img.png',
+    'og_image_type'   => 'image/png',
+    'og_image_width'  => '1024',
+    'og_image_height' => '768',
+    'author'   => '우연근',
+    'keywords' => '키워드, 키워드2',
+    'favicon'  => 'favicon.ico',
 
-    'upload_dir' = '';
-    'layout' = 'core';
+    'upload_dir' => '',
+    'layout' => 'core',
 
     'dbadapter' => 'mysql',
     'dbhost'    => '127.0.0.1',
@@ -36,7 +36,7 @@ $config = [
 
         'list_category_api_uri' => 'https://openapi.naver.com/blog/listCategory.json',
         'write_post_api_uri' => 'https://openapi.naver.com/blog/writePost.json'
-        ],
+        ]
     ];
 
 return $config;
