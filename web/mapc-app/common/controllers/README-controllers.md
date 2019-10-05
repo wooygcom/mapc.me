@@ -14,6 +14,17 @@ controllers/packageController.php
 --------------------------------------------------
 ```
 <?php
+if(!defined("__MAPC__")) { exit(); }
+
+include($ROUTES['callback'] . '.php');
+
+// this is it
+```
+
+controllers/package/module.php
+--------------------------------------------------
+```
+<?php
 { // BLOCK:proc:20190617:프로시저불러오기
 
 } // BLOCK
