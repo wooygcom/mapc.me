@@ -36,7 +36,7 @@ $config = [
 
         'list_category_api_uri' => 'https://openapi.naver.com/blog/listCategory.json',
         'write_post_api_uri' => 'https://openapi.naver.com/blog/writePost.json'
-        ],
+        ]
     ];
 
 return $config;

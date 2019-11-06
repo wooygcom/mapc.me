@@ -27,7 +27,7 @@ mapc.me
 
 2. 의존성도구 설치
 
-    Composer, npm
+    Composer, NPM, NPX 설치 ($ npm i -g npx)
 
 3. Git Clone
 
