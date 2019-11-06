@@ -32,7 +32,7 @@
 		case 'common':
 		case 'ext':
 
-			$routes = include(APP_PATH . $routes['vendor'] . '/config/routes.php');
+			$routes = include(APP_PATH . $routes['vendor'] . DS . 'config' . DS . 'routes.php');
 			break;
 
 		case 'crud':
@@ -51,28 +51,28 @@
 			        case 'patch':
 			        case 'delete':
 			       	default:
-			        	$routes['callback'] = $routes['module'] . '/exec';
+			        	$routes['callback'] = $routes['module'] . DS . 'exec';
 			            break;
 			    }
 
 			} elseif(empty($routes['id']) || $routes['id'] == 'a') {
 
-				$routes['callback'] = $routes['module'] . '/list';
+				$routes['callback'] = $routes['module'] . DS . 'list';
 
 			} elseif( $routes['id'] == 'new' ) {
 
-				$routes['callback'] = $routes['module'] . '/edit';
+				$routes['callback'] = $routes['module'] . DS . 'edit';
 
 			} else {
 
 				// 페이지 표시(POST값이 없을 경우)
 				switch($routes['action']) {
 					case 'edit':
-						$routes['callback'] = $routes['module'] . '/edit';
+						$routes['callback'] = $routes['module'] . DS . 'edit';
 						break;
 					case 'detail':
 					default:
-						$routes['callback'] = $routes['module'] . '/detail';
+						$routes['callback'] = $routes['module'] . DS . 'detail';
 						break;
 				}
 
@@ -81,8 +81,8 @@
 			break;
 
 		default:
-			$routes['module'] = $mapcArgs[2];
-			$routes['action'] = $mapcArgs[3];
+			$routes['module'] = $mapcArgs[2] ? $mapcArgs[2] : DEFAULT_MODULE;
+			$routes['action'] = $mapcArgs[3] ? $mapcArgs[3] : DEFAULT_ACTION;
 			$routes['option'] = $mapcArgs[4];
 			$routes['args']   = array_slice($mapcArgs, 5);
 
@@ -96,13 +96,13 @@
 			        case 'patch':
 			        case 'delete':
 			       	default:
-			        	$routes['callback'] = $routes['module'] . '/exec';
+			        	$routes['callback'] = $routes['module'] . DS . 'exec';
 			            break;
 			    }
 
 			} else {
 
-				$routes['callback'] = $routes['module'] . '/' . $routes['action'];
+				$routes['callback'] = $routes['module'] . DS . $routes['action'];
 
 			}
 			break;
