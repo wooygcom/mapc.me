@@ -22,7 +22,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $args  .= $argSep . 'group=' . $group;
         $argSep = '&';
     }
-    if($_POST['group2']) {
+    if($group2) {
         $uploads_dir .= DS . $_POST['group2'];
         $args  .= $argSep . 'group2=' . $group2;
         $argSep = '&';

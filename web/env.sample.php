@@ -43,13 +43,8 @@ if(!defined("__MAPC__")) { exit(); }
     define('DOMAIN', str_replace('www.', '', $_SERVER['HTTP_HOST']));
     define('HOST',   explode('.', DOMAIN)[0]);
     if($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
-/*
         error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_NOTICE);
         define('DEBUG', true);
-/*/
-        error_reporting(0);
-        define('DEBUG', false);
-//*/
     } else {
         error_reporting(0);
         define('DEBUG', false);

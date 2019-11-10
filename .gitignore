@@ -1,5 +1,10 @@
 # Files for deveopment
+.gitignore
+
 develop/*
+
+web/env.php
+web/sync.ffs_db
 
 web/mapc-public/npm/*
 web/mapc-public/vendor/*
@@ -20,3 +25,5 @@ web/mapc-system/*
 
 web/mapc-app/*
 !web/mapc-app/common
+!web/mapc-app/commonAdmin
+!web/mapc-app/oAuth
