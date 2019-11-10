@@ -81,8 +81,7 @@
 			break;
 
 		default:
-			$routes['module'] = $mapcArgs[2];
-			$routes['action'] = $mapcArgs[3];
+			$routes['action'] = $mapcArgs[3] ? $mapcArgs[3] : DEFAULT_ACTION;
 			$routes['option'] = $mapcArgs[4];
 			$routes['args']   = array_slice($mapcArgs, 5);
 
