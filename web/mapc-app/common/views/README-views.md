@@ -22,15 +22,15 @@ include($ROUTES['callback'] . '.php');
  *
  */
 $layout = 'core';
-include(LAYOUT_PATH . $layout . '/head.html');
-include(LAYOUT_PATH . $layout . '/header.html');
+include(LAYOUT_PATH . $layout . DS . 'head.php');
+include(LAYOUT_PATH . $layout . DS . 'header.php');
 ?>
 
 내용
 
 <?php
-include(LAYOUT_PATH . $layout . '/footer.html');
-include(LAYOUT_PATH . $layout . '/foot.html');
+include(LAYOUT_PATH . $layout . DS . 'footer.php');
+include(LAYOUT_PATH . $layout . DS . 'foot.php');
 
 // this is it
 ```

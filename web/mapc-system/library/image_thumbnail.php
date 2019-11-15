@@ -10,32 +10,32 @@ if(! function_exists(imageThumbnail)) {
 
         if($ext == 'jpg' || $ext == 'jpeg') {
 
-            // 그림 회전 : B
             if(function_exists('exif_read_data')
                 && function_exists('imagecreatefromjpeg')
                 && function_exists('imagerotate')
             ) {
 
+                // 그림 회전 : B
                 $exif = exif_read_data($file); // get exif data. jpeg 나 tiff 의 경우에만 갖고 있음
                 $source = imagecreatefromjpeg($file); // 임시 리소스 생성
 
                 //값에 따라 회전
                 switch($exif['Orientation']){
-                    case 8 : $source = imagerotate($source,90,0); break;
-                    case 3 : $source = imagerotate($source,180,0); break;
-                    case 6 : $source = imagerotate($source,-90,0); break;
+                    case 8 : $src_img = imagerotate($source,90,0); break;
+                    case 3 : $src_img = imagerotate($source,180,0); break;
+                    case 6 : $src_img = imagerotate($source,-90,0); break;
+                    default : $src_img = imagerotate($source, 0, 0); break;
                 }
 
                 //결과 처리
-                imagejpeg($source, $src_img);
                 imagedestroy($source);
 
+                // 그림 회전 : E
             } else {
 
                 $src_img = ImageCreateFromJPEG($file); //JPG파일로부터 이미지를 읽어옵니다
 
             }
-            // 그림 회전 : E
 
         } elseif($ext == 'png') {
             $src_img = ImageCreateFromPng($file);

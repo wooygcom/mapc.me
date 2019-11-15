@@ -46,7 +46,10 @@ mapc.me
 
 5. 접속
 
-    http://접속주소/mapc.me/web/mapc-public/
+    1. 개발할 때의 접속주소
+        http://접속주소/mapc.me/web/mapc-public/
+
+    2. 실 서버에서는 "mapc-public'이 웹루트로 설정해놓아야함!!!
 
 
 Git 사용방법

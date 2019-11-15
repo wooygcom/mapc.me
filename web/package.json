@@ -21,12 +21,14 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "^3.3.1",
     "bootstrap": "^4.1.3",
+    "handsontable": "^7.2.2",
+    "jquery": "^3.3.1",
     "metro-ui": "^3.0.15"
   },
   "devDependencies": {
     "copy-webpack-plugin": "latest",
-    "webpack": "latest"
+    "webpack": "latest",
+    "webpack-cli": "^3.3.10"
   }
 }
