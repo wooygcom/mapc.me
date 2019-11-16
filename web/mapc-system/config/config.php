@@ -3,6 +3,7 @@ $config = [
     'title'       => '사이트제목',
     'site_url'    => $_SERVER['REQUEST_URI'],
     'description' => 'site description',
+    'lang'        => 'ko-KR',
     'type'        => 'website',
     'og_image'    => 'http://sample/images/img.png',
     'og_image_type'   => 'image/png',
