@@ -82,6 +82,7 @@
 
 		default:
 
+			$routes['action'] = $mapcArgs[3] ? $mapcArgs[3] : DEFAULT_ACTION;
 			$routes['option'] = $mapcArgs[4];
 			$routes['args']   = array_slice($mapcArgs, 5);
 
