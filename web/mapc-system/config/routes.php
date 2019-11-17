@@ -86,7 +86,6 @@
 			$routes['option'] = $mapcArgs[4];
 			$routes['args']   = array_slice($mapcArgs, 5);
 
-
 			if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 				// POST값이 들어오면 "실행"
