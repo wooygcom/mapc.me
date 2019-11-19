@@ -16,7 +16,6 @@ class Crud {
     public function __construct($args = []) {
 
         $this->db = $args['db'];
-        $this->db->fancyDebug(true);
         $this->vars = $this->db->getRedBean()->dispense($args['table']);
         $this->table = $args['table'];
 
