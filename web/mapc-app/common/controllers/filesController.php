@@ -2,7 +2,13 @@
 if(!defined("__MAPC__")) { exit(); }
 
 // #TODO camp별 branch별로 따로 업로드 되도록...
-$uploads_dir = DATA_PATH . $CONFIG['upload_dir'];
+// env.php에 DATA_PATH2를 설정해놓으면 파일을 분할해서 가져올 수 있음
+$uploads_dir  = DATA_PATH . $CONFIG['upload_dir'];
+if(DATA_PATH2) {
+    $uploads_dir2 = DATA_PATH2 . $CONFIG['upload_dir'];
+} else {
+    $uploads_dir2 = DATA_PATH . $CONFIG['upload_dir'];
+}
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -28,7 +34,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $argSep = '&';
     }
 
-    $uploads_dir_real = $uploads_dir . DS . $dir_Y . DS . $dir_m . DS . $dir_d . DS;
+    $uploads_dir_real  = $uploads_dir  . DS . $dir_Y . DS . $dir_m . DS . $dir_d . DS;
+    $uploads_dir_real2 = $uploads_dir2 . DS . $dir_Y . DS . $dir_m . DS . $dir_d . DS;
 	$allowed_ext = array('jpg','jpeg','png','gif');
 
 	// 변수 정리
@@ -100,14 +107,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     if($group2) {
         $uploads_dir .= DS . $group2;
     }
-    $uploads_dir_real = $uploads_dir . DS . $dir_Y . DS . $dir_m . DS . $dir_d . DS;
+    $uploads_dir_real  = $uploads_dir  . DS . $dir_Y . DS . $dir_m . DS . $dir_d . DS;
+    $uploads_dir_real2 = $uploads_dir2 . DS . $dir_Y . DS . $dir_m . DS . $dir_d . DS;
 
-	if(is_file($uploads_dir_real . $filename_thumb)) {
+    // 분할 드라이브에 썸네일 파일이 있으면 그걸 가져오고
+    if(is_file($uploads_dir_real2 . $filename_thumb)) {
+        $imgpath = $uploads_dir_real2 . $filename_thumb;
+    // 아니면 원래 드라이브에서 썸네일 가져오고
+    } elseif(is_file($uploads_dir_real . $filename_thumb)) {
         $imgpath = $uploads_dir_real . $filename_thumb;
+    // 없으면 원본 가져오기
     } else {
         $imgpath = $uploads_dir_real . $filename;
     }
-
 
     // Get the mimetype for the file
     $finfo = finfo_open(FILEINFO_MIME_TYPE);  

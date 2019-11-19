@@ -60,7 +60,8 @@ class Files {
 
         $filename = $args['name'];
 
-        $ext      = array_pop(explode('.', $filename));
+        $temp     = explode(".", $filename);
+        $ext      = end($temp);
         $uniqid   = uniqid();
         $server_filename = date('Ymd-His') . '-' . $uniqid . '.' . $ext;
         $server_filename_thumb = date('Ymd-His') . '-' . $uniqid . '.thumb.' . $ext;
