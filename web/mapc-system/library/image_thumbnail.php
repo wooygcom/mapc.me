@@ -1,5 +1,5 @@
 <?php
-if(! function_exists(imageThumbnail)) {
+if(! function_exists('imageThumbnail')) {
     function imageThumbnail($file, $save_filename)
     {
         $width_limit  = 1024; // 원하는 가로길기 limit값 
@@ -73,7 +73,17 @@ if(! function_exists(imageThumbnail)) {
         ImageCopyResized($dst_img, $src_img, 0, 0, 0, 0, $img_width_thumb, $img_height_thumb, $img_width, $img_height); //타겟이미지에 원하는 사이즈의 이미지를 저장합니다
 
         ImageInterlace($dst_img);
-        ImageJPEG($dst_img, $save_filename); //실제로 이미지파일을 생성합니다
+        if($ext == 'jpg' || $ext == 'jpeg') {
+            ImageJPEG($dst_img, $save_filename); //실제로 이미지파일을 생성합니다
+        } elseif($ext == 'png') {
+            ImagePNG($dst_img, $save_filename); //실제로 이미지파일을 생성합니다
+        } elseif($ext == 'gif') {
+            ImageGIF($dst_img, $save_filename); //실제로 이미지파일을 생성합니다
+        } else {
+            echo 'extension Error';
+            exit;
+        }
+
         ImageDestroy($dst_img);
         ImageDestroy($src_img); //메모리상의 이미지를 삭제합니다.
     }

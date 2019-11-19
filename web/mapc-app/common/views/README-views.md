@@ -51,3 +51,17 @@ EOT;
     <input type="hidden" name="_method" value="update" /><!-- POST, PUT, PATCH, DELETE -->
     <input type="hidden" name="content_type" value="<?= $ROUTES['action'] ? $ROUTES['action'] : 'intro'; ?>" />
 </form>
+
+
+기타(지워도 무관)
+---------------------------------------------------------
+
+### admin-lte 를 쓸 경우
+
+```
+<!-- Content : B -->
+  <section class="content">
+
+  </section>
+<!-- Content : E -->
+```
