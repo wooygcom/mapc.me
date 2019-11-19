@@ -32,7 +32,7 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
 
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">회원관리</h3>
+              <h3 class="box-title">그룹</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -40,9 +40,9 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
                 <thead>
                 <tr>
                   <th>이름</th>
-                  <th>소속</th>
+                  <th>상위그룹</th>
                   <th>구분</th>
-                  <th>아이디</th>
+                  <th>SLUG</th>
                   <th>비고</th>
                 </tr>
                 </thead>

@@ -121,7 +121,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header"><?= _('메뉴'); ?></li>
         <li>
-          <a href="<?= ROOT_URL; ?>smu/camps/<?= $v['group1'] ?>/<?= $v['group2']; ?>/info">
+          <a href="<?= ROOT_URL; ?>beta">
             <i class="fa fa-info-circle"></i> <span>내 정보</span>
           </a>
         </li>
