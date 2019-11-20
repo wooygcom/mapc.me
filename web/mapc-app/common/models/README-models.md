@@ -33,7 +33,7 @@ class Bare {
 
     public function retrieve() {}
     public function update() {}
-    public function delete() {
+    public function delete() {}
 
 } // class
 

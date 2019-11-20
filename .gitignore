@@ -2,6 +2,8 @@
 .gitignore
 
 develop/*
+plan/*
+!plan/mapc.mwb
 
 web/env.php
 web/sync.ffs_db
