@@ -54,7 +54,7 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
 
           <p>
             <button name="dump" data-dump="#dataTable" title="Prints current data source to Firebug/Chrome Dev Tools">
-              Dump data to console
+              콘솔에서 자료 보여주기
             </button>
           </p>
         </div>
@@ -76,8 +76,9 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
               startRows: 8,
               startCols: 4,
               rowHeaders: true,
-              colHeaders: ['이름', '상위그룹', '아이디', '아이디2'],
+              colHeaders: ['분류', '이름', '등록일', '아이디', '비고'],
               columns: [
+                {},
                 {},
                 {},
                 {},
@@ -93,7 +94,7 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
                 if ($parent.find('input[name=autosave]').is(':checked')) {
                   clearTimeout(autosaveNotification);
                   $.ajax({
-                    url: "<?= ROOT_URL; ?>php/save.php",
+                    url: "<?= ROOT_URL; ?>commonAdmin/users/save",
                     dataType: "json",
                     type: "POST",
                     data: {changes: change}, //contains changed cells' data
@@ -110,17 +111,19 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
             var handsontable = $container.data('handsontable');
             $parent.find('button[name=load]').click(function () {
               $.ajax({
-                url: "<?= ROOT_URL; ?>php/load.php",
+                url: "<?= ROOT_URL; ?>commonAdmin/users/load",
                 dataType: 'json',
                 type: 'GET',
                 success: function (res) {
                   var data = [], row;
-                  for (var i = 0, ilen = res.cars.length; i < ilen; i++) {
+                  for (var i = 0, ilen = res.users.length; i < ilen; i++) {
                     row = [];
-                    row[0] = res.cars[i].manufacturer;
-                    row[1] = res.cars[i].year;
-                    row[2] = res.cars[i].price;
-                    data[res.cars[i].id - 1] = row;
+                    row[0] = res.users[i].category;
+                    row[1] = res.users[i].name;
+                    row[2] = res.users[i].regDate;
+                    row[2] = res.users[i].uuid;
+                    row[2] = res.users[i].etc;
+                    data[res.users[i].id - 1] = row;
                   }
                   $console.text('불러오기 완료');
                   handsontable.loadData(data);
@@ -129,7 +132,7 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
             }).click(); //execute immediately
             $parent.find('button[name=save]').click(function () {
               $.ajax({
-                url: "<?= ROOT_URL; ?>php/save.php",
+                url: "<?= ROOT_URL; ?>commonAdmin/users/save",
                 data: {"data": handsontable.getData()}, //returns all cells' data
                 dataType: 'json',
                 type: 'POST',
@@ -148,7 +151,7 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
             });
             $parent.find('button[name=reset]').click(function () {
               $.ajax({
-                url: "<?= ROOT_URL; ?>php/reset.php",
+                url: "<?= ROOT_URL; ?>commonAdmin/users/reset",
                 success: function () {
                   $parent.find('button[name=load]').click();
                 },
@@ -176,6 +179,7 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
   </section>
 <!-- Content : E -->
 
+<div id="example1"></div>
 
 <?php
 include(LAYOUT_PATH . $layout . DS . 'footer.php');

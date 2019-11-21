@@ -99,7 +99,7 @@
           <img src="<?= ROOT_URL; ?>layout/admin-lte/images/if_male_628288.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p><?= $v['user']->name; ?></p>
+          <p><?= $v['user']->name; ?>이름</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a> ||
           <a href="<?= ROOT_URL; ?>smu/users/signout"></i> 로그아웃</a>
         </div>
@@ -133,26 +133,19 @@
             </span>
           </a>
           <ul class="treeview-menu active">
-            <li><a href="<?= ROOT_URL; ?>smu/camps/<?= $v['group1'] ?>/<?= $v['group2']; ?>/intro/edit"><i class="fa fa-circle-o"></i>인사말</a></li>
-            <li><a href="<?= ROOT_URL; ?>smu/camps/<?= $v['group1'] ?>/<?= $v['group2']; ?>/history/edit"><i class="fa fa-circle-o"></i>연혁</a></li>
-            <li><a href="<?= ROOT_URL; ?>smu/camps/<?= $v['group1'] ?>/<?= $v['group2']; ?>/impellent/edit"><i class="fa fa-circle-o"></i>추진방향</a></li>
-            <li><a href="<?= ROOT_URL; ?>smu/camps/<?= $v['group1'] ?>/<?= $v['group2']; ?>/activities/edit"><i class="fa fa-circle-o"></i>주요활동</a></li>
-            <li><a href="<?= ROOT_URL; ?>smu/camps/<?= $v['group1'] ?>/<?= $v['group2']; ?>/orgsoc/edit"><i class="fa fa-circle-o"></i>운동조직</a></li>
-            <li><a href="<?= ROOT_URL; ?>smu/camps/<?= $v['group1'] ?>/<?= $v['group2']; ?>/orgwork/edit"><i class="fa fa-circle-o"></i>사무조직</a></li>
+            <li class="active"><a href="<?= ROOT_URL; ?>vendor/package/module"><i class="fa fa-circle-o"></i>메뉴1</a></li>
+            <li><a href="<?= ROOT_URL; ?>vendor/package/module"><i class="fa fa-circle-o"></i>메뉴2</a></li>
+            <li><a href="<?= ROOT_URL; ?>vendor/package/module"><i class="fa fa-circle-o"></i>메뉴3</a></li>
           </ul>
         </li>
-<!--
+<?php
+// #TODO 우선 막 만들어놓음... 나중에 menuMake($v['menu'])같은 함수 만들어서 변수에 맞게 이쁘게 출력되도록 해야 함
+?>
         <li>
-          <a href="#" onclick="javascript:alert('준비중입니다.');">
-            <i class="fa fa-th"></i> <span>활동소식</span>
+          <a href="<?= $v['menu']['admin']['users']; ?>">
+            <i class="fa fa-th"></i> <span>회원관리</span>
           </a>
         </li>
-        <li>
-          <a href="#" onclick="javascript:alert('준비중입니다.');">
-            <i class="fa fa-share"></i> <span>하부조직관리</span>
-          </a>
-        </li>
--->
       </ul>
     </section>
     <!-- /.sidebar -->

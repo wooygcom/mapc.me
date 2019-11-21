@@ -35,76 +35,13 @@
 			$routes = include(APP_PATH . $routes['vendor'] . DS . 'config' . DS . 'routes.php');
 			break;
 
-		case 'crud':
-
-			$routes['id']     = $mapcArgs[3];
-			$routes['action'] = $mapcArgs[4] ? $mapcArgs[4] : DEFAULT_ACTION;
-			$routes['args']   = array_slice($mapcArgs, 4);
-
-			// #TODO URI 자동 인식하게끔 /
-			if($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-				// POST값이 들어오면 "실행"
-			    switch($_POST['_method']) {
-			        case 'post':
-			        case 'put':
-			        case 'patch':
-			        case 'delete':
-			       	default:
-			        	$routes['callback'] = $routes['module'] . DS . 'exec';
-			            break;
-			    }
-
-			} elseif(empty($routes['id']) || $routes['id'] == 'a') {
-
-				$routes['callback'] = $routes['module'] . DS . 'list';
-
-			} elseif( $routes['id'] == 'new' ) {
-
-				$routes['callback'] = $routes['module'] . DS . 'edit';
-
-			} else {
-
-				// 페이지 표시(POST값이 없을 경우)
-				switch($routes['action']) {
-					case 'edit':
-						$routes['callback'] = $routes['module'] . DS . 'edit';
-						break;
-					case 'detail':
-					default:
-						$routes['callback'] = $routes['module'] . DS . 'detail';
-						break;
-				}
-
-			}
-
-			break;
-
 		default:
 
 			$routes['action'] = $mapcArgs[3] ? $mapcArgs[3] : DEFAULT_ACTION;
 			$routes['option'] = $mapcArgs[4];
 			$routes['args']   = array_slice($mapcArgs, 5);
 
-			if($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-				// POST값이 들어오면 "실행"
-			    switch($_POST['_method']) {
-			        case 'post':
-			        case 'put':
-			        case 'patch':
-			        case 'delete':
-			       	default:
-			        	$routes['callback'] = $routes['module'] . DS . 'exec';
-			            break;
-			    }
-
-			} else {
-
-				$routes['callback'] = $routes['module'] . DS . $routes['action'];
-
-			}
-			break;
+			$routes['callback'] = $routes['module'] . DS . $routes['action'];
 
 	}
 

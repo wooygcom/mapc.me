@@ -17,8 +17,11 @@ $config = [
         'layout' => 'core'
     ],
 
-    'url' => [
-        'admin' => ROOT_URL
+    'menu' => [
+        'admin' => [
+            'my_info' => ROOT_URL . 'commonAdmin/auth/info',
+            'users' => ROOT_URL . 'commonAdmin/users/'
+        ]
     ],
 
     'secure' => [

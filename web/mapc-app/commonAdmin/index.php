@@ -28,6 +28,7 @@
     // 보안을 위해 CONFIG에서 site와 url을 제외한 모든 환경설정값 지우기
     $v = [];
     $v['url']  = $CONFIG['url'];
+    $v['menu'] = $CONFIG['menu'];
     $v['site'] = $CONFIG['site'];
     unset($CONFIG);
     include(__DIR__ . '/views/' . $ROUTES['module'] . 'View.php');
