@@ -9,7 +9,7 @@ $r = new R;
 
     global $CONFIG;
 
-	$r::setup( $CONFIG['dbadapter'] . ':host=' . $CONFIG['dbhost'] . ';dbname=' . $CONFIG['dbname'], $CONFIG['dbuser'], $CONFIG['dbpass'] );
+	$r::setup( $CONFIG['secure']['dbadapter'] . ':host=' . $CONFIG['secure']['dbhost'] . ';dbname=' . $CONFIG['secure']['dbname'], $CONFIG['secure']['dbuser'], $CONFIG['dbpass'] );
 
     $r::ext('xdispense', function( $type ){ 
         return R::getRedBean()->dispense( $type ); 

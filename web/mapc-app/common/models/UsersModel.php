@@ -1,38 +1,13 @@
 <?php
 namespace Mapc\Common;
 
-// #TODO class Users extends Model (common/models/BareModel.php)
+use Mapc\Common\Crud;
+
 /**
  * User Model
  * @version 0.1
  */
-class Users {
-
-	private $db;
-
-	public $users;
-
-	public $uuid;
-	public $name;
-	public $email;
-	public $group;
-	public $role;
-	public $etc;
-
-	public function __construct($args = []) {
-		$this->db = $args['db'];
-		$users = $this->db->getRedBean()->dispense('mc_user_info');
-	}
-
-	public function create() {}
-	public function update() {}
-	public function show() {
-		$sql = 'SELECT * FROM `mc_user_info` WHERE 1';
-		$this->users = $this->db->getAll($sql);
-
-		return $this->users;
-	}
-	public function destroy() {}
+class Users extends Crud {
 
 	public function signin() {
 		$this->uuid  = 'TESTTESTTEST';
