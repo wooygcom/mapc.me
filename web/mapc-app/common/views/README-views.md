@@ -48,6 +48,7 @@ EOT;
 
 ### 폼 입력할 때 기본형태
 <form method="post" action="./" enctype="multipart/form-data">
+    <input type="hidden" name="_csrf" value="<?= $v['csrfKey']; ?>" />
     <input type="hidden" name="_method" value="update" /><!-- POST, PUT, PATCH, DELETE -->
     <input type="hidden" name="content_type" value="<?= $ROUTES['action'] ? $ROUTES['action'] : 'intro'; ?>" />
 </form>

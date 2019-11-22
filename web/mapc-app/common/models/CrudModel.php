@@ -8,16 +8,16 @@ namespace Mapc\Common;
 class Crud {
 
 	public $db;
-
 	public $table;
+
     public $id;
     public $vars;
 
     public function __construct($args = []) {
 
         $this->db = $args['db'];
-        $this->vars = $this->db->getRedBean()->dispense($args['table']);
         $this->table = $args['table'];
+        $this->vars = $this->db->getRedBean()->dispense($this->table);
 
     }
 
@@ -39,6 +39,21 @@ class Crud {
 
     public function update() {}
     public function delete() {}
+
+    /**
+     * @args
+        $args['searchField']
+        $args['searchValue']
+     */
+    public function search($args = []) {
+
+        $sql = 'SELECT * FROM `rankitems` WHERE ' . $args['searchField'] . ' like :searchValue';
+
+        $result = $this->db->getAll($sql, [':searchValue' => '%'.$args['searchValue'].'%']);
+
+        return $result;
+
+    }
 
 } // class
 
