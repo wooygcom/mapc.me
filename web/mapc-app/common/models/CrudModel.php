@@ -47,8 +47,7 @@ class Crud {
      */
     public function search($args = []) {
 
-        $sql = 'SELECT * FROM `rankitems` WHERE ' . $args['searchField'] . ' like :searchValue';
-
+        $sql = 'SELECT * FROM $this->table WHERE ' . $args['searchField'] . ' like :searchValue';
         $result = $this->db->getAll($sql, [':searchValue' => '%'.$args['searchValue'].'%']);
 
         return $result;

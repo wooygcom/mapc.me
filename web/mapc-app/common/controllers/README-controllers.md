@@ -78,7 +78,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 Autoload
 --------------------------------------------------
 include(VENDOR_PATH . 'autoload.php'); // compoesr 패키지 불러오기 위해서
-include(SYSTEM_PATH . 'proc/proc.autoload.php'); // Mapc 내부 패키지 불러오기 위해서
+include(PROC_PATH   . 'proc.autoload.php'); // Mapc 내부 패키지 불러오기 위해서
 
 
 DB접근이 필요할 때
@@ -87,7 +87,7 @@ $db   = include(PROC_PATH . 'proc.db.php');
 $user = new Users(['db' => $db]);
 
 
-Controller 가져오기(아래 둘 중 하나 선택)
+모델클래스 가져오기(아래 둘 중 하나 선택)
 --------------------------------------------------
 include APP_PATH . 'common/models/UsersModel.php';
 use Mapc\Common\Users as Users;
