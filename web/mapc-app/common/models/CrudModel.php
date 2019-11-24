@@ -2,7 +2,7 @@
 namespace Mapc\Common;
 
 /**
- * Cure Bare Model
+ * Curd Model
  * @version 0.1
  */
 class Crud {
@@ -29,11 +29,12 @@ class Crud {
         
     }
 
-    public function retrieve($id) {
+    public function retrieve($uuid) {
 
-    	$result = $this->db->load($this->table, $id);
+        $result1 = $this->db->getRow("select id from " . $this->table . " where uuid = '" . $uuid . "'");
+        $result2 = $this->db->load($this->table, $result1['id']);
 
-    	return $result;
+    	return $result2;
 
     }
 
@@ -47,7 +48,8 @@ class Crud {
      */
     public function search($args = []) {
 
-        $sql = 'SELECT * FROM $this->table WHERE ' . $args['searchField'] . ' like :searchValue';
+        $sql = 'SELECT * FROM ' . $this->table . ' WHERE ' . $args['searchField'] . ' like :searchValue';
+
         $result = $this->db->getAll($sql, [':searchValue' => '%'.$args['searchValue'].'%']);
 
         return $result;
