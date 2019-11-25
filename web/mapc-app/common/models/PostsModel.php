@@ -1,17 +1,16 @@
 <?php
 namespace Mapc\Common;
 
-use Mapc\Common\Bare;
-use \RedBeanPHP\R as Rb;
+use Mapc\Common\Crud;
 
 /**
  * Posts Model
  * @version 0.1
  */
-class Posts extends Bare {
+class Posts extends Crud {
 
-	protected $db;
-	protected $dbObj;
+	public $db;
+	public $dbObj;
 
 	public $posts;
 
