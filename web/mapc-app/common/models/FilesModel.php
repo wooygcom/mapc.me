@@ -34,7 +34,10 @@ class Files {
         // #TODO 파일검사
     }
 
-    public function uploads($files = []) {
+    public function uploads($files) {
+
+        $this->files = $files;
+        $this->fileCount = count($files['name']);
 
         foreach($this->files['name'] as $key => $var) {
 
