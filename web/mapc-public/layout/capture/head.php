@@ -34,6 +34,9 @@
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
 
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
   <link rel="stylesheet" href="<?= ROOT_URL; ?>layout/capture/css/open-iconic-bootstrap.min.css">
   <link rel="stylesheet" href="<?= ROOT_URL; ?>layout/capture/css/animate.css">
   
@@ -46,12 +49,14 @@
   <link rel="stylesheet" href="<?= ROOT_URL; ?>layout/capture/css/ionicons.min.css">
 
   <link rel="stylesheet" href="<?= ROOT_URL; ?>layout/capture/css/bootstrap-datepicker.css">
-  <link rel="stylesheet" href="<?= ROOT_URL; ?>layout/capture/css/jquery.timepicker.css">
-
   
   <link rel="stylesheet" href="<?= ROOT_URL; ?>layout/capture/css/flaticon.css">
   <link rel="stylesheet" href="<?= ROOT_URL; ?>layout/capture/css/icomoon.css">
   <link rel="stylesheet" href="<?= ROOT_URL; ?>layout/capture/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
   <?= $v['head']['extension']; ?>
     
