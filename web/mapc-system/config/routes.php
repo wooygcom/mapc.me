@@ -15,13 +15,18 @@
 		 *
 		 */
 		/*
-			GET	/contents
-			GET	/contents/new
-			POST	/contents
-			GET	/contents/:id
-			GET	/contents/:id/edit
-			PUT	/contents/:id
-			DELETE	/contents/:id
+			Retrieve(여러개)
+				GET	/contents
+			Create
+				GET	/contents/new
+				POST	/contents
+			Retrieve
+				GET	/contents/:id
+			Update
+				GET	/contents/:id/edit
+				PUT	/contents/:id
+			Delete
+				DELETE	/contents/:id
 		*/
 		/*
 		case 'VENDOR':
@@ -42,6 +47,8 @@
 			$routes['args']   = array_slice($mapcArgs, 5);
 
 			$routes['callback'] = $routes['module'] . DS . $routes['action'];
+
+			break;
 
 	}
 

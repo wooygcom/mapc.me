@@ -2,7 +2,7 @@
 namespace Mapc\Common;
 
 /**
- * $fileObj = new Files(['group' => 'activities', 'uploadDir' => '../../mapc.me/mapc-data/smu/']);
+ * $fileObj = new Files(['uploadDir' => DATA_PATH, 'group' => 'group1']);
  * $fileObj->file($_FILES['uploadfiles']); // input name="uploadfiles[]"
  * $fileObj->uploads(); // 하나만 올릴 경우 $fileObj->upload();
  */
@@ -36,6 +36,8 @@ class Files {
 
     public function uploads($files = []) {
 
+        $this->files = $files;
+
         foreach($this->files['name'] as $key => $var) {
 
             $args = [
@@ -54,11 +56,10 @@ class Files {
 
     }
 
-    public function upload($args) {
+    public function upload($file) {
 
         $result = true;
-
-        $filename = $args['name'];
+        $filename = $file['name'];
 
         $temp     = explode(".", $filename);
         $ext      = end($temp);
@@ -74,7 +75,7 @@ class Files {
             mkdir($uploads_dir_real, 0755, true);
         }
 
-        if(move_uploaded_file($args['tmp_name'], $uploads_dir_real . DIRECTORY_SEPARATOR . $server_filename)) {
+        if(move_uploaded_file($file['tmp_name'], $uploads_dir_real . DIRECTORY_SEPARATOR . $server_filename)) {
 
             // 파일 정보 출력
             $this->fileUrls[] = ROOT_URL . 'common/files/' . $server_filename . '?group=' . $this->group;
