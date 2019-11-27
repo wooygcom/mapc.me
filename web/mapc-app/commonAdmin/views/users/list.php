@@ -19,6 +19,16 @@ $v['head']['extension'] = <<< EOT
       integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
       crossorigin="anonymous"></script>
 
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <style type="text/css">
+      .modal-backdrop {
+        z-index: -1;
+      }
+    </style>
+
     <!-- Handsontable.js -->
     <script src="https://cdn.jsdelivr.net/npm/handsontable@7.2.2/dist/handsontable.full.min.js"></script>
 
@@ -29,154 +39,127 @@ $v['head']['extension'] = <<< EOT
         width:100%;
       }
     </style>
+
+    <!-- 주소API : B -->
+    <script>
+      function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr,jibunAddr,zipNo,admCd,rnMgtSn,bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
+        document.getElementById('roadAddrPart1').value = roadAddrPart1;
+        document.getElementById('addrDetail').value = addrDetail;
+      }
+
+      function goPopup(){
+        // 주소검색을 수행할 팝업 페이지를 호출합니다.
+        // 호출된 페이지(jusoPopup_utf8.php)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+        var pop = window.open("/mapc.me/web/mapc-public/api/juso/popup","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+        
+        // 모바일 웹인 경우, 호출된 페이지(jusoPopup_utf8.php)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+          //var pop = window.open("/jusoPopup_utf8.php","pop","scrollbars=yes, resizable=yes"); 
+      }
+    </script>
+    <!-- 주소API : E -->
+</script>
 EOT;
 
-$v['footer']['extension'] = <<< EOT
-  <script>
-  $( function() {
-    var dialog, form,
- 
-      // From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=email%29
-      emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
-      name = $( "#name" ),
-      email = $( "#email" ),
-      password = $( "#password" ),
-      allFields = $( [] ).add( name ).add( email ).add( password ),
-      tips = $( ".validateTips" );
- 
-    function updateTips( t ) {
-      tips
-        .text( t )
-        .addClass( "ui-state-highlight" );
-      setTimeout(function() {
-        tips.removeClass( "ui-state-highlight", 1500 );
-      }, 500 );
-    }
- 
-    function checkLength( o, n, min, max ) {
-      if ( o.val().length > max || o.val().length < min ) {
-        o.addClass( "ui-state-error" );
-        updateTips( "Length of " + n + " must be between " +
-          min + " and " + max + "." );
-        return false;
-      } else {
-        return true;
-      }
-    }
- 
-    function checkRegexp( o, regexp, n ) {
-      if ( !( regexp.test( o.val() ) ) ) {
-        o.addClass( "ui-state-error" );
-        updateTips( n );
-        return false;
-      } else {
-        return true;
-      }
-    }
- 
-    function addUser() {
-      var valid = true;
-      allFields.removeClass( "ui-state-error" );
- 
-      valid = valid && checkLength( name, "username", 3, 16 );
-      valid = valid && checkLength( email, "email", 6, 80 );
-      valid = valid && checkLength( password, "password", 5, 16 );
- 
-      valid = valid && checkRegexp( name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter." );
-      valid = valid && checkRegexp( email, emailRegex, "eg. ui@jquery.com" );
-      valid = valid && checkRegexp( password, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9" );
- 
-      if ( valid ) {
-        $( "#users tbody" ).append( "<tr>" +
-          "<td>" + name.val() + "</td>" +
-          "<td>" + email.val() + "</td>" +
-          "<td>" + password.val() + "</td>" +
-        "</tr>" );
-        dialog.dialog( "close" );
-      }
-      return valid;
-    }
- 
-    dialog = $( "#dialog-form" ).dialog({
-      autoOpen: false,
-      height: 400,
-      width: 350,
-      modal: true,
-      buttons: {
-        "Create an account": addUser,
-        Cancel: function() {
-          dialog.dialog( "close" );
-        }
-      },
-      close: function() {
-        form[ 0 ].reset();
-        allFields.removeClass( "ui-state-error" );
-      }
-    });
- 
-    form = dialog.find( "form" ).on( "submit", function( event ) {
-      event.preventDefault();
-      addUser();
-    });
- 
-    $( "#create-user" ).button().on( "click", function() {
-      dialog.dialog( "open" );
-    });
-  } );
-  </script>
-EOT;
+// #TODO %s 를 넣기만 하면 에러가 남
+// 위쪽에 ROOT_URL대신 /mapc.me/web/mapc-public/ 을 임시로 넣어놨음, 디버깅해서 아래코드가 활성화되게 해야 됨
+$v['header']['extension'] = sprintf($v['header']['extension'], ROOT_URL);
 
 $layout = 'admin-lte';
 include(LAYOUT_PATH . $layout . DS . 'head.php');
 include(LAYOUT_PATH . $layout . DS . 'header.php');
 ?>
 
-
-
-
-<div id="dialog-form" title="Create new user">
-  <p class="validateTips">All form fields are required.</p>
- 
-  <form>
-    <fieldset>
-      <label for="name">Name</label>
-      <input type="text" name="name" id="name" value="Jane Smith" class="text ui-widget-content ui-corner-all">
-      <label for="email">Email</label>
-      <input type="text" name="email" id="email" value="jane@smith.com" class="text ui-widget-content ui-corner-all">
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password" value="xxxxxxx" class="text ui-widget-content ui-corner-all">
- 
-      <!-- Allow form submission with keyboard without duplicating the dialog button -->
-      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-    </fieldset>
-  </form>
+<!-- Modal -->
+<div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form role="form">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="modalFormLabel">등록</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="name">이름</label>
+              <input type="text" class="form-control" id="name" placeholder="이름을 입력하세요.">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="email">아이디</label>
+              <input type="email" class="form-control" id="email" placeholder="userid@emailserver">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="group">소속</label>
+              <input type="text" class="form-control" id="group" placeholder="직위를 입력하세요.">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="role">직위</label>
+              <input type="text" class="form-control" id="role" placeholder="직책를 입력하세요.">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="hp">휴대전화</label>
+              <input type="text" class="form-control" id="hp" placeholder="010-0000-0000 형태">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="address">주소</label>
+              <input type="text" class="form-control" id="roadAddrPart1" placeholder="주소">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="address">상세주소</label>
+              <input type="text" class="form-control" id="addrDetail" placeholder="상세주소">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#dummy" onClick="goPopup();">주소</a>
+          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+          <button type="submit" class="btn btn-primary">저장</button>
+        </div>
+  
+<?php
+/*
+    <input id ="roadAddrPart1">
+    <input id ="addrDetail">
+*/
+?>
+<?php
+/*
+    <input id ="roadFullAddr">
+    <input id ="roadAddrPart2">
+    <input id ="engAddr">
+    <input id ="jibunAddr">
+    <input id ="zipNo">
+    <input id ="admCd">
+    <input id ="rnMgtSn">
+    <input id ="bdMgtSn">
+    <input id ="detBdNmList">
+    
+    <input id ="bdNm">
+    <input id ="bdKdcd">
+    <input id ="siNm">
+    <input id ="sggNm">
+    <input id ="emdNm">
+    <input id ="liNm">
+    <input id ="rn">
+    <input id ="udrtYn">
+    <input id ="buldMnnm">
+    <input id ="buldSlno">
+    <input id ="mtYn">
+    <input id ="lnbrMnnm">
+    <input id ="lnbrSlno">
+    <input id ="emdNo">
+*/
+?>
+      </div>
+    </form>
+  </div>
 </div>
- 
- 
-<div id="users-contain" class="ui-widget">
-  <h1>Existing Users:</h1>
-  <table id="users" class="ui-widget ui-widget-content">
-    <thead>
-      <tr class="ui-widget-header ">
-        <th>Name</th>
-        <th>Email</th>
-        <th>Password</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>John Doe</td>
-        <td>john.doe@example.com</td>
-        <td>johndoe1</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<button id="create-user">Create new user</button>
-
-
-
-
 
 <!-- Content : B -->
   <section class="content">
@@ -189,6 +172,7 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
         <div class="pad" data-jsfiddle="dataTable">
 
           <p>
+            <button name="new" type="button" data-toggle="modal" data-target="#modalForm">새로등록</button>
             <button name="load">불러오기</button>
             <button name="save">저장</button>
             <button name="reset">초기화</button>
@@ -316,6 +300,11 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
               }
             });
           </script>
+          <script>
+            $(document).ready(function() {
+              jusoCallBack('roadFullAddr','roadAddrPart1','addrDetail','roadAddrPart2','engAddr','jibunAddr','zipNo','admCd','rnMgtSn','bdMgtSn','detBdNmList','bdNm','bdKdcd','siNm','sggNm','emdNm','liNm','rn','udrtYn','buldMnnm','buldSlno','mtYn','lnbrMnnm','lnbrSlno','emdNo');
+            });
+          </script>
         </div>
       </div>
     </div>
@@ -333,3 +322,35 @@ include(LAYOUT_PATH . $layout . DS . 'footer.php');
 include(LAYOUT_PATH . $layout . DS . 'foot.php');
 
 // this is it
+
+/*
+  function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr,jibunAddr,zipNo,admCd,rnMgtSn,bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
+    document.getElementById('roadAddrPart1').value = roadAddrPart1;
+    document.getElementById('addrDetail').value = addrDetail;
+    document.getElementById('roadFullAddr').value = roadFullAddr;
+    document.getElementById('roadAddrPart2').value = roadAddrPart2;
+    document.getElementById('engAddr').value = engAddr;
+    document.getElementById('jibunAddr').value = jibunAddr;
+    document.getElementById('zipNo').value = zipNo;
+    document.getElementById('admCd').value = admCd;
+    document.getElementById('rnMgtSn').value = rnMgtSn;
+    document.getElementById('bdMgtSn').value = bdMgtSn;
+    document.getElementById('detBdNmList').value = detBdNmList;
+    // 2017년 2월 제공항목 추가
+    document.getElementById('bdNm').value = bdNm;
+    document.getElementById('bdKdcd').value = bdKdcd;
+    document.getElementById('siNm').value = siNm;
+    document.getElementById('sggNm').value = sggNm;
+    document.getElementById('emdNm').value = emdNm;
+    document.getElementById('liNm').value = liNm;
+    document.getElementById('rn').value = rn;
+    document.getElementById('udrtYn').value = udrtYn;
+    document.getElementById('buldMnnm').value = buldMnnm;
+    document.getElementById('buldSlno').value = buldSlno;
+    document.getElementById('mtYn').value = mtYn;
+    document.getElementById('lnbrMnnm').value = lnbrMnnm;
+    document.getElementById('lnbrSlno').value = lnbrSlno;
+    // 2017년 3월 제공항목 추가
+    document.getElementById('emdNo').value = emdNo;
+  }
+*/
