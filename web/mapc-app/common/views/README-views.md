@@ -45,6 +45,9 @@ $v['head']['extension'] = <<< EOT
 EOT;
 ```
 
+### 스크립트 추가하고 변수 넣을 때
+$v['header']['extension'] = sprintf($v['header']['extension'], ROOT_URL);
+
 
 ### 폼 입력할 때 기본형태
 <form method="post" action="./" enctype="multipart/form-data">

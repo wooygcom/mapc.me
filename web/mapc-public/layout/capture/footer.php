@@ -1,0 +1,2 @@
+<?= $v['footer']['extension']; ?>
+</body>
