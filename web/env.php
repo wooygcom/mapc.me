@@ -5,8 +5,8 @@ if(!defined("__MAPC__")) { exit(); }
 
     // make false before publish
     define('DEFAULT_VENDOR', 'common');
-    define('DEFAULT_MODULE', 'index');
-    define('DEFAULT_ACTION', 'list');
+    define('DEFAULT_MODULE', 'core');
+    define('DEFAULT_ACTION', 'index');
 
 } // BLOCK
 
