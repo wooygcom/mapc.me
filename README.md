@@ -88,9 +88,20 @@ Git 사용방법
     2. Views/PostsView.php 불러옴
 
 3. 각각의 PostsController.php, PostsView.php
-    posts/edit.php 불러옴
-3. 실제 프로그램 영역
-    Controller/posts/edit.php 에서 선처리!!!!! (array $v에 출력할 내용을 저장
+    1. PostsController(또는 View) 안에서 switch case 문을 사용해서 각 action을 프로그램해도 되고...
+    2. posts/edit.php 불러오게 해도 됨
+    3. 아래처럼
+        1. Controller에서 전부 처리하게해도 되고
+            PostsController.php
+            switch($ROUTES['action']) {
+                case 'edit':
+            }
+        2. 각각의 Action별로 나누고 불러오는 방식으로 해도 되고...
+            include('posts/edit.php');
+
+
+4. 실제 프로그램 영역
+    Controller/posts/edit.php 에서 선처리!!!!! (array $v에 출력할 내용을 저장)
     View/posts/edit.php 에서 화면출력!!!!!
     전체에 같은 설정을 적용하려면 PostsView.php 에서 header 등 필요한 내용을 설정
     각각의 페이지에서 화면출력을 따로 설정하려면 posts/edit.php 에서 header나 footer등을 불러오게 하면 됨

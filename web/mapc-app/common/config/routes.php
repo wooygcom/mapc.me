@@ -7,33 +7,7 @@
 
 switch ($routes['module']) {
 
-	case 'users':
-
-		$routes['action'] = $mapcArgs[3] ? $mapcArgs[3] : DEFAULT_ACTION;
-		$routes['option'] = $mapcArgs[4];
-		$routes['args']   = array_slice($mapcArgs, 5);
-
-		// POST값이 들어오면 "실행"
-		if($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-		    switch($_POST['_method']) {
-		        case 'post':
-		        case 'put':
-		        case 'patch':
-		        case 'delete':
-		       	default:
-		        	$routes['callback'] = $routes['module'] . DS . 'exec';
-		            break;
-		    }
-
-		} else {
-
-			$routes['callback'] = $routes['module'] . DS . $routes['action'];
-
-		}
-		break;
-
-	default:
+	case 'posts':
 
 		$routes['module'] = $mapcArgs[2] ? $mapcArgs[2] : DEFAULT_MODULE;
 		$routes['id']     = $mapcArgs[3];
@@ -74,8 +48,34 @@ switch ($routes['module']) {
 
 		break;
 
-}
+	default:
 
+		$routes['action'] = $mapcArgs[3] ? $mapcArgs[3] : DEFAULT_ACTION;
+		$routes['option'] = $mapcArgs[4];
+		$routes['args']   = array_slice($mapcArgs, 5);
+
+		// POST값이 들어오면 "실행"
+		if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+		    switch($_POST['_method']) {
+		        case 'post':
+		        case 'put':
+		        case 'patch':
+		        case 'delete':
+		       	default:
+		        	$routes['callback'] = $routes['module'] . DS . 'exec';
+		            break;
+		    }
+
+		} else {
+
+			$routes['callback'] = $routes['module'] . DS . $routes['action'];
+
+		}
+		break;
+
+}
+print_r($routes);
 return $routes;
 
 // this is it
