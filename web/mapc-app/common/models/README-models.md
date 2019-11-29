@@ -7,7 +7,7 @@ Basic
 <?php
 namespace Mapc\Common;
 
-use Mapc\Common\Crud as Crud;
+use Mapc\Common\Crud;
 
 /**
  * Bare Model

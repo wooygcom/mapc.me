@@ -11,7 +11,7 @@ include(LAYOUT_PATH . $layout . '/header.php');
 
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><b>홈페이지</b> 관리시스템</a>
+    <a href="#"><b>로그인</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
@@ -54,8 +54,8 @@ include(LAYOUT_PATH . $layout . '/header.php');
 -->
     <!-- /.social-auth-links -->
 
-    <a href="#">비밀번호 찾기</a><br>
-    <a href="#" class="text-center">계정문의 : 중앙회 총무국 정보화팀</a>
+    <a href="regist">회원가입</a> || <a href="#">비밀번호 찾기</a><br>
+    <a href="#" class="text-center">계정문의 : <?= $v['site']['email']; ?></a>
 
   </div>
   <!-- /.login-box-body -->

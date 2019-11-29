@@ -63,7 +63,7 @@ switch ($routes['module']) {
 		        case 'patch':
 		        case 'delete':
 		       	default:
-		        	$routes['callback'] = $routes['module'] . DS . 'exec';
+		        	$routes['callback'] = $routes['module'] . DS . $routes['action'].'-exec';
 		            break;
 		    }
 
@@ -75,7 +75,7 @@ switch ($routes['module']) {
 		break;
 
 }
-print_r($routes);
+
 return $routes;
 
 // this is it

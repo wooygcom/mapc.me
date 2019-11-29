@@ -11,6 +11,7 @@ $config = [
         'og_image_width'  => '1024',
         'og_image_height' => '768',
         'author'   => '우연근',
+        'email'    => 'webmaster@sample.com',
         'keywords' => '키워드, 키워드2',
         'favicon'  => 'favicon.ico',
 

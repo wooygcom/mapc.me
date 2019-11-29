@@ -8,21 +8,6 @@ use Mapc\CommonAdmin\UsersAdmin as UsersAdmin;
 
 $db   = include(PROC_PATH . 'proc.db.php');
 
-$user = new UsersAdmin(['db' => $db]);
-
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    // POST값이 들어오면 "실행"
-    switch($_POST['_method']) {
-        case 'post':
-        case 'put':
-        case 'patch':
-        case 'delete':
-        default:
-            // 
-            exit;
-            break;
-    }
-}
+$user = new UsersAdmin(['db' => $db, 'table' => 'mc_user_info']);
 
 // this is it

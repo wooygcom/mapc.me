@@ -84,7 +84,7 @@ include(PROC_PATH   . 'proc.autoload.php'); // Mapc 내부 패키지 불러오�
 DB접근이 필요할 때
 --------------------------------------------------
 $db   = include(PROC_PATH . 'proc.db.php');
-$user = new Users(['db' => $db]);
+$user = new Users(['db' => $db, 'table' => $table]);
 
 
 모델클래스 가져오기(아래 둘 중 하나 선택)
