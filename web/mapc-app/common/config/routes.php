@@ -7,6 +7,7 @@
 
 switch ($routes['module']) {
 
+    case 'auth' :
 	case 'users':
 
 		$routes['action'] = $mapcArgs[3] ? $mapcArgs[3] : DEFAULT_ACTION;
@@ -15,7 +16,7 @@ switch ($routes['module']) {
 
 		// POST값이 들어오면 "실행"
 		if($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+		    print_R($_POST);
 		    switch($_POST['_method']) {
 		        case 'post':
 		        case 'put':
@@ -75,7 +76,6 @@ switch ($routes['module']) {
 		break;
 
 }
-
 return $routes;
 
 // this is it
