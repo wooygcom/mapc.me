@@ -1,4 +1,4 @@
 <body>
 
-<a href="<?= ROOT_URL; ?>rankbest/rank/">처음으로</a>
+<a href="<?= ROOT_URL; ?>">처음으로</a>
 <br />

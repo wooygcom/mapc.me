@@ -26,9 +26,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $db     = include(PROC_PATH . 'proc.db.php');
 
-    $item = new Item(['db' => $db, 'table' => 'rankitems']);
+    $item = new Item(['db' => $db, 'table' => 'items']);
 
-    $v['rankItemsList'] = $item->search([
+    $v['itemsList'] = $item->search([
         'searchField' => 'parent_slug',
         'searchValue' => $ROUTES['option']
     ]);
