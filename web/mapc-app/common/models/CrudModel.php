@@ -48,10 +48,11 @@ class Crud {
      */
     public function search($args = []) {
 
-        $sql  = 'SELECT * FROM ' . $this->table . ' WHERE ' . $args['searchField'] . ' like :searchValue';
+        $sign = $args['sign'] ? $args['sign'] : ' = ';
+        $sql  = 'SELECT * FROM ' . $this->table . ' WHERE ' . $args['searchField'] . $sign . ' :searchValue';
         $sql .= $args['order'] ? ' order by ' . $args['order'] : null;
 
-        $result = $this->db->getAll($sql, [':searchValue' => '%'.$args['searchValue'].'%']);
+        $result = $this->db->getAll($sql, [':searchValue' => $args['searchValue']]);
 
         return $result;
 
