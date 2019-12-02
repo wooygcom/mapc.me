@@ -5,8 +5,8 @@ if(!defined("__MAPC__")) { exit(); }
 
     // make false before publish
     define('DEFAULT_VENDOR', 'common');
-    define('DEFAULT_MODULE', 'index');
-    define('DEFAULT_ACTION', 'list');
+    define('DEFAULT_MODULE', 'core');
+    define('DEFAULT_ACTION', 'index');
 
 } // BLOCK
 
@@ -43,7 +43,7 @@ if(!defined("__MAPC__")) { exit(); }
     define('DOMAIN', str_replace('www.', '', $_SERVER['HTTP_HOST']));
     define('HOST',   explode('.', DOMAIN)[0]);
     if($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
-/*
+//*
         error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_NOTICE);
         define('DEBUG', true);
 /*/

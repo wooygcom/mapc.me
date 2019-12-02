@@ -7,6 +7,7 @@
 
 switch ($routes['module']) {
 
+	case 'posts':
     case 'auth' :
 	case 'users':
 
@@ -73,6 +74,32 @@ switch ($routes['module']) {
 
 		}
 
+		break;
+
+	default:
+
+		$routes['action'] = $mapcArgs[3] ? $mapcArgs[3] : DEFAULT_ACTION;
+		$routes['option'] = $mapcArgs[4];
+		$routes['args']   = array_slice($mapcArgs, 5);
+
+		// POST값이 들어오면 "실행"
+		if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+		    switch($_POST['_method']) {
+		        case 'post':
+		        case 'put':
+		        case 'patch':
+		        case 'delete':
+		       	default:
+		        	$routes['callback'] = $routes['module'] . DS . $routes['action'].'-exec';
+		            break;
+		    }
+
+		} else {
+
+			$routes['callback'] = $routes['module'] . DS . $routes['action'];
+
+		}
 		break;
 
 }

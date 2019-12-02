@@ -15,9 +15,9 @@ class Crud {
 
     public function __construct($args = []) {
 
-        $this->db = $args['db'];
+        $this->db    = $args['db'];
         $this->table = $args['table'];
-        $this->vars = $this->db->getRedBean()->dispense($this->table);
+        $this->vars  = $this->db->getRedBean()->dispense($this->table);
 
     }
 
@@ -48,9 +48,11 @@ class Crud {
      */
     public function search($args = []) {
 
-        $sql = 'SELECT * FROM ' . $this->table . ' WHERE ' . $args['searchField'] . ' like :searchValue';
+        $sign = $args['sign'] ? $args['sign'] : ' = ';
+        $sql  = 'SELECT * FROM ' . $this->table . ' WHERE ' . $args['searchField'] . $sign . ' :searchValue';
+        $sql .= $args['order'] ? ' order by ' . $args['order'] : null;
 
-        $result = $this->db->getAll($sql, [':searchValue' => '%'.$args['searchValue'].'%']);
+        $result = $this->db->getAll($sql, [':searchValue' => $args['searchValue']]);
 
         return $result;
 

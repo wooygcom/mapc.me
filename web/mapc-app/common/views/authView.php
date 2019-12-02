@@ -1,5 +1,5 @@
 <?php
-// #TODO APP/controlloer, models, views를 autoload에서 불러올 수 있게...
+if(!defined("__MAPC__")) { exit(); }
 
 include($ROUTES['callback'] . '.php');
 

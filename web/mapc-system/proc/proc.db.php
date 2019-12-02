@@ -9,11 +9,12 @@ $r = new R;
 
     global $CONFIG;
 
-	$r::setup( $CONFIG['secure']['dbadapter'] . ':host=' . $CONFIG['secure']['dbhost'] . ';dbname=' . $CONFIG['secure']['dbname'], $CONFIG['secure']['dbuser'], $CONFIG['dbpass'] );
-
-    $r::ext('xdispense', function( $type ){ 
-        return R::getRedBean()->dispense( $type ); 
+    R::ext('xdispense', function( $type ){ 
+        return $r::getRedBean()->dispense( $type ); 
     });
+
+	$r::setup( $CONFIG['secure']['dbadapter'] . ':host=' . $CONFIG['secure']['dbhost'] . ';dbname=' . $CONFIG['secure']['dbname'], $CONFIG['secure']['dbuser'], $CONFIG['secure']['dbpass'] );
+
 
 	return $r;
 

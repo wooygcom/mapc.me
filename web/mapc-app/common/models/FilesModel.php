@@ -2,9 +2,12 @@
 namespace Mapc\Common;
 
 /**
- * $fileObj = new Files(['group' => 'activities', 'uploadDir' => '../../mapc.me/mapc-data/smu/']);
- * $fileObj->file($_FILES['uploadfiles']); // input name="uploadfiles[]"
- * $fileObj->uploads(); // 하나만 올릴 경우 $fileObj->upload();
+ * @exam
+ *     $fileObj = new Files(['uploadDir' => DATA_PATH, 'group' => 'group1']);
+ *     $fileObj->file($_FILES['uploadfiles']); // input name="uploadfiles[]"
+ *     $fileObj->uploads(); // 하나만 올릴 경우 $fileObj->upload();
+ * 썸네일을 만들경우 클래스 호출하기 전에 아래 문장을 더 넣을 것~
+ *     include_once(LIBRARY_PATH . 'image_thumbnail.php');
  */
 class Files {
 
@@ -34,7 +37,12 @@ class Files {
         // #TODO 파일검사
     }
 
-    public function uploads($files = []) {
+    public function uploads($files) {
+
+        $this->files = $files;
+        $this->fileCount = count($files['name']);
+
+        $this->files = $files;
 
         foreach($this->files['name'] as $key => $var) {
 
@@ -54,11 +62,10 @@ class Files {
 
     }
 
-    public function upload($args) {
+    public function upload($file) {
 
-        $result = true;
-
-        $filename = $args['name'];
+        $return = [];
+        $filename = $file['name'];
 
         $temp     = explode(".", $filename);
         $ext      = end($temp);
@@ -67,14 +74,14 @@ class Files {
         $server_filename_thumb = date('Ymd-His') . '-' . $uniqid . '.thumb.' . $ext;
 
         $uploads_dir_real = $this->uploadDir . DIRECTORY_SEPARATOR . date('Y') . DIRECTORY_SEPARATOR . date('m') . DIRECTORY_SEPARATOR . date('d') . DIRECTORY_SEPARATOR;
-        // #TODO allowed_ext는 별도의 내부변수로 만들것!!!!!!!!!!!
+        // #TODO allowed_ext는 별도의 환경설정으로 만들것!!!!!!!!!!!
         $allowed_ext = array('jpg','jpeg','png','gif');
 
         if(! is_dir($uploads_dir_real)) {
             mkdir($uploads_dir_real, 0755, true);
         }
 
-        if(move_uploaded_file($args['tmp_name'], $uploads_dir_real . DIRECTORY_SEPARATOR . $server_filename)) {
+        if(move_uploaded_file($file['tmp_name'], $uploads_dir_real . DIRECTORY_SEPARATOR . $server_filename)) {
 
             // 파일 정보 출력
             $this->fileUrls[] = ROOT_URL . 'common/files/' . $server_filename . '?group=' . $this->group;
@@ -84,14 +91,18 @@ class Files {
                     $uploads_dir_real . $server_filename_thumb
                 );
             }
+            $return = [
+                'result' => true,
+                'uploadedFilename' => $server_filename
+            ];
 
         } else {
 
-            $result = false;
+            $return['result'] = false;
 
         }
 
-        return $result;
+        return $return;
 
     }
 
