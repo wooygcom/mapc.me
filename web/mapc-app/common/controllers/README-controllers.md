@@ -10,36 +10,6 @@ Controllers
 2. package전체에서 사용하는 선처리, 후처리 할 것이 있으면 packageController.php에서
   module안에서만 필요한건 module.php에서 처리
 
-vendor/index.php
---------------------------------------------------
-```
-<?php
-{ // BLOCK:proc:20190617:프로시저불러오기
-
-} // BLOCK
-
-{ // BLOCK:get_controller:20150825:컨트롤러 불러오기
-
-    /**
-     *
-     * Get Controller
-     *
-     */
-    include(__DIR__ . '/controllers/' . $ROUTES['module'] . 'Controller.php');
-
-} // BLOCK
-
-{ // BLOCK:publish:20150825:출력처리
-
-    /**
-     *
-     * Get VIEW file and publish
-     *
-     */
-    include(__DIR__ . '/views/' . $ROUTES['module'] . 'View.php');
-
-} // BLOCK
-```
 
 controllers/packageController.php
 --------------------------------------------------

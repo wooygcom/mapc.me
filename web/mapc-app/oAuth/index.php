@@ -1,9 +1,9 @@
 <?php
-{ // BLOCK:proc:20190617:프로시저불러오기
+{ // BLOCK:proc:20191204:선처리
 
-    // https://www.php.net/manual/en/function.spl-autoload-register.php#117805
-    // 위 글 보니 session_start 앞에 붙이라고 하길래...
-    // #OPTION include_once(SYSTEM_PATH . 'proc/proc.autoload.php');
+    // 회원처리가 필요한 경우에만 사용 필요없으면 지워도 됨
+    include_once(__DIR__ . '/proc/proc.user.php');
+    $rootDir = $rootDir ? $rootDir : __DIR__;
 
 } // BLOCK
 
@@ -14,7 +14,7 @@
      * Get Controller...
      *
      */
-    include(__DIR__ . '/controllers/' . $ROUTES['module'] . 'Controller.php');
+    @include($rootDir . '/controllers/' . $ROUTES['module'] . 'Controller.php');
 
 } // BLOCK
 
@@ -26,11 +26,12 @@
      *
      */
     // 보안을 위해 CONFIG에서 site와 url을 제외한 모든 환경설정값 지우기
+    $v = [];
     $v['url']  = $CONFIG['url'];
     $v['menu'] = $CONFIG['menu'];
     $v['site'] = $CONFIG['site'];
     unset($CONFIG);
-    include(__DIR__ . '/views/' . $ROUTES['module'] . 'View.php');
+    @include($rootDir . '/views/' . $ROUTES['module'] . 'View.php');
 
 } // BLOCK
 
