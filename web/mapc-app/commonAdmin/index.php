@@ -7,6 +7,10 @@
 
 } // BLOCK
 
+{ // BLOCK:proc:20191204:선처리
+    $rootDir = $rootDir ? $rootDir : __DIR__;
+} // BLOCK
+
 { // BLOCK:get_controller:20150825:컨트롤러 불러오기
 
     /**
@@ -14,7 +18,7 @@
      * Get Controller...
      *
      */
-    include(__DIR__ . '/controllers/' . $ROUTES['module'] . 'Controller.php');
+    @include($rootDir . '/controllers/' . $ROUTES['module'] . 'Controller.php');
 
 } // BLOCK
 
@@ -26,11 +30,12 @@
      *
      */
     // 보안을 위해 CONFIG에서 site와 url을 제외한 모든 환경설정값 지우기
+    $v = [];
     $v['url']  = $CONFIG['url'];
     $v['menu'] = $CONFIG['menu'];
     $v['site'] = $CONFIG['site'];
     unset($CONFIG);
-    include(__DIR__ . '/views/' . $ROUTES['module'] . 'View.php');
+    @include($rootDir . '/views/' . $ROUTES['module'] . 'View.php');
 
 } // BLOCK
 
