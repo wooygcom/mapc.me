@@ -90,6 +90,31 @@ class oAuth extends Crud {
         return $server;
     }
 
+    public function logout() {
+        $conn = mysqli_connect(
+            'localhost',
+            'root',
+            'root',
+            'mysql'
+        );
+
+        session_start();
+
+        // DELETE FROM 테이블이름 WHERE 필드이름=데이터값
+        $access_token = $_SESSION['access_token'];
+        $delete_query = "DELETE FROM oauth_access_tokens WHERE access_token = '" . $access_token . "'";
+
+        $result = mysqli_query($conn,$delete_query);
+        if ($result == true) {
+            session_destroy();
+            return true;
+        }
+
+        mysqli_close($conn);
+
+        return false;
+    }
+
 } // class
 
 // this is it

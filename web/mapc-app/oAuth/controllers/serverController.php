@@ -22,8 +22,8 @@ $provider = new GenericProvider([
     'urlResourceOwnerDetails' => $root_url . 'oAuth/resource'
 ]);
 
-// If we don't have an authorization code then get one
-if (!isset($_GET['code'])) {
+# oAuth 로그인
+if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
     $authorizationUrl = $provider->getAuthorizationUrl();
     $_SESSION['oauth2state'] = $provider->getState();
 
@@ -64,11 +64,17 @@ if (!isset($_GET['code'])) {
 
     # 3. login session 생성
     if (!empty($access_token)) {
-        // session_start();
-        // $_SESSION['isLogin'] = true;
-        // $_SESSION['access_token'] = $access_token;
+        session_start();
+        $_SESSION['isLogin'] = true;
+        $_SESSION['access_token'] = $access_token;
 
         header('Location: ' . $redirectUri);
         exit;
     }
+} else if ($_REQUEST['mode'] == "logout") {
+    # oAuth 로그아웃
+    $result = oAuth::logout();
+
+    header('Location: ' . $redirectUri);
+    exit;
 }
