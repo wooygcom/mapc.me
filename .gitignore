@@ -28,4 +28,5 @@ web/mapc-system/*
 web/mapc-app/*
 !web/mapc-app/common
 !web/mapc-app/commonAdmin
+!web/mapc-app/bare
 !web/mapc-app/oAuth
