@@ -28,7 +28,7 @@ class oAuth extends Crud {
         $clientInfo = [
             'clientId'  => $clientId,
             'clientSecret'  => $clientSecret,
-            'redirectUri'   => $url . 'oAuth/server'
+            'redirectUri'   => $url
         ];
         if(isset($postArr['user_email']) && $postArr['user_email']){
             $clientInfo['clientId'] = $postArr['user_email'];
@@ -42,9 +42,40 @@ class oAuth extends Crud {
         return $clientInfo;
     }
 
-    public function setConfig()
-    {
+    public function clientInfoByCode($code = NULL) {
+        if (empty($code)) {
+            return false;
+        }
 
+        $conn = mysqli_connect(
+            'localhost',
+            'root',
+            'root',
+            'mysql'
+        );
+        $sql = "SELECT * FROM oauth_authorization_codes WHERE authorization_code = '" . $code . "'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($result);
+
+        $client_id = $row["client_id"];
+
+        $sql = "SELECT * FROM oauth_clients WHERE client_id = '" . $client_id . "'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($result);
+
+        $client_secret = $row["client_secret"];
+        $redirect_uri = $row["redirect_uri"];
+
+        $clientInfo = [
+            'clientId'  => $client_id,
+            'clientSecret'  => $client_secret,
+            'redirectUri'   => $redirect_uri
+        ];
+
+        return $clientInfo;
+    }
+
+    public function setConfig() {
         $dsn = 'mysql:dbname=mysql;host=localhost';
         $username = 'root';
         $password = 'root';
