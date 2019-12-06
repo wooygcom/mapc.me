@@ -48,8 +48,13 @@ class Crud {
      */
     public function search($args = []) {
 
-        $sign = $args['sign'] ? $args['sign'] : ' = ';
-        $sql  = 'SELECT * FROM ' . $this->table . ' WHERE ' . $args['searchField'] . $sign . ' :searchValue';
+        $sql   = 'SELECT * FROM ' . $this->table;
+        if(isset($args['searchField']) && isset($args['searchValue'])) {
+
+            $sign = $args['sign'] ? $args['sign'] : ' = ';
+            $sql .= ' WHERE ' . $args['searchField'] . $sign . ' :searchValue';
+
+        }
         $sql .= $args['order'] ? ' order by ' . $args['order'] : null;
 
         $result = $this->db->getAll($sql, [':searchValue' => $args['searchValue']]);
