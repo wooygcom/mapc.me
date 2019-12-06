@@ -1,5 +1,2 @@
 <?php
-
-@include($ROUTES['callback'] . '.php');
-
-// this is it
+if(!defined("__MAPC__")) { exit(); }
