@@ -3,7 +3,6 @@ $layout = 'core';
 
 include(LAYOUT_PATH . $layout . '/head.php');
 include(LAYOUT_PATH . $layout . '/header.php');
-print_r($v);
 ?>
 
 <div class="content_view">
