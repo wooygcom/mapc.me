@@ -52,12 +52,36 @@ class Crud {
         if(isset($args['searchField']) && isset($args['searchValue'])) {
 
             $sign = $args['sign'] ? $args['sign'] : ' = ';
-            $sql .= ' WHERE ' . $args['searchField'] . $sign . ' :searchValue';
+            $sql .= ' WHERE ' . $args['searchField'] . ' ' . $sign . ' :searchValue';
 
         }
+
         $sql .= $args['order'] ? ' order by ' . $args['order'] : null;
 
         $result = $this->db->getAll($sql, [':searchValue' => $args['searchValue']]);
+
+        return $result;
+
+    }
+
+    public function searchByMeta($args) {
+
+        $sql = '
+             SELECT *
+              FROM ' . $args['table'] . ' main
+              LEFT JOIN ' . $args['table'] . 'meta sub ON
+                   (main.uuid = sub.parent_uuid)
+             WHERE sub.key = :searchField
+               AND sub.value = :searchValue
+            ';
+
+        $condit = [
+            ':searchField' => $args['searchField'],
+            ':searchValue' => $args['searchValue']
+            ];
+        $sql .= $args['order'] ? ' order by ' . $args['order'] : null;
+
+        $result = $this->db->getAll($sql, $condit);
 
         return $result;
 
