@@ -29,6 +29,7 @@
     $v['menu'] = $CONFIG['menu'];
     $v['site'] = $CONFIG['site'];
     unset($CONFIG);
+
     @include($rootDir . '/views/' . $ROUTES['module'] . 'View.php');
 
 } // BLOCK

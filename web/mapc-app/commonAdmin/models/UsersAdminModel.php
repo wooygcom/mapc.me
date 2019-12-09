@@ -1,13 +1,13 @@
 <?php
 namespace Mapc\CommonAdmin;
 
-use Mapc\Common\Users as UsersBare;
+use Mapc\Common\Users;
 
 /**
  * User Model
  * @version 0.1
  */
-class UsersAdmin {
+class UsersAdmin extends Users {
 
 	public function signin() {
 		/*
