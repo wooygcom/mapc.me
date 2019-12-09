@@ -1,38 +1,29 @@
 <?php
-/**
- * This is an example code that shows how you can load Handsontable data from server using PHP with PDO (SQLite).
- * This code is not intended to be maximally efficient nor safe. It is for demonstrational purposes only.
- * Changes and more examples in different languages are welcome.
- *
- * Copyright 2012, Marcin Warpechowski
- * Licensed under the MIT license.
- * http://warpech.github.com/jquery-handsontable/
- */
+if(!defined("__MAPC__")) { exit(); }
 
-require_once('functions.php');
+include(PROC_PATH   . 'proc.autoload.php'); // Mapc 내부 패키지 불러오기 위해서
+include(VENDOR_PATH . 'autoload.php'); // compoesr 패키지 불러오기 위해서
+
+use Mapc\CommonAdmin\UsersAdmin;
+
+$db    = include(PROC_PATH . 'proc.db.php');
+
+$users = new UsersAdmin(['db' => $db, 'table' => 'mc_user_info']);
+
+// this is it
+
 
 try {
 
+    $usersVar = $users->search();
 
-  //open the database
-  $db = getConnection();
+    $v['users'] = json_encode($usersVar);
 
-  if(!usersTableExists($db)){
-      resetUsersTable($db);
-  }
-
-  //select all data from the table
-  $result = loadUsers($db);
-  
-  $out = array(
-    'users' => $result->fetchAll(PDO::FETCH_ASSOC)
-  );
-  echo json_encode($out);
-  
-  // close the database connection
-  closeConnection($db);
 }
 catch (PDOException $e) {
+
   print 'Exception : ' . $e->getMessage();
+
 }
-?>
+
+// this is it

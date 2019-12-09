@@ -100,17 +100,25 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
             </div>
           </div>
           <div class="form-row">
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-6">
               <label for="hp">휴대전화</label>
               <input type="text" class="form-control" id="hp" placeholder="010-0000-0000 형태">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
+              <label for="hp">휴대전화</label>
+              <input type="text" class="form-control" id="hp" placeholder="010-0000-0000 형태">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-12">
               <label for="address">주소</label>
               <input type="text" class="form-control" id="roadAddrPart1" placeholder="주소">
             </div>
-            <div class="form-group col-md-6">
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-12">
               <label for="address">상세주소</label>
               <input type="text" class="form-control" id="addrDetail" placeholder="상세주소">
             </div>

@@ -8,8 +8,8 @@ use Mapc\Common\Users as Users;
 OAuth2\Autoloader::register();
 
 $db   = include(PROC_PATH . 'proc.db.php');
-$users = new Users(['db' => $db]);
+$users = new Users(['db' => $db, 'table' => 'mc_user_info']);
 
-$v['userList'] = $users->show();
+$v['userList'] = $users->search();
 
 // this is it

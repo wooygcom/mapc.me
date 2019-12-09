@@ -1,6 +1,8 @@
 <?php
 namespace Mapc\Common;
 
+use \RedBeanPHP\R;
+
 /**
  * Curd Model
  * @version 0.1
@@ -15,15 +17,14 @@ class Crud {
 
     public function __construct($args = []) {
 
-        $this->db    = $args['db'];
         $this->table = $args['table'];
-        $this->vars  = $this->db->getRedBean()->dispense($this->table);
+        $this->vars  = R::xdispense($this->table);
 
     }
 
     public function create() {
 
-        $this->id = $this->db->store($this->vars);
+        $this->id = R::store($this->vars);
 
         return $this->id;
         
@@ -31,8 +32,8 @@ class Crud {
 
     public function retrieve($uuid) {
 
-        $result1 = $this->db->getRow("select id from " . $this->table . " where uuid = '" . $uuid . "'");
-        $result2 = $this->db->load($this->table, $result1['id']);
+        $result1 = R::getRow("select id from " . $this->table . " where uuid = '" . $uuid . "'");
+        $result2 = R::load($this->table, $result1['id']);
 
     	return $result2;
 
@@ -58,7 +59,7 @@ class Crud {
 
         $sql .= $args['order'] ? ' order by ' . $args['order'] : null;
 
-        $result = $this->db->getAll($sql, [':searchValue' => $args['searchValue']]);
+        $result = R::getAll($sql, [':searchValue' => $args['searchValue']]);
 
         return $result;
 
@@ -81,7 +82,7 @@ class Crud {
             ];
         $sql .= $args['order'] ? ' order by ' . $args['order'] : null;
 
-        $result = $this->db->getAll($sql, $condit);
+        $result = R::getAll($sql, $condit);
 
         return $result;
 

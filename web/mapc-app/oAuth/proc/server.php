@@ -3,9 +3,9 @@ if(!defined("__MAPC__")) { exit(); }
 
 include VENDOR_PATH . 'autoload.php';
 
-$dsn      = $CONFIG['dbadapter'] . ':dbname=' . $CONFIG['dbname'] . ';host=' . $CONFIG['dbhost'];
-$username = $CONFIG['dbuser'];
-$password = $CONFIG['dbpass'];
+$dsn      = $CONFIG['secure']['dbadapter'] . ':dbname=' . $CONFIG['secure']['dbname'] . ';host=' . $CONFIG['secure']['dbhost'];
+$username = $CONFIG['secure']['dbuser'];
+$password = $CONFIG['secure']['dbpass'];
 
 // Autoloading (composer is preferred, but for this example let's just do this)
 OAuth2\Autoloader::register();
