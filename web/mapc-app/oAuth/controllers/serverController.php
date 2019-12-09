@@ -43,24 +43,33 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
 
     # 2. access_token 발급
     $code = $result['code'];
-    $accessToken = $provider->getAccessToken('authorization_code', [
-        'code' => $code
-    ]);
 
-    $access_token = $accessToken->getToken();
 
-    //echo 'Access Token: ' . $accessToken->getToken() . "<br>";
-    //echo 'Refresh Token: ' . $accessToken->getRefreshToken() . "<br>";
-    //echo 'Expired in: ' . $accessToken->getExpires() . "<br>";
-    //echo 'Already expired? ' . ($accessToken->hasExpired() ? 'expired' : 'not expired') . "<br>";
+    try {
+        $accessToken = $provider->getAccessToken('authorization_code', [
+            'code' => $code
+        ]);
 
-    /*$resourceOwner = $provider->getResourceOwner($accessToken);
-    var_export($resourceOwner->toArray());
-    $request = $provider->getAuthenticatedRequest(
-        'GET',
-        'http://brentertainment.com/oauth2/lockdin/resource',
-        $accessToken
-    );*/
+        /*echo 'Access Token: ' . $accessToken->getToken() . "<br>";
+        echo 'Refresh Token: ' . $accessToken->getRefreshToken() . "<br>";
+        echo 'Expired in: ' . $accessToken->getExpires() . "<br>";
+        echo 'Already expired? ' . ($accessToken->hasExpired() ? 'expired' : 'not expired') . "<br>";
+
+        $resourceOwner = $provider->getResourceOwner($accessToken);
+
+        var_export($resourceOwner->toArray());
+
+        $request = $provider->getAuthenticatedRequest(
+            'GET',
+            'http://brentertainment.com/oauth2/lockdin/resource',
+            $accessToken
+        );*/
+
+        $access_token = $accessToken->getToken();
+
+    } catch (IdentityProviderException $e) {
+        exit($e->getMessage());
+    }
 
     # 3. login session 생성
     if (!empty($access_token)) {
@@ -68,7 +77,7 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
         $_SESSION['isLogin'] = true;
         $_SESSION['access_token'] = $access_token;
 
-        header('Location: ' . $redirectUri);
+        // header('Location: ' . $redirectUri);
         exit;
     }
 } else if ($_REQUEST['mode'] == "logout") {
