@@ -12,7 +12,8 @@
         "phpmailer/phpmailer": "*",
         "bshaffer/oauth2-server-php": "*",
         "gabordemooij/redbean": "dev-master",
-        "auth0/auth0-php": "^5.6"
+        "auth0/auth0-php": "^5.6",
+        "league/oauth2-client": "^2.4"
     },
     "require-dev": {
     },

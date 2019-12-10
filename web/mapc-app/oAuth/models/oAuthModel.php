@@ -2,9 +2,11 @@
 namespace Mapc\oAuth;
 
 use Mapc\Common\Crud;
-use Mapc\oAuth\DoLoginPdo;
+//use Mapc\oAuth\DoLoginPdo;
+use Mapc\test\DoLoginPdo;
 use OAuth2\Autoloader;
 use OAuth2\GrantType\ClientCredentials;
+use OAuth2\GrantType\UserCredentials;
 use OAuth2\Server;
 use OAuth2\Storage\Pdo;
 use OAuth2\GrantType\AuthorizationCode;
@@ -97,7 +99,7 @@ class oAuth extends Crud {
             $server = new Server($storage);
 
             // Add the "User Credentials" grant type
-            $server->addGrantType(new OAuth2\GrantType\UserCredentials($storage));
+            $server->addGrantType(new UserCredentials($storage));
 
         }catch(\PDOException $e){
             // DO NOT send the password to the log files.
