@@ -8054,11 +8054,11 @@ textarea.form-control {
   font-size: 20px; }
 
 .ftco-section {
-  padding: 1em 1.8em;
+  padding: 3em 1.8em;
   position: relative; }
   @media (max-width: 991.98px) {
     .ftco-section {
-      padding: 1em 0; } }
+      padding: 3em 0; } }
 
 .ftco-section-no-padding {
   padding: 0; }

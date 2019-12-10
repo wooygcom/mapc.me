@@ -89,10 +89,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 } else {
 
+    // usage
+    // //[URL]/common/files/[FILENAME].jpg?group=[GROUP]
+    // //[URL]/common/files/20191209-131746-12345.jpg?group=featured
     $group  = $_GET['group'];
     $group2 = $_GET['group2'];
     // 파일명
 	$filename = $ROUTES['id'];
+
     // 확장자
     $ext   = array_pop(explode('.', $filename));
     // 파일명.thumb.확장자 이름 구하기 (파일명만 넘어오기 때문에 thumb구하는 로직이 따로 필요함)
@@ -102,10 +106,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$dir_d = substr($filename, 6, 2);
 
     if($group) {
-        $uploads_dir .= DS . $group;
+        $uploads_dir .= $group;
     }
     if($group2) {
-        $uploads_dir .= DS . $group2;
+        $uploads_dir .= $group2;
     }
     $uploads_dir_real  = $uploads_dir  . DS . $dir_Y . DS . $dir_m . DS . $dir_d . DS;
     $uploads_dir_real2 = $uploads_dir2 . DS . $dir_Y . DS . $dir_m . DS . $dir_d . DS;

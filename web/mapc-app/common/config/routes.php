@@ -8,6 +8,7 @@
 switch ($routes['module']) {
 
 	case 'posts':
+	case 'files':
 
 		$routes['module'] = $mapcArgs[2] ? $mapcArgs[2] : DEFAULT_MODULE;
 		$routes['id']     = $mapcArgs[3];

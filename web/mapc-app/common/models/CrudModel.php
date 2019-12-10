@@ -46,15 +46,19 @@ class Crud {
      * @args
         $args['searchField']
         $args['searchValue']
+        $args['sign']
+        $args['order']
      */
     public function search($args = []) {
 
         $sql   = 'SELECT * FROM ' . $this->table;
-        if(isset($args['searchField']) && isset($args['searchValue'])) {
-
+        if(isset($args['search'])) {
+            $sql .= ' WHERE ' . $args['search'];
+        }
+        // 아래 if문은 삭제 예정, $arg['search']값을 받는게 더 좋을 듯...
+        elseif(isset($args['searchField']) && isset($args['searchValue'])) {
             $sign = $args['sign'] ? $args['sign'] : ' = ';
             $sql .= ' WHERE ' . $args['searchField'] . ' ' . $sign . ' :searchValue';
-
         }
 
         $sql .= $args['order'] ? ' order by ' . $args['order'] : null;

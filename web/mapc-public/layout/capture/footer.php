@@ -1,5 +1,7 @@
             <footer class="ftco-footer ftco-bg-dark ftco-section">
               <div class="container px-md-5">
+<?php
+/*
                 <div class="row mb-5">
                   <div class="col-md">
                     <div class="ftco-footer-widget mb-4 ml-md-4">
@@ -37,6 +39,8 @@
                     </div>
                   </div>
                 </div>
+*/
+?>
                 <div class="row">
                   <div class="col-md-12">
 
