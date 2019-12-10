@@ -90,6 +90,13 @@ class oAuth extends Crud {
         return $server;
     }
 
+    public function getUserInfos($access_token = NULL) {
+        if (empty($access_token)) {
+            return false;
+        }
+
+    }
+
     public function logout() {
         $conn = mysqli_connect(
             'localhost',

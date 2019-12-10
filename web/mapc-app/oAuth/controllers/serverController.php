@@ -43,8 +43,6 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
 
     # 2. access_token 발급
     $code = $result['code'];
-
-
     try {
         $accessToken = $provider->getAccessToken('authorization_code', [
             'code' => $code
@@ -76,6 +74,8 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
         session_start();
         $_SESSION['isLogin'] = true;
         $_SESSION['access_token'] = $access_token;
+
+        $userInfos = oAuth::getUserInfos($access_token);
 
         // header('Location: ' . $redirectUri);
         exit;
