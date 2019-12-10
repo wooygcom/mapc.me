@@ -35,6 +35,7 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
     $data = curl_exec($ch);
+    var_dump($data);
     $result = json_decode($data, true);
     if ($result['status'] == false) {
         echo $result['msg'];
