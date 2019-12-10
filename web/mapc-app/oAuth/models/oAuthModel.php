@@ -2,6 +2,7 @@
 namespace Mapc\oAuth;
 
 use Mapc\Common\Crud;
+use Mapc\oAuth\DoLoginPdo;
 use OAuth2\Autoloader;
 use OAuth2\GrantType\ClientCredentials;
 use OAuth2\Server;
@@ -87,6 +88,24 @@ class oAuth extends Crud {
         $server = new Server($storage);
         $server->addGrantType(new ClientCredentials($storage));
         $server->addGrantType(new AuthorizationCode($storage));
+
+        try{
+            // $dsn is the Data Source Name for your database, for exmaple "mysql:dbname=my_oauth2_db;host=localhost"
+            $storage = new DoLoginPdo(array('dsn' => $dsn, 'username' => $username, 'password' => $password));
+
+            // Pass a storage object or array of storage objects to the OAuth2 server class
+            $server = new Server($storage);
+
+            // Add the "User Credentials" grant type
+            $server->addGrantType(new OAuth2\GrantType\UserCredentials($storage));
+
+        }catch(\PDOException $e){
+            // DO NOT send the password to the log files.
+            echo str_replace($password, ' *** Password Removed *** ' , $e);
+            die;
+        }
+
+
         return $server;
     }
 
