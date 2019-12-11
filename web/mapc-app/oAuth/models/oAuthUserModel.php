@@ -4,7 +4,7 @@ namespace Mapc\oAuth;
 use OAuth2\Storage\UserCredentialsInterface;
 use OAuth2\Storage\Pdo;
 
-class oAuthUser implements UserCredentialsInterface {
+class oAuthUser extends oAuthLogin {
     /**
      * Grant access tokens for basic user credentials.
      *

@@ -11,6 +11,7 @@ use OAuth2\Storage\Pdo;
 use OAuth2\GrantType\AuthorizationCode;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Provider\GenericProvider;
+use \RedBeanPHP\R;
 
 /**
  * Item Model
@@ -127,35 +128,25 @@ class oAuth extends Crud {
         $storage = new oAuthUser(array('dsn' => $dsn, 'username' => $username, 'password' => $password));
         $user_details = $storage->getUserDetails($client_id);
 
-        var_dump($user_details);
-
-
-
+        return $user_details;
     }
 
     public function logout() {
-        $conn = mysqli_connect(
-            'localhost',
-            'root',
-            'root',
-            'mysql'
-        );
+        $dsn = 'mysql:dbname=mysql;host=localhost';
+        $username = 'root';
+        $password = 'root';
 
-        session_start();
+        Autoloader::register();
 
-        // DELETE FROM 테이블이름 WHERE 필드이름=데이터값
         $access_token = $_SESSION['access_token'];
-        $delete_query = "DELETE FROM oauth_access_tokens WHERE access_token = '" . $access_token . "'";
 
-        $result = mysqli_query($conn,$delete_query);
+        $storage = new oAuthUser(array('dsn' => $dsn, 'username' => $username, 'password' => $password));
+        $result = $storage->unsetAccessToken($access_token);
+
         if ($result == true) {
             session_destroy();
             return true;
         }
-
-        mysqli_close($conn);
-
-        return false;
     }
 
 } // class

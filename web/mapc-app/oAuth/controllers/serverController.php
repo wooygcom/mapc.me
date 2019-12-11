@@ -72,21 +72,20 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
 
     # 3. login session 생성
     if (!empty($access_token)) {
+        $userInfos = oAuth::getUserInfos($clientId);
+
         session_start();
         $_SESSION['isLogin'] = true;
         $_SESSION['access_token'] = $access_token;
+        $_SESSION['userInfos'] = $userInfos;
 
-        $userInfos = oAuth::getUserInfos($clientId);
-
-        var_dump($userInfos);
-
-        // header('Location: ' . $redirectUri);
+        header('Location: http://localhost/web/mapc-public/oAuth/client/logout');
         exit;
     }
 } else if ($_REQUEST['mode'] == "logout") {
     # oAuth 로그아웃
     $result = oAuth::logout();
 
-    header('Location: ' . $redirectUri);
+    header('Location: http://localhost/web/mapc-public');
     exit;
 }
