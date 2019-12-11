@@ -2,7 +2,7 @@
 namespace Mapc\oAuth;
 
 use Mapc\Common\Crud;
-use Mapc\oAuth\DoLoginPdo;
+use Mapc\oAuth\oAuthLogin;
 use OAuth2\Autoloader;
 use OAuth2\GrantType\ClientCredentials;
 use OAuth2\GrantType\UserCredentials;
@@ -84,8 +84,8 @@ class oAuth extends Crud {
         $dsn = 'mysql:dbname=mysql;host=localhost';
         $username = 'root';
         $password = 'root';
-        ini_set('display_errors', 1);
-        error_reporting(E_ALL);
+        //ini_set('display_errors', 1);
+        //error_reporting(E_ALL);
 
         Autoloader::register();
         //$storage = new Pdo(array('dsn' => $dsn, 'username' => $username, 'password' => $password));
@@ -95,7 +95,7 @@ class oAuth extends Crud {
 
         try{
             // $dsn is the Data Source Name for your database, for exmaple "mysql:dbname=my_oauth2_db;host=localhost"
-            $storage = new DoLoginPdo(array('dsn' => $dsn, 'username' => $username, 'password' => $password));
+            $storage = new oAuthLogin(array('dsn' => $dsn, 'username' => $username, 'password' => $password));
 
             // Pass a storage object or array of storage objects to the OAuth2 server class
             $server = new Server($storage);
@@ -114,10 +114,22 @@ class oAuth extends Crud {
         return $server;
     }
 
-    public function getUserInfos($access_token = NULL) {
-        if (empty($access_token)) {
+    public function getUserInfos($client_id = NULL) {
+        if (empty($client_id)) {
             return false;
         }
+
+        $dsn = 'mysql:dbname=mysql;host=localhost';
+        $username = 'root';
+        $password = 'root';
+
+        Autoloader::register();
+        $storage = new oAuthUser(array('dsn' => $dsn, 'username' => $username, 'password' => $password));
+        $user_details = $storage->getUserDetails($client_id);
+
+        var_dump($user_details);
+
+
 
     }
 

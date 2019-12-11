@@ -6,24 +6,25 @@ use Mapc\oAuth\oAuth;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Provider\GenericProvider;
 
-$root_url = oAuth::getUrl();
-$clientInfo = oAuth::clientInfo($_POST);
-
-$clientId = $clientInfo['clientId'];
-$clientSecret = $clientInfo['clientSecret'];
-$redirectUri = $clientInfo['redirectUri'];
-
-$provider = new GenericProvider([
-    'clientId'                => $clientId,    // The client ID assigned to you by the provider
-    'clientSecret'            => $clientSecret,   // The client password assigned to you by the provider
-    'redirectUri'             => $redirectUri,
-    'urlAuthorize'            => $root_url . 'oAuth/authorize',
-    'urlAccessToken'          => $root_url . 'oAuth/token',
-    'urlResourceOwnerDetails' => $root_url . 'oAuth/resource'
-]);
 
 # oAuth 로그인
 if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
+    $root_url = oAuth::getUrl();
+    $clientInfo = oAuth::clientInfo($_POST);
+
+    $clientId = $clientInfo['clientId'];
+    $clientSecret = $clientInfo['clientSecret'];
+    $redirectUri = $clientInfo['redirectUri'];
+
+    $provider = new GenericProvider([
+        'clientId'                => $clientId,    // The client ID assigned to you by the provider
+        'clientSecret'            => $clientSecret,   // The client password assigned to you by the provider
+        'redirectUri'             => $redirectUri,
+        'urlAuthorize'            => $root_url . 'oAuth/authorize',
+        'urlAccessToken'          => $root_url . 'oAuth/token',
+        'urlResourceOwnerDetails' => $root_url . 'oAuth/resource'
+    ]);
+
     $authorizationUrl = $provider->getAuthorizationUrl();
     $_SESSION['oauth2state'] = $provider->getState();
 
@@ -35,7 +36,6 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
     $data = curl_exec($ch);
-    var_dump($data);
     $result = json_decode($data, true);
     if ($result['status'] == false) {
         echo $result['msg'];
@@ -76,7 +76,9 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
         $_SESSION['isLogin'] = true;
         $_SESSION['access_token'] = $access_token;
 
-        $userInfos = oAuth::getUserInfos($access_token);
+        $userInfos = oAuth::getUserInfos($clientId);
+
+        var_dump($userInfos);
 
         // header('Location: ' . $redirectUri);
         exit;
