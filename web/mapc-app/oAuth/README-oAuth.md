@@ -1,7 +1,12 @@
 ### 2019-12-11 mc_user_info 필드추가
 ALTER TABLE mc_user_info ADD COLUMN client_id VARCHAR(60);
 ALTER TABLE mc_user_info ADD COLUMN client_secret VARCHAR(128);
-ALTER TABLE mc_user_info ADD COLUMN redirect_uri VARCHAR(2000); 
+ALTER TABLE mc_user_info ADD COLUMN redirect_uri VARCHAR(2000);
+
+### 2019-12-11 mc_user_info 데이터 추가
+### 아이디 : testclient 비밀번호 : testpass
+INSERT INTO `mc_user_info` (`id`, `user_uid`, `user_name`, `user_id`, `user_passwd`, `user_group`, `user_type`, `user_status`, `user_sign_up_date`, `user_sign_in_date_latest`, `user_email`, `user_etc`, `client_id`, `client_secret`, `redirect_uri`) VALUES (1, 'testclient', 'testclient', 'testclient', 'eN3IVVuxZ3/1r3W6X8Asswu1krBhAneuFQVeGJt3/j/aSW5QJ6PZnshdVJQa3uHMF0tQQ4/cIdgtCnn4W1jPRA==', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'testclient', 'eN3IVVuxZ3/1r3W6X8Asswu1krBhAneuFQVeGJt3/j/aSW5QJ6PZnshdVJQa3uHMF0tQQ4/cIdgtCnn4W1jPRA==', 'http://localhost/web/mapc-public/');
+ 
 
 
 ### 임시 oAuth 관련 table
