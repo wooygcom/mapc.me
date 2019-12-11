@@ -45,46 +45,22 @@ class oAuth extends Crud {
         return $clientInfo;
     }
 
-    public function clientInfoByCode($code = NULL) {
-        if (empty($code)) {
-            return false;
-        }
-
-        $conn = mysqli_connect(
-            'localhost',
-            'root',
-            'root',
-            'mysql'
-        );
-        $sql = "SELECT * FROM oauth_authorization_codes WHERE authorization_code = '" . $code . "'";
-        $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_array($result);
-
-        $client_id = $row["client_id"];
-
-        $sql = "SELECT * FROM oauth_clients WHERE client_id = '" . $client_id . "'";
-        $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_array($result);
-
-        $client_secret = $row["client_secret"];
-        $redirect_uri = $row["redirect_uri"];
-
-        $clientInfo = [
-            'clientId'  => $client_id,
-            'clientSecret'  => $client_secret,
-            'redirectUri'   => $redirect_uri
-        ];
-
-        return $clientInfo;
-    }
-
     /**
      * @return Server
      */
     public function setConfig() {
-        $dsn = 'mysql:dbname=mysql;host=localhost';
+        global $CONFIG;
+
+        $db_config = $CONFIG['secure'];
+
+        $dsn = 'mysql:dbname='.$db_config['dbname'].';host='.$db_config['dbhost'];
+        $username = $db_config['dbuser'];
+        $password = $db_config['dbpass'];
+
+        /*$dsn = 'mysql:dbname=mysql;host=localhost';
         $username = 'root';
-        $password = 'root';
+        $password = 'root';*/
+
         //ini_set('display_errors', 1);
         //error_reporting(E_ALL);
 
@@ -120,9 +96,17 @@ class oAuth extends Crud {
             return false;
         }
 
-        $dsn = 'mysql:dbname=mysql;host=localhost';
+        /*$dsn = 'mysql:dbname=mysql;host=localhost';
         $username = 'root';
-        $password = 'root';
+        $password = 'root';*/
+
+        global $CONFIG;
+
+        $db_config = $CONFIG['secure'];
+
+        $dsn = 'mysql:dbname='.$db_config['dbname'].';host='.$db_config['dbhost'];
+        $username = $db_config['dbuser'];
+        $password = $db_config['dbpass'];
 
         Autoloader::register();
         $storage = new oAuthUser(array('dsn' => $dsn, 'username' => $username, 'password' => $password));
@@ -132,9 +116,17 @@ class oAuth extends Crud {
     }
 
     public function logout() {
-        $dsn = 'mysql:dbname=mysql;host=localhost';
+        /*$dsn = 'mysql:dbname=mysql;host=localhost';
         $username = 'root';
-        $password = 'root';
+        $password = 'root';*/
+
+        global $CONFIG;
+
+        $db_config = $CONFIG['secure'];
+
+        $dsn = 'mysql:dbname='.$db_config['dbname'].';host='.$db_config['dbhost'];
+        $username = $db_config['dbuser'];
+        $password = $db_config['dbpass'];
 
         Autoloader::register();
 

@@ -38,7 +38,7 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
     $data = curl_exec($ch);
     $result = json_decode($data, true);
     if ($result['status'] == false) {
-        echo $result['msg'];
+        echo "Error: " . $result['msg'];
         exit;
     }
 
@@ -74,17 +74,29 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
     if (!empty($access_token)) {
         $userInfos = oAuth::getUserInfos($clientId);
 
+        if ($userInfos == false) {
+            // userInfos 오류 났을때
+            echo "userInfos Error!";
+            exit;
+        }
+
         session_start();
         $_SESSION['isLogin'] = true;
         $_SESSION['access_token'] = $access_token;
         $_SESSION['userInfos'] = $userInfos;
 
+        // 임시로 로그아웃 화면으로
         header('Location: http://localhost/web/mapc-public/oAuth/client/logout');
         exit;
     }
 } else if ($_REQUEST['mode'] == "logout") {
     # oAuth 로그아웃
     $result = oAuth::logout();
+
+    if ($result == false) {
+        echo "logout Error!";
+        exit;
+    }
 
     header('Location: http://localhost/web/mapc-public');
     exit;
