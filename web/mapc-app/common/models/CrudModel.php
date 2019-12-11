@@ -30,10 +30,14 @@ class Crud {
         
     }
 
-    public function retrieve($uuid) {
+    public function retrieve($uuid, $type='uuid') {
 
-        $result1 = R::getRow("select id from " . $this->table . " where uuid = '" . $uuid . "'");
-        $result2 = R::load($this->table, $result1['id']);
+        // type이 UUID면 테이블에서 UUID값을 가지고 ID가져옴
+        if($type == 'uuid') {
+            $result1 = R::getRow("select id from " . $this->table . " where uuid = '" . $uuid . "'");
+            $uuid = $result1['id'];
+        }
+        $result2 = R::load($this->table, $uuid);
 
     	return $result2;
 
