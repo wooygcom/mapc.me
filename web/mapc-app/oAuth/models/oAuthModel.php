@@ -2,8 +2,7 @@
 namespace Mapc\oAuth;
 
 use Mapc\Common\Crud;
-//use Mapc\oAuth\DoLoginPdo;
-use Mapc\test\DoLoginPdo;
+use Mapc\oAuth\DoLoginPdo;
 use OAuth2\Autoloader;
 use OAuth2\GrantType\ClientCredentials;
 use OAuth2\GrantType\UserCredentials;
@@ -78,6 +77,9 @@ class oAuth extends Crud {
         return $clientInfo;
     }
 
+    /**
+     * @return Server
+     */
     public function setConfig() {
         $dsn = 'mysql:dbname=mysql;host=localhost';
         $username = 'root';
@@ -86,10 +88,10 @@ class oAuth extends Crud {
         error_reporting(E_ALL);
 
         Autoloader::register();
-        $storage = new Pdo(array('dsn' => $dsn, 'username' => $username, 'password' => $password));
-        $server = new Server($storage);
-        $server->addGrantType(new ClientCredentials($storage));
-        $server->addGrantType(new AuthorizationCode($storage));
+        //$storage = new Pdo(array('dsn' => $dsn, 'username' => $username, 'password' => $password));
+        //$server = new Server($storage);
+        //$server->addGrantType(new ClientCredentials($storage));
+        //$server->addGrantType(new AuthorizationCode($storage));
 
         try{
             // $dsn is the Data Source Name for your database, for exmaple "mysql:dbname=my_oauth2_db;host=localhost"
@@ -100,6 +102,7 @@ class oAuth extends Crud {
 
             // Add the "User Credentials" grant type
             $server->addGrantType(new UserCredentials($storage));
+            $server->addGrantType(new AuthorizationCode($storage));
 
         }catch(\PDOException $e){
             // DO NOT send the password to the log files.

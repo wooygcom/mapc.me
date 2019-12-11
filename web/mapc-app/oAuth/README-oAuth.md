@@ -1,3 +1,9 @@
+### 2019-12-11 mc_user_info 필드추가
+ALTER TABLE mc_user_info ADD COLUMN client_id VARCHAR(60);
+ALTER TABLE mc_user_info ADD COLUMN client_secret VARCHAR(128);
+ALTER TABLE mc_user_info ADD COLUMN redirect_uri VARCHAR(2000); 
+
+
 ### 임시 oAuth 관련 table
 
 CREATE TABLE oauth_clients (
