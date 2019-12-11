@@ -8,9 +8,8 @@
 				<ul>
 					<li class="colorlib-active"><a href="<?= ROOT_URL; ?>">처음</a></li>
 					<li><a href="<?= $v['url']['rankbest']; ?>rank/new">만들기</a></li>
-					<li><a href="about.html">설명서</a></li>
-					<li><a href="blog.html">Blog</a></li>
-					<li><a href="contact.html">의견</a></li>
+					<li><a href="<?= $v['url']['rankbest']; ?>etc/manual">설명서</a></li>
+					<li><a href="<?= $v['url']['rankbest']; ?>etc/contact">의견</a></li>
 				</ul>
 			</nav>
 
