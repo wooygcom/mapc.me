@@ -18,6 +18,10 @@ $config = [
         'layout' => 'core'
     ],
 
+    'url' => [
+        'oAuthServer' => '//127.0.0.1/rankbest/web/mapc-public/',
+    ],
+
     'menu' => [
         'admin' => [
             'my_info' => ROOT_URL . 'commonAdmin/auth/info',

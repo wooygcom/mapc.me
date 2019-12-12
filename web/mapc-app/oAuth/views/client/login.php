@@ -17,9 +17,9 @@ include(LAYOUT_PATH . $layout . '/header.php');
         <div class="login-box-body">
             <p class="login-box-msg">로그인하세요.</p>
 
-            <form method="post" action="/web/mapc-public/oAuth/server">
+            <form method="post" action="<?= $v['url']['oAuthServer']; ?>/oAuth/server">
                 <input type="hidden" name="mode" value="login" /><!-- POST, PUT, PATCH, DELETE -->
-                <input type="hidden" name="redirect_uri" value="http://localhost/web/mapc-public/">
+                <input type="hidden" name="redirect_uri" value="<?= ROOT_URL; ?>">
                 <div class="form-group has-feedback">
                     <input type="text" name="user_email" class="form-control" placeholder="아이디" value="testclient">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
