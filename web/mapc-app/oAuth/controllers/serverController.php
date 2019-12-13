@@ -7,7 +7,7 @@ use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Provider\GenericProvider;
 
 
-# oAuth 로그인
+// # oAuth 로그인
 if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
     $root_url = oAuth::getUrl();
     $clientInfo = oAuth::clientInfo($_POST);
@@ -26,6 +26,7 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
     ]);
 
     $authorizationUrl = $provider->getAuthorizationUrl();
+
     $_SESSION['oauth2state'] = $provider->getState();
 
     # 1. authorization token 발급
@@ -86,7 +87,7 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
         $_SESSION['userInfos'] = $userInfos;
 
         // 임시로 로그아웃 화면으로
-        header('Location: http://localhost/web/mapc-public/oAuth/client/logout');
+        header('Location: ' . $v['url']['oAuthServer'] . 'oAuth/client/logout');
         exit;
     }
 } else if ($_REQUEST['mode'] == "logout") {
@@ -98,6 +99,6 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
         exit;
     }
 
-    header('Location: http://localhost/web/mapc-public');
+    header('Location: ' . $v['url']['oAuthServer']);
     exit;
 }

@@ -19,7 +19,7 @@ include(LAYOUT_PATH . $layout . '/header.php');
             <?php } ?>
             </ul>
 
-            <a href="/web/mapc-public/oAuth/server?mode=logout">로그아웃</a>
+            <a href="<?= $v['url']['oAuthServer']; ?>oAuth/server?mode=logout">로그아웃</a>
 
         </div>
         <!-- /.login-box-body -->

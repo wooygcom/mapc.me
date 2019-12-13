@@ -19,7 +19,7 @@ $config = [
     ],
 
     'url' => [
-        'oAuthServer' => '//127.0.0.1/mapc.me/web/mapc-public/oAuth/server'
+        'oAuthServer' => '//127.0.0.1/mapc.me/web/mapc-public/'
     ],
 
     'menu' => [

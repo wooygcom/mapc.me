@@ -1,90 +1,100 @@
 <?php
-/**
- * This is an example code that shows how you can save Handsontable data on server using PHP with PDO (SQLite).
- * This code is not intended to be maximally efficient nor safe. It is for demonstrational purposes only.
- * Changes and more examples in different languages are welcome.
- *
- * Copyright 2012, Marcin Warpechowski
- * Licensed under the MIT license.
- * http://warpech.github.com/jquery-handsontable/
- */
+if(!defined("__MAPC__")) { exit(); }
 
-require_once('functions.php');
+include(PROC_PATH   . 'proc.autoload.php'); // Mapc 내부 패키지 불러오기 위해서
+include(VENDOR_PATH . 'autoload.php'); // compoesr 패키지 불러오기 위해서
+
+use Mapc\CommonAdmin\UsersAdmin;
+
+$db    = include(PROC_PATH . 'proc.db.php');
+
+$users = new UsersAdmin(['table' => 'mc_user_info']);
 
 try {
-  //open the database
-  $db =  getConnection();
-  createUsersTable($db);
   
-  $colMap = array(
-    0 => 'category',
-    1 => 'name',
-    2 => 'regDate',
-    3 => 'uuid',
-    4 => 'etc'
-  );
+    $colMap = array(
+      0 => 'user_group',
+      1 => 'user_name',
+      2 => 'user_sign_up_date',
+      3 => 'user_id',
+      4 => 'user_etc'
+    );
   
-  if (isset($_POST['changes']) && $_POST['changes']) {
-    foreach ($_POST['changes'] as $change) {
-      $rowId  = $change[0] + 1;
-      $colId  = $change[1];
-      $newVal = $change[3];
-      
-      if (!isset($colMap[$colId])) {
-        echo "\n spadam";
-        continue;
-      }
+    if (isset($_POST['changes']) && $_POST['changes']) {
+        foreach ($_POST['changes'] as $change) {
+            $rowId  = $change[0] + 1;
+            $colId  = $change[1];
+            $newVal = $change[3];
+            
+            if (!isset($colMap[$colId])) {
+              echo "\n error!";
+              continue;
+            }
 
-      $select = $db->prepare('SELECT id FROM users WHERE id=? LIMIT 1');
-      $select->execute(array(
-        $rowId
-      ));
-      
-      if ($row = $select->fetch()) {
-        $query = $db->prepare('UPDATE users SET `' . $colMap[$colId] . '` = :newVal WHERE id = :id');
-      } else {
-        $query = $db->prepare('INSERT INTO users (id, `' . $colMap[$colId] . '`) VALUES(:id, :newVal)');
-      }
-      $query->bindValue(':id', $rowId, PDO::PARAM_INT);
-      $query->bindValue(':newVal', $newVal, PDO::PARAM_STR);
-      $query->execute();
-    }
-  } elseif (isset($_POST['data']) && $_POST['data']) {
-    $select = $db->prepare('DELETE FROM users');
-    $select->execute();
-    
-    for ($r = 0, $rlen = count($_POST['data']); $r < $rlen; $r++) {
-      $rowId = $r + 1;
-      for ($c = 0, $clen = count($_POST['data'][$r]); $c < $clen; $c++) {
-        if (!isset($colMap[$c])) {
-          continue;
-        }
-        
-        $newVal = $_POST['data'][$r][$c];
-        
-        $select = $db->prepare('SELECT id FROM users WHERE id=? LIMIT 1');
-        $select->execute(array(
-          $rowId
-        ));
-        
-        if ($row = $select->fetch()) {
-          $query = $db->prepare('UPDATE users SET `' . $colMap[$c] . '` = :newVal WHERE id = :id');
-        } else {
-          $query = $db->prepare('INSERT INTO users (id, `' . $colMap[$c] . '`) VALUES(:id, :newVal)');
-        }
-        $query->bindValue(':id', $rowId, PDO::PARAM_INT);
-        $query->bindValue(':newVal', $newVal, PDO::PARAM_STR);
-        $query->execute();
-      }
-    }
-  }
+            $field = $colMap[$colId];
 
-  $out = array(
-    'result' => 'ok'
-  );
-  echo json_encode($out);
+            $users->vars->id = $rowId;
+            $users->vars->{$field} = $newVal;
+            $users->create();
+        }
+
+    } elseif (isset($_POST['data']) && $_POST['data']) {
+
+        for ($r = 0, $rlen = count($_POST['data']); $r < $rlen; $r++) {
+            $rowId = $r + 1;
+            for ($c = 0, $clen = count($_POST['data'][$r]); $c < $clen; $c++) {
+                if (!isset($colMap[$c])) {
+                    continue;
+                }
+                
+                $newVal = $_POST['data'][$r][$c];
+
+                $field = $colMap[$c];
+
+                $users->id = $rowId;
+                $users->{$field} = $newVal;
+
+                $users->create();
+
+              }
+        }
+
+/*
+        $select = $db->prepare('DELETE FROM users');
+        $select->execute();
+        
+        for ($r = 0, $rlen = count($_POST['data']); $r < $rlen; $r++) {
+            $rowId = $r + 1;
+            for ($c = 0, $clen = count($_POST['data'][$r]); $c < $clen; $c++) {
+                if (!isset($colMap[$c])) {
+                    continue;
+                }
+                
+                $newVal = $_POST['data'][$r][$c];
+                
+                $select = $db->prepare('SELECT id FROM users WHERE id=? LIMIT 1');
+                $select->execute(array(
+                    $rowId
+                ));
+                
+                if ($row = $select->fetch()) {
+                    $query = $db->prepare('UPDATE users SET `' . $colMap[$c] . '` = :newVal WHERE id = :id');
+                } else {
+                    $query = $db->prepare('INSERT INTO users (id, `' . $colMap[$c] . '`) VALUES(:id, :newVal)');
+                }
+                $query->bindValue(':id', $rowId, PDO::PARAM_INT);
+                $query->bindValue(':newVal', $newVal, PDO::PARAM_STR);
+                $query->execute();
+              }
+        }
+*/
+    }
+
+    $out = array(
+      'result' => 'ok'
+    );
+    echo json_encode($out);
   
-  closeConnection($db);
 }
 catch (PDOException $e) {
   print 'Exception : ' . $e->getMessage();

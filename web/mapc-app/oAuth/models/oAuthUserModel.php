@@ -37,7 +37,7 @@ class oAuthUser extends oAuthLogin {
     {
         // TODO: Implement getUserDetails() method.
         $stmt = $this->db->prepare($sql = sprintf('SELECT * from %s where user_id=:username', $this->config['user_table']));
-        $stmt->execute(array('username' => $username));
+        $stmt->execute(array(':username' => $username));
 
         if (!$userInfo = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             return false;
