@@ -20,12 +20,17 @@ use \RedBeanPHP\R;
 class oAuth extends Crud {
 
     public function getUrl(){
-        $url = "http://localhost/web/mapc-public/";
+        global $CONFIG;
+
+        $CONFIG['url']['oAuthServer'];
+        $url = $CONFIG['url']['oAuthServer'];
         return $url;
     }
 
     public function clientInfo($postArr = []){
-        $url = "http://localhost/web/mapc-public/";
+        global $CONFIG;
+
+        $url = $CONFIG['url']['oAuthServer'];
         $clientId = 'testclient';
         $clientSecret = 'testpass';
         $clientInfo = [
