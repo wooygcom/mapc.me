@@ -17,7 +17,7 @@ include(LAYOUT_PATH . $layout . '/header.php');
         <div class="login-box-body">
             <p class="login-box-msg">로그인하세요.</p>
 
-            <form method="post" action="<?= $v['url']['oAuthServer']; ?>server/">
+            <form method="post" action="<?= $v['url']['oAuthServer']; ?>/oAuth/server">
                 <input type="hidden" name="mode" value="login" /><!-- POST, PUT, PATCH, DELETE -->
                 <input type="hidden" name="redirect_uri" value="<?= ROOT_URL; ?>">
                 <div class="form-group has-feedback">

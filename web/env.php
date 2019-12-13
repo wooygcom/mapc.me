@@ -25,7 +25,7 @@ if(!defined("__MAPC__")) { exit(); }
     define('SYSTEM_PATH', ROOT_PATH . 'mapc-system' . DS);
     {
         // 다른 환경설정을 불러오려는 경우 이곳을 바꾸세요.
-        define('CONFIG_PATH',  SYSTEM_PATH . 'config' . DS);
+        define('CONFIG_PATH',  SYSTEM_PATH . 'config.beta' . DS);
         define('PROC_PATH',    SYSTEM_PATH . 'proc' . DS);
         define('LIBRARY_PATH', SYSTEM_PATH . 'library' . DS);
     }

@@ -215,9 +215,9 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
               startRows: 8,
               startCols: 4,
               rowHeaders: true,
-              colHeaders: ['분류', '이름', '등록일', '아이디', '비고'],
+              colHeaders: ['소속', '이름', '등록일', '아이디', '비고'],
               columns: [
-                {},
+                {description:"<a href='#'>AAA</a>"},
                 {},
                 {},
                 {},
@@ -255,13 +255,15 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
                 type: 'GET',
                 success: function (res) {
                   var data = [], row;
+                    console.log(res.users.length);
+                    console.log("A");
                   for (var i = 0, ilen = res.users.length; i < ilen; i++) {
                     row = [];
-                    row[0] = res.users[i].category;
-                    row[1] = res.users[i].name;
-                    row[2] = res.users[i].regDate;
-                    row[2] = res.users[i].uuid;
-                    row[2] = res.users[i].etc;
+                    row[0] = res.users[i].user_group;
+                    row[1] = res.users[i].user_name;
+                    row[2] = res.users[i].user_reg_date;
+                    row[3] = res.users[i].user_id;
+                    row[4] = res.users[i].user_etc;
                     data[res.users[i].id - 1] = row;
                   }
                   $console.text('불러오기 완료');
