@@ -41,6 +41,7 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
 
         $result = json_decode($data, true);
         if ($result['status'] === false) {
+            print_r($result);echo 'Error';
             throw new Exception(curl_error($ch), curl_errno($ch));
             exit;
         }
