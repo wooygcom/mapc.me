@@ -23,6 +23,7 @@ $_POST = security_arguments($_POST);
 
     }
 
+    // 한번 써먹었으면 새로운 CSRF 받기
     $_SESSION['csrf'] = hash($CONFIG['secure']['encrypt_method'], $_SERVER['REMOTE_ADDR'] . $CONFIG['secure']['pass_key'] . date('YmdHis'));
 
 } // BLOCK

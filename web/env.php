@@ -3,8 +3,8 @@ if(!defined("__MAPC__")) { exit(); }
 
 { // BLOCK:basic_config:20150807:기본값지정
 
-    define('DEFAULT_VENDOR', 'Common');
-    define('DEFAULT_MODULE', 'beta');
+    define('DEFAULT_VENDOR', 'rankbest');
+    define('DEFAULT_MODULE', 'rank');
     define('DEFAULT_ACTION', 'index');
 
 } // BLOCK
@@ -42,7 +42,7 @@ if(!defined("__MAPC__")) { exit(); }
     define('DOMAIN', str_replace('www.', '', $_SERVER['HTTP_HOST']));
     define('HOST',   explode('.', DOMAIN)[0]);
     if($_SERVER['REMOTE_ADDR'] == '127.0.0.1' || $_SERVER['REMOTE_ADDR'] == '175.196.104.211') {
-//*
+/*
         ini_set('display_errors', 1);
         error_reporting(E_ALL);
         define('DEBUG', true);
