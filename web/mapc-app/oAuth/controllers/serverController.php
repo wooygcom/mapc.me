@@ -1,7 +1,8 @@
 <?php
 if(!defined("__MAPC__")) { exit(); }
-include PROC_PATH . 'proc.autoload.php';
 
+include_once PROC_PATH . 'proc.autoload.php';
+if(is_file(PROC_PATH . 'proc.autoload.php')) echo __FILE__.'123'; else echo 'not';
 use Mapc\oAuth\oAuth;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Provider\GenericProvider;
