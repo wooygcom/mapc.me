@@ -5,8 +5,8 @@ include_once VENDOR_PATH . 'autoload.php';
 include_once PROC_PATH . 'proc.autoload.php';
 
 use Mapc\oAuth\oAuth;
-use \League\OAuth2\Client\Provider\Exception\IdentityProviderException;
-use \League\OAuth2\Client\Provider\GenericProvider;
+use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
+use League\OAuth2\Client\Provider\GenericProvider;
 
 // # oAuth 로그인
 if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
@@ -16,7 +16,7 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
     $clientId = $clientInfo['clientId'];
     $clientSecret = $clientInfo['clientSecret'];
     $redirectUri = $clientInfo['redirectUri'];
-echo __LINE__;
+
     $provider = new GenericProvider([
         'clientId'                => $clientId,    // The client ID assigned to you by the provider
         'clientSecret'            => $clientSecret,   // The client password assigned to you by the provider
@@ -25,7 +25,7 @@ echo __LINE__;
         'urlAccessToken'          => $root_url . 'oAuth/token',
         'urlResourceOwnerDetails' => $root_url . 'oAuth/resource'
     ]);
-echo __LINE__;
+
     $authorizationUrl = $provider->getAuthorizationUrl();
 
     $_SESSION['oauth2state'] = $provider->getState();
