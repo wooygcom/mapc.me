@@ -2,7 +2,7 @@
 if(!defined("__MAPC__")) { exit(); }
 
 include VENDOR_PATH . 'autoload.php';
-include APP_PATH  . 'common/models/UsersModel.php';
+include APP_PATH  . 'Common/models/UsersModel.php';
 use Mapc\Common\Users as Users;
 
 OAuth2\Autoloader::register();

@@ -9,7 +9,7 @@
 
 { // BLOCK:get_controller:20150825:컨트롤러 불러오기
 
-    @include($rootDir . DS . '..' . DS . 'common' . DS . 'index.php');
+    @include($rootDir . DS . '..' . DS . 'Common' . DS . 'index.php');
 
 } // BLOCK
 

@@ -233,7 +233,7 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
                 if ($parent.find('input[name=autosave]').is(':checked')) {
                   clearTimeout(autosaveNotification);
                   $.ajax({
-                    url: "<?= ROOT_URL; ?>commonAdmin/users/save",
+                    url: "<?= ROOT_URL; ?>CommonAdmin/users/save",
                     dataType: "json",
                     type: "POST",
                     data: {changes: change}, //contains changed cells' data
@@ -250,7 +250,7 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
             var handsontable = $container.data('handsontable');
             $parent.find('button[name=load]').click(function () {
               $.ajax({
-                url: "<?= ROOT_URL; ?>commonAdmin/users/load",
+                url: "<?= ROOT_URL; ?>CommonAdmin/users/load",
                 dataType: 'json',
                 type: 'GET',
                 success: function (res) {
@@ -273,7 +273,7 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
             }).click(); //execute immediately
             $parent.find('button[name=save]').click(function () {
               $.ajax({
-                url: "<?= ROOT_URL; ?>commonAdmin/users/save",
+                url: "<?= ROOT_URL; ?>CommonAdmin/users/save",
                 data: {"data": handsontable.getData()}, //returns all cells' data
                 dataType: 'json',
                 type: 'POST',
@@ -292,7 +292,7 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
             });
             $parent.find('button[name=reset]').click(function () {
               $.ajax({
-                url: "<?= ROOT_URL; ?>commonAdmin/users/reset",
+                url: "<?= ROOT_URL; ?>CommonAdmin/users/reset",
                 success: function () {
                   $parent.find('button[name=load]').click();
                 },

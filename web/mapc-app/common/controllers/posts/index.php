@@ -2,7 +2,7 @@
 if(!defined("__MAPC__")) { exit(); }
 
 include VENDOR_PATH . 'autoload.php';
-include APP_PATH  . 'common/models/PostsModel.php';
+include APP_PATH  . 'Common/models/PostsModel.php';
 use Mapc\Common\Posts as Posts;
 
 $db    = include(PROC_PATH . 'proc.db.php');
