@@ -84,7 +84,7 @@ class Files {
         if(move_uploaded_file($file['tmp_name'], $uploads_dir_real . DIRECTORY_SEPARATOR . $server_filename)) {
 
             // 파일 정보 출력
-            $this->fileUrls[] = ROOT_URL . 'common/files/' . $server_filename . '?group=' . $this->group;
+            $this->fileUrls[] = ROOT_URL . 'Common/files/' . $server_filename . '?group=' . $this->group;
             if(function_exists('imageThumbnail')) {
                 imageThumbnail (
                     $uploads_dir_real . $server_filename,

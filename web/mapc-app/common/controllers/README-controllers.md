@@ -59,6 +59,6 @@ $user = new Users(['db' => $db, 'table' => $table]);
 
 모델클래스 가져오기(아래 둘 중 하나 선택)
 --------------------------------------------------
-1. include APP_PATH . 'common/models/UsersModel.php';
+1. include APP_PATH . 'Common/models/UsersModel.php';
 2. use Mapc\Common\Users;
 
