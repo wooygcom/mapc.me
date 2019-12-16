@@ -10,6 +10,7 @@ use League\OAuth2\Client\Provider\GenericProvider;
 
 // # oAuth 로그인
 if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
+
     $root_url = oAuth::getUrl();
     $clientInfo = oAuth::clientInfo($_POST);
 
@@ -55,7 +56,9 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
 
     // # 2. access_token 발급
     $code = $result['code'];
+
     try {
+
         $accessToken = $provider->getAccessToken('authorization_code', [
             'code' => $code
         ]);
@@ -78,11 +81,14 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
         $access_token = $accessToken->getToken();
 
     } catch (IdentityProviderException $e) {
+
         exit($e->getMessage());
+
     }
 
     // # 3. login session 생성
     if (!empty($access_token)) {
+
         $userInfos = oAuth::getUserInfos($clientId);
 
         if ($userInfos == false) {
@@ -97,10 +103,12 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
         $_SESSION['userInfos'] = $userInfos;
 
         // 임시로 로그아웃 화면으로
-        header('Location: ' . $v['url']['oAuthServer'] . 'oAuth/client/logout');
+        header('Location: ' . $CONFIG['url']['oAuthServer'] . 'oAuth/client/logout');
         exit;
     }
+
 } else if ($_REQUEST['mode'] == "logout") {
+
     // # oAuth 로그아웃
     $result = oAuth::logout();
 
@@ -109,6 +117,9 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
         exit;
     }
 
-    header('Location: ' . $v['url']['oAuthServer']);
+    header('Location: ' . $CONFIG['url']['oAuthServer']);
     exit;
+
 }
+
+// this is it

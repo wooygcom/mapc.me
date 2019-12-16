@@ -1,6 +1,10 @@
 <?php
 $layout = 'admin-lte.page';
 
+$v['head']['extension'] = <<<EOT
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+EOT;
+
 include(LAYOUT_PATH . $layout . '/head.php');
 include(LAYOUT_PATH . $layout . '/header.php');
 
@@ -11,7 +15,7 @@ include(LAYOUT_PATH . $layout . '/header.php');
 
     <div class="login-box">
         <div class="login-logo">
-            <a href="#"><b>로그인</b></a>
+            <a href="#"><b><?= $v['site']['title']; ?></b> 통합로그인</a>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
