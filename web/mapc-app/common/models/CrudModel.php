@@ -22,6 +22,12 @@ class Crud {
 
     }
 
+    public function query($query) {
+
+        R::exec($query);
+
+    }
+
     public function create() {
 
         $this->id = R::store($this->vars);
@@ -44,7 +50,12 @@ class Crud {
     }
 
     public function update() {}
-    public function delete() {}
+
+    public function delete() {
+
+        R::trash($this->vars);
+
+    }
 
     /**
      * @args

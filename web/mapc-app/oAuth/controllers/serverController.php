@@ -96,7 +96,7 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
         $_SESSION['userInfos'] = $userInfos;
 
         // 임시로 로그아웃 화면으로
-        header('Location: ' . $v['url']['oAuthServer'] . 'oAuth/client/logout');
+        header('Location: ' . $CONFIG['url']['oAuthServer'] . 'oAuth/client/logout');
         exit;
     }
 } else if ($_REQUEST['mode'] == "logout") {
@@ -108,6 +108,6 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
         exit;
     }
 
-    header('Location: ' . $v['url']['oAuthServer']);
+    header('Location: ' . $CONFIG['url']['oAuthServer']);
     exit;
 }

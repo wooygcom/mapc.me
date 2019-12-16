@@ -25,6 +25,7 @@
      *
      */
     // 보안을 위해 CONFIG에서 필요한 값을 제외한 모든 환경설정값 지우기
+    $v['api']  = $CONFIG['api'];
     $v['url']  = $CONFIG['url'];
     $v['menu'] = $CONFIG['menu'];
     $v['site'] = $CONFIG['site'];
