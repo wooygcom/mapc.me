@@ -1,6 +1,8 @@
 <?php
 { // BLOCK:proc:20191204:선처리
 
+    $rootDir = '';
+
     // 회원처리가 필요한 경우에만 사용 필요없으면 지워도 됨
     include_once(PROC_PATH . 'proc.user.php');
     $rootDir = $rootDir ? $rootDir : __DIR__;

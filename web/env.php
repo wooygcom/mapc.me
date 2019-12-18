@@ -3,9 +3,9 @@ if(!defined("__MAPC__")) { exit(); }
 
 { // BLOCK:basic_config:20150807:기본값지정
 
-    define('DEFAULT_VENDOR', 'rankbest');
-    define('DEFAULT_MODULE', 'rank');
-    define('DEFAULT_ACTION', 'index');
+    define('DEFAULT_VENDOR', 'oAuth');
+    define('DEFAULT_MODULE', 'client');
+    define('DEFAULT_ACTION', 'login');
 
 } // BLOCK
 
@@ -24,7 +24,7 @@ if(!defined("__MAPC__")) { exit(); }
     define('SYSTEM_PATH', ROOT_PATH . 'mapc-system' . DS);
     {
         // 다른 환경설정을 불러오려는 경우 이곳을 바꾸세요.
-        define('CONFIG_PATH',  SYSTEM_PATH . 'config.rankbest' . DS);
+        define('CONFIG_PATH',  SYSTEM_PATH . 'config.beta' . DS);
         define('PROC_PATH',    SYSTEM_PATH . 'proc' . DS);
         define('LIBRARY_PATH', SYSTEM_PATH . 'library' . DS);
     }
