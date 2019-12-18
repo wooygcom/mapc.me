@@ -15,7 +15,7 @@ $users = new UsersAdmin(['db' => $db, 'table' => 'mc_user_info']);
 
 try {
 
-    $v['users'] = $users->search();
+    $v['users'] = $users->search(['limit' => 20]);
 
 }
 catch (PDOException $e) {

@@ -77,6 +77,7 @@ class Crud {
         }
 
         $sql .= $args['order'] ? ' order by ' . $args['order'] : null;
+        $sql .= $args['limit'] ? ' limit ' . $args['limit'] : null;
 
         $result = R::getAll($sql, [':searchValue' => $args['searchValue']]);
 

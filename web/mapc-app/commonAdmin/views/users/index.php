@@ -6,6 +6,7 @@
  * @version 0.1
  *
  */
+$root_url = ROOT_URL;
 $v['head']['extension'] = <<< EOT
     <!-- jQuery.js -->
     <script
@@ -50,7 +51,7 @@ $v['head']['extension'] = <<< EOT
       function goPopup(){
         // 주소검색을 수행할 팝업 페이지를 호출합니다.
         // 호출된 페이지(jusoPopup_utf8.php)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
-        var pop = window.open("/mapc.me/web/mapc-public/api/juso/popup","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+        var pop = window.open("{$root_url}api/juso/popup","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
         
         // 모바일 웹인 경우, 호출된 페이지(jusoPopup_utf8.php)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
           //var pop = window.open("/jusoPopup_utf8.php","pop","scrollbars=yes, resizable=yes"); 
@@ -92,7 +93,7 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="group">소속</label>
-              <input type="text" class="form-control" id="group" placeholder="직위를 입력하세요.">
+              <input type="text" class="form-control" id="roadAddrPart2" name="group" placeholder="직위를 입력하세요.">
             </div>
             <div class="form-group col-md-6">
               <label for="role">직위</label>
@@ -114,13 +115,13 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
           <div class="form-row">
             <div class="form-group col-md-12">
               <label for="address">주소</label>
-              <input type="text" class="form-control" id="roadAddrPart1" placeholder="주소">
+              <input type="text" class="form-control" id="roadAddrPart1" name="addr" placeholder="주소">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-12">
               <label for="address">상세주소</label>
-              <input type="text" class="form-control" id="addrDetail" placeholder="상세주소">
+              <input type="text" class="form-control" id="addrDetail" namd="addrDetail" placeholder="상세주소">
             </div>
           </div>
         </div>

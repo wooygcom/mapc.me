@@ -9,7 +9,7 @@ if(!defined("__MAPC__")) { exit(); }
 
 } // BLOCK
 
-{ // BLOCK:path_set:2012080901:경로지정
+{ // BLOCK:path_set:2012080901:경로지정.
 
     // 디렉토리 구분자
     define('DS', DIRECTORY_SEPARATOR);
