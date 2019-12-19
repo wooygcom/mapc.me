@@ -45,7 +45,7 @@
                   <div class="col-md-12">
 
                     <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-          Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+          Copyright &copy;<script>document.write(new Date().getFullYear());</script> Wooyg.com All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
           <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                   </div>
                 </div>
@@ -61,19 +61,6 @@
 <?php
   // 원본 : B
 ?>
-  <script src="<?= ROOT_URL; ?>layout/capture/js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="<?= ROOT_URL; ?>layout/capture/js/popper.min.js"></script>
-  <script src="<?= ROOT_URL; ?>layout/capture/js/bootstrap.min.js"></script>
-  <script src="<?= ROOT_URL; ?>layout/capture/js/jquery.easing.1.3.js"></script>
-  <script src="<?= ROOT_URL; ?>layout/capture/js/jquery.waypoints.min.js"></script>
-  <script src="<?= ROOT_URL; ?>layout/capture/js/jquery.stellar.min.js"></script>
-  <script src="<?= ROOT_URL; ?>layout/capture/js/owl.carousel.min.js"></script>
-  <script src="<?= ROOT_URL; ?>layout/capture/js/jquery.magnific-popup.min.js"></script>
-  <script src="<?= ROOT_URL; ?>layout/capture/js/aos.js"></script>
-  <script src="<?= ROOT_URL; ?>layout/capture/js/jquery.animateNumber.min.js"></script>
-  <script src="<?= ROOT_URL; ?>layout/capture/js/bootstrap-datepicker.js"></script>
-  <script src="<?= ROOT_URL; ?>layout/capture/js/scrollax.min.js"></script>
-  <script src="<?= ROOT_URL; ?>layout/capture/js/main.js"></script>
 <?php
   // 원본 : E
 ?>

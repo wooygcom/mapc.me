@@ -4,14 +4,14 @@ Vendors
 vendor/index.php [1/2]
 --------------------------------------------------
 
-    * 일반적인 형태(vendor/common/index.php)와 별다른 차이가 없으면
+    * 일반적인 형태(vendor/Common/index.php)와 별다른 차이가 없으면
 
 ```
 <?php
-{ // BLOCK:get_common:20150825:common/index.php 그대로 가져오기
+{ // BLOCK:get_common:20150825:Common/index.php 그대로 가져오기
 
     $rootDir = __DIR__;
-    @include($rootDir . DS . '..' . DS . 'common' . DS . 'index.php');
+    @include($rootDir . DS . '..' . DS . 'Common' . DS . 'index.php');
 
 } // BLOCK
 
@@ -24,7 +24,7 @@ vendor/index.php [2/2]
 --------------------------------------------------
 
     * vendor/index.php를 처음 만들 때는 [1/2] 또는 [2/2]를 복사 붙여넣기 하면 됨
-    * vendor/common/index.php(일반적인형태)와 다른 형태로 만들고 싶을때 사용
+    * vendor/Common/index.php(일반적인형태)와 다른 형태로 만들고 싶을때 사용
 
 ```
 <?php

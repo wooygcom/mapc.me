@@ -6,6 +6,7 @@
  * @version 0.1
  *
  */
+$root_url = ROOT_URL;
 $v['head']['extension'] = <<< EOT
     <!-- jQuery.js -->
     <script
@@ -50,7 +51,7 @@ $v['head']['extension'] = <<< EOT
       function goPopup(){
         // 주소검색을 수행할 팝업 페이지를 호출합니다.
         // 호출된 페이지(jusoPopup_utf8.php)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
-        var pop = window.open("/mapc.me/web/mapc-public/api/juso/popup","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+        var pop = window.open("{$root_url}api/juso/popup","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
         
         // 모바일 웹인 경우, 호출된 페이지(jusoPopup_utf8.php)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
           //var pop = window.open("/jusoPopup_utf8.php","pop","scrollbars=yes, resizable=yes"); 
@@ -92,7 +93,7 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="group">소속</label>
-              <input type="text" class="form-control" id="group" placeholder="직위를 입력하세요.">
+              <input type="text" class="form-control" id="roadAddrPart2" name="group" placeholder="직위를 입력하세요.">
             </div>
             <div class="form-group col-md-6">
               <label for="role">직위</label>
@@ -114,13 +115,13 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
           <div class="form-row">
             <div class="form-group col-md-12">
               <label for="address">주소</label>
-              <input type="text" class="form-control" id="roadAddrPart1" placeholder="주소">
+              <input type="text" class="form-control" id="roadAddrPart1" name="addr" placeholder="주소">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-12">
               <label for="address">상세주소</label>
-              <input type="text" class="form-control" id="addrDetail" placeholder="상세주소">
+              <input type="text" class="form-control" id="addrDetail" namd="addrDetail" placeholder="상세주소">
             </div>
           </div>
         </div>
@@ -215,9 +216,9 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
               startRows: 8,
               startCols: 4,
               rowHeaders: true,
-              colHeaders: ['분류', '이름', '등록일', '아이디', '비고'],
+              colHeaders: ['소속', '이름', '등록일', '아이디', '비고'],
               columns: [
-                {},
+                {description:"<a href='#'>AAA</a>"},
                 {},
                 {},
                 {},
@@ -233,7 +234,7 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
                 if ($parent.find('input[name=autosave]').is(':checked')) {
                   clearTimeout(autosaveNotification);
                   $.ajax({
-                    url: "<?= ROOT_URL; ?>commonAdmin/users/save",
+                    url: "<?= ROOT_URL; ?>CommonAdmin/users/save",
                     dataType: "json",
                     type: "POST",
                     data: {changes: change}, //contains changed cells' data
@@ -250,18 +251,20 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
             var handsontable = $container.data('handsontable');
             $parent.find('button[name=load]').click(function () {
               $.ajax({
-                url: "<?= ROOT_URL; ?>commonAdmin/users/load",
+                url: "<?= ROOT_URL; ?>CommonAdmin/users/load",
                 dataType: 'json',
                 type: 'GET',
                 success: function (res) {
                   var data = [], row;
+                    console.log(res.users.length);
+                    console.log("A");
                   for (var i = 0, ilen = res.users.length; i < ilen; i++) {
                     row = [];
-                    row[0] = res.users[i].category;
-                    row[1] = res.users[i].name;
-                    row[2] = res.users[i].regDate;
-                    row[2] = res.users[i].uuid;
-                    row[2] = res.users[i].etc;
+                    row[0] = res.users[i].user_group;
+                    row[1] = res.users[i].user_name;
+                    row[2] = res.users[i].user_reg_date;
+                    row[3] = res.users[i].user_id;
+                    row[4] = res.users[i].user_etc;
                     data[res.users[i].id - 1] = row;
                   }
                   $console.text('불러오기 완료');
@@ -271,7 +274,7 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
             }).click(); //execute immediately
             $parent.find('button[name=save]').click(function () {
               $.ajax({
-                url: "<?= ROOT_URL; ?>commonAdmin/users/save",
+                url: "<?= ROOT_URL; ?>CommonAdmin/users/save",
                 data: {"data": handsontable.getData()}, //returns all cells' data
                 dataType: 'json',
                 type: 'POST',
@@ -290,7 +293,7 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
             });
             $parent.find('button[name=reset]').click(function () {
               $.ajax({
-                url: "<?= ROOT_URL; ?>commonAdmin/users/reset",
+                url: "<?= ROOT_URL; ?>CommonAdmin/users/reset",
                 success: function () {
                   $parent.find('button[name=load]').click();
                 },

@@ -29,34 +29,24 @@
   <meta name="keywords" content="<?= $v['site']['keywords']; ?>">
 
   <link rel="shortcut icon" href="<?= $v['site']['favicon']; ?>" type="image/x-icon">
-  <link rel="icon" href="<?= $v['site']['favicon']; ?>" type="image/x-icon">
 
-  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
-
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-  <link rel="stylesheet" href="<?= ROOT_URL; ?>layout/capture/css/open-iconic-bootstrap.min.css">
-  <link rel="stylesheet" href="<?= ROOT_URL; ?>layout/capture/css/animate.css">
-  
-  <link rel="stylesheet" href="<?= ROOT_URL; ?>layout/capture/css/owl.carousel.min.css">
-  <link rel="stylesheet" href="<?= ROOT_URL; ?>layout/capture/css/owl.theme.default.min.css">
-  <link rel="stylesheet" href="<?= ROOT_URL; ?>layout/capture/css/magnific-popup.css">
-
-  <link rel="stylesheet" href="<?= ROOT_URL; ?>layout/capture/css/aos.css">
-
-  <link rel="stylesheet" href="<?= ROOT_URL; ?>layout/capture/css/ionicons.min.css">
-
-  <link rel="stylesheet" href="<?= ROOT_URL; ?>layout/capture/css/bootstrap-datepicker.css">
-  
-  <link rel="stylesheet" href="<?= ROOT_URL; ?>layout/capture/css/flaticon.css">
-  <link rel="stylesheet" href="<?= ROOT_URL; ?>layout/capture/css/icomoon.css">
-  <link rel="stylesheet" href="<?= ROOT_URL; ?>layout/capture/css/style.css">
-
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+  <link rel="apple-touch-icon" sizes="57x57" href="<?= ROOT_URL; ?>/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="<?= ROOT_URL; ?>/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="<?= ROOT_URL; ?>/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="<?= ROOT_URL; ?>/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="<?= ROOT_URL; ?>/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="<?= ROOT_URL; ?>/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="<?= ROOT_URL; ?>/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="<?= ROOT_URL; ?>/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="<?= ROOT_URL; ?>/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="<?= ROOT_URL; ?>/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="<?= ROOT_URL; ?>/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="<?= ROOT_URL; ?>/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="<?= ROOT_URL; ?>/favicon/favicon-16x16.png">
+  <link rel="manifest" href="<?= ROOT_URL; ?>/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
 
   <?= $v['head']['extension']; ?>
     

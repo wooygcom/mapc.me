@@ -20,12 +20,17 @@ use \RedBeanPHP\R;
 class oAuth extends Crud {
 
     public function getUrl(){
-        $url = "http://localhost/web/mapc-public/";
+        global $CONFIG;
+
+        $CONFIG['url']['oAuthServer'];
+        $url = $CONFIG['url']['oAuthServer'];
         return $url;
     }
 
     public function clientInfo($postArr = []){
-        $url = "http://localhost/web/mapc-public/";
+        global $CONFIG;
+
+        $url = $CONFIG['url']['oAuthServer'];
         $clientId = 'testclient';
         $clientSecret = 'testpass';
         $clientInfo = [
@@ -56,7 +61,7 @@ class oAuth extends Crud {
 
         $db_config = $CONFIG['secure'];
 
-        $dsn = 'mysql:dbname='.$db_config['dbname'].';host='.$db_config['dbhost'];
+        $dsn = 'mysql:host='.$db_config['dbhost'].';dbname='.$db_config['dbname'].';charset=utf8';
         $username = $db_config['dbuser'];
         $password = $db_config['dbpass'];
 
@@ -75,6 +80,7 @@ class oAuth extends Crud {
 
         try{
             // $dsn is the Data Source Name for your database, for exmaple "mysql:dbname=my_oauth2_db;host=localhost"
+
             $storage = new oAuthLogin(array('dsn' => $dsn, 'username' => $username, 'password' => $password));
 
             // Pass a storage object or array of storage objects to the OAuth2 server class

@@ -4,7 +4,7 @@ if(!defined("__MAPC__")) { exit(); }
 { // BLOCK:basic_config:20150807:기본값지정
 
     // make false before publish
-    define('DEFAULT_VENDOR', 'common');
+    define('DEFAULT_VENDOR', 'Common');
     define('DEFAULT_MODULE', 'index');
     define('DEFAULT_ACTION', 'list');
 

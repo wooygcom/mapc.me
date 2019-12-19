@@ -85,13 +85,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
 	// 파일 정보 출력
-	echo ROOT_URL . 'common/files/' . $server_filename . $args;
+	echo ROOT_URL . 'Common/files/' . $server_filename . $args;
 
 } else {
 
     // usage
-    // //[URL]/common/files/[FILENAME].jpg?group=[GROUP]
-    // //[URL]/common/files/20191209-131746-12345.jpg?group=featured
+    // //[URL]/Common/files/[FILENAME].jpg?group=[GROUP]
+    // //[URL]/Common/files/20191209-131746-12345.jpg?group=featured
     $group  = $_GET['group'];
     $group2 = $_GET['group2'];
     // 파일명

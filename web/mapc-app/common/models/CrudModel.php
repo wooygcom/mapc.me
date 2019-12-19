@@ -22,6 +22,12 @@ class Crud {
 
     }
 
+    public function query($query) {
+
+        R::exec($query);
+
+    }
+
     public function create() {
 
         $this->id = R::store($this->vars);
@@ -44,7 +50,12 @@ class Crud {
     }
 
     public function update() {}
-    public function delete() {}
+
+    public function delete() {
+
+        R::trash($this->vars);
+
+    }
 
     /**
      * @args
@@ -56,8 +67,8 @@ class Crud {
     public function search($args = []) {
 
         $sql   = 'SELECT * FROM ' . $this->table;
-        if(isset($args['search'])) {
-            $sql .= ' WHERE ' . $args['search'];
+        if(isset($args['where'])) {
+            $sql .= ' WHERE ' . $args['where'];
         }
         // 아래 if문은 삭제 예정, $arg['search']값을 받는게 더 좋을 듯...
         elseif(isset($args['searchField']) && isset($args['searchValue'])) {
@@ -66,6 +77,7 @@ class Crud {
         }
 
         $sql .= $args['order'] ? ' order by ' . $args['order'] : null;
+        $sql .= $args['limit'] ? ' limit ' . $args['limit'] : null;
 
         $result = R::getAll($sql, [':searchValue' => $args['searchValue']]);
 
@@ -80,14 +92,20 @@ class Crud {
               FROM ' . $args['table'] . ' main
               LEFT JOIN ' . $args['table'] . 'meta sub ON
                    (main.uuid = sub.parent_uuid)
-             WHERE sub.key = :searchField
-               AND sub.value = :searchValue
             ';
 
-        $condit = [
-            ':searchField' => $args['searchField'],
-            ':searchValue' => $args['searchValue']
-            ];
+        if($args['where']) {
+            $sql .= ' where ' . $args['where'];
+        } elseif($args['searchField']) {
+            $sql .= "
+                 WHERE sub.key = :searchField
+                   AND sub.value = :searchValue
+                ";
+            $condit = [
+                ':searchField' => $args['searchField'],
+                ':searchValue' => $args['searchValue']
+                ];
+        }
         $sql .= $args['order'] ? ' order by ' . $args['order'] : null;
 
         $result = R::getAll($sql, $condit);

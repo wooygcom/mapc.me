@@ -1,13 +1,14 @@
 <?php
 if(!defined("__MAPC__")) { exit(); }
-include PROC_PATH . 'proc.autoload.php';
+
+include_once VENDOR_PATH . 'autoload.php';
+include_once PROC_PATH . 'proc.autoload.php';
 
 use Mapc\oAuth\oAuth;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Provider\GenericProvider;
 
-
-# oAuth 로그인
+// # oAuth 로그인
 if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
     $root_url = oAuth::getUrl();
     $clientInfo = oAuth::clientInfo($_POST);
@@ -26,23 +27,33 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
     ]);
 
     $authorizationUrl = $provider->getAuthorizationUrl();
+
     $_SESSION['oauth2state'] = $provider->getState();
 
-    # 1. authorization token 발급
+    // # 1. authorization token 발급
     // http://localhost/authorize.php?response_type=code&client_id=testclient&state=xyz
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $authorizationUrl);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    try {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $authorizationUrl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
-    $data = curl_exec($ch);
-    $result = json_decode($data, true);
-    if ($result['status'] == false) {
-        echo "Error: " . $result['msg'];
-        exit;
+        $data = curl_exec($ch);
+
+        $result = json_decode($data, true);
+        if ($result['status'] === false) {
+            print_r($result);echo 'Error';
+            throw new Exception(curl_error($ch), curl_errno($ch));
+            exit;
+        }
+    } catch(Exception $e) {
+        trigger_error(sprintf(
+            'Curl failed with error #%d: %s',
+            $e->getCode(), $e->getMessage()),
+            E_USER_ERROR);
     }
 
-    # 2. access_token 발급
+    // # 2. access_token 발급
     $code = $result['code'];
     try {
         $accessToken = $provider->getAccessToken('authorization_code', [
@@ -70,7 +81,7 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
         exit($e->getMessage());
     }
 
-    # 3. login session 생성
+    // # 3. login session 생성
     if (!empty($access_token)) {
         $userInfos = oAuth::getUserInfos($clientId);
 
@@ -86,11 +97,11 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
         $_SESSION['userInfos'] = $userInfos;
 
         // 임시로 로그아웃 화면으로
-        header('Location: http://localhost/web/mapc-public/oAuth/client/logout');
+        header('Location: ' . $CONFIG['url']['oAuthServer'] . 'oAuth/client/logout');
         exit;
     }
 } else if ($_REQUEST['mode'] == "logout") {
-    # oAuth 로그아웃
+    // # oAuth 로그아웃
     $result = oAuth::logout();
 
     if ($result == false) {
@@ -98,6 +109,6 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
         exit;
     }
 
-    header('Location: http://localhost/web/mapc-public');
+    header('Location: ' . $CONFIG['url']['oAuthServer']);
     exit;
 }

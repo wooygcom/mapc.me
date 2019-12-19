@@ -1,6 +1,6 @@
 <?php
 include_once(SYSTEM_PATH . 'library/http_move.php');
-include(APP_PATH  . 'common/models/UsersModel.php');
+include(APP_PATH  . 'Common/models/UsersModel.php');
 
 // 권한체크 #WITY
 if(!MODE_DEV && ! $_SESSION['SS_USR_ID']) {

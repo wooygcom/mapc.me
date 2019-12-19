@@ -7,23 +7,11 @@
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
 					<li class="colorlib-active"><a href="<?= ROOT_URL; ?>">처음</a></li>
-					<li><a href="<?= $v['url']['rankbest']; ?>rank/new">만들기</a></li>
-					<li><a href="about.html">설명서</a></li>
-					<li><a href="blog.html">Blog</a></li>
-					<li><a href="contact.html">의견</a></li>
+					<li><a href="<?= $v['url']['rankbest']; ?>etc/manual">설명서</a></li>
+					<li><a href="<?= $v['url']['rankbest']; ?>etc/contact">의견</a></li>
+					<li><a href="<?= ROOT_URL; ?>oAuth/client/login">로그인</a></li>
 				</ul>
 			</nav>
 
-			<div class="colorlib-footer">
-				<h3>Follow Us Here!</h3>
-				<div class="d-flex justify-content-center">
-					<ul class="d-flex align-items-center">
-						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-facebook"></i></a></li>
-						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-twitter"></i></a></li>
-						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-instagram"></i></a></li>
-						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-linkedin"></i></a></li>
-					</ul>
-				</div>
-			</div>
 		</aside> <!-- END COLORLIB-ASIDE -->
 		<div id="colorlib-main">

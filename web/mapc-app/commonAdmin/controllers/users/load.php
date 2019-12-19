@@ -15,9 +15,7 @@ $users = new UsersAdmin(['db' => $db, 'table' => 'mc_user_info']);
 
 try {
 
-    $usersVar = $users->search();
-
-    $v['users'] = json_encode($usersVar);
+    $v['users'] = $users->search(['limit' => 20]);
 
 }
 catch (PDOException $e) {
