@@ -1,7 +1,6 @@
 <?php
 if(!defined("__MAPC__")) { exit(); }
 
-include_once VENDOR_PATH . 'autoload.php';
 include_once PROC_PATH . 'proc.autoload.php';
 
 use Mapc\oAuth\oAuth;
@@ -34,6 +33,7 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
     // http://localhost/authorize.php?response_type=code&client_id=testclient&state=xyz
     try {
         $ch = curl_init();
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept: application/json'));
         curl_setopt($ch, CURLOPT_URL, $authorizationUrl);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -42,7 +42,7 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
 
         $result = json_decode($data, true);
         if ($result['status'] === false) {
-            print_r($result);echo 'Error';
+            echo 'Error: ' . $result['msg'];
             throw new Exception(curl_error($ch), curl_errno($ch));
             exit;
         }
