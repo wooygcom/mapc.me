@@ -39,8 +39,13 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
         $data = curl_exec($ch);
-
         $result = json_decode($data, true);
+
+        if (empty($result)) {
+            echo 'Error: empty result';
+            exit;
+        }
+
         if ($result['status'] === false) {
             echo 'Error: ' . $result['msg'];
             throw new Exception(curl_error($ch), curl_errno($ch));
@@ -55,6 +60,11 @@ if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
 
     // # 2. access_token 발급
     $code = $result['code'];
+    if (empty($code)) {
+        echo "Error : authorize code empty!";
+        exit;
+    }
+
     try {
         $accessToken = $provider->getAccessToken('authorization_code', [
             'code' => $code
