@@ -1,6 +1,8 @@
 # Files for deveopment
 .gitignore
 
+secure/*
+
 develop/*
 plan/*
 !plan/mapc.mwb
@@ -27,7 +29,7 @@ web/mapc-system/*
 !web/mapc-system/proc
 
 web/mapc-app/*
-!web/mapc-app/common
-!web/mapc-app/commonAdmin
+!web/mapc-app/Common
+!web/mapc-app/CommonAdmin
 !web/mapc-app/bare
 !web/mapc-app/oAuth

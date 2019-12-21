@@ -68,7 +68,7 @@ mapc.me
 -------------------------------------------------------------------------------
 
 0. //URL/[VENDOR]/[MODULE]/[ACTION] 로 접속 할 경우 벌어지는 일~
-    (아래는 //URL/common/posts/123/edit 으로 접속 할 경우를 예로 들었음)
+    (아래는 //URL/Common/posts/123/edit 으로 접속 할 경우를 예로 들었음)
 
 1. /mapc-public/index.php
     1. 상수값 설정, 환경설정을 불러옴
@@ -77,12 +77,12 @@ mapc.me
             기본은 config 이고 이걸 config.site 이런식으로 바꿀 수 있음
             여러가지 환경설정을 만들어두고 필요에 따라 바꿀 수 있음
         2. config(사이트별 특화된 환경설정), routes(Routes설정) 불러옴
-            common/config/routes.php 에서 common/posts/123/edit([VENDOR]/[MODULE]/[ID]/[ACTION]) 순으로 Argument를 받게끔 설정됨
+            Common/config/routes.php 에서 Common/posts/123/edit([VENDOR]/[MODULE]/[ID]/[ACTION]) 순으로 Argument를 받게끔 설정됨
 
     2. 입력값(벤더, 모듈, 액션 등)에 따라서 필요한 파일 불러오기(다음장으로)
-        /mapc-app/common/index.php
+        /mapc-app/Common/index.php
 
-2. /mapc-app/common/index.php
+2. /mapc-app/Common/index.php
     1. Controllers/PostsController.php 불러옴
     2. Views/PostsView.php 불러옴
 

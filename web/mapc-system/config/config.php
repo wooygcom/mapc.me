@@ -24,8 +24,8 @@ $config = [
 
     'menu' => [
         'admin' => [
-            'my_info' => ROOT_URL . 'commonAdmin/auth/info',
-            'users' => ROOT_URL . 'commonAdmin/users/'
+            'my_info' => ROOT_URL . 'CommonAdmin/auth/info',
+            'users' => ROOT_URL . 'CommonAdmin/users/'
         ]
     ],
 
