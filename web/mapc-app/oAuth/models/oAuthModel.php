@@ -61,7 +61,7 @@ class oAuth extends Crud {
 
         $db_config = $CONFIG['secure'];
 
-        $dsn = 'mysql:host='.$db_config['dbhost'].';dbname='.$db_config['dbname'].';charset=utf8';
+        $dsn = 'mysql:dbname='.$db_config['dbname'].';host='.$db_config['dbhost'];
         $username = $db_config['dbuser'];
         $password = $db_config['dbpass'];
 
@@ -80,8 +80,7 @@ class oAuth extends Crud {
 
         try{
             // $dsn is the Data Source Name for your database, for exmaple "mysql:dbname=my_oauth2_db;host=localhost"
-
-            $storage = new oAuthLogin(array('dsn' => $dsn, 'username' => $username, 'password' => $password));
+            $storage = new oAuthLogin(['dsn' => $dsn, 'username' => $username, 'password' => $password]);
 
             // Pass a storage object or array of storage objects to the OAuth2 server class
             $server = new Server($storage);

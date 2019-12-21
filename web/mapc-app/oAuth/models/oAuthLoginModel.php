@@ -10,3 +10,5 @@ class oAuthLogin extends Pdo {
         $this->config['client_table'] = 'mc_user_info';
     }
 }
+
+// this is it

@@ -19,6 +19,7 @@ include(LAYOUT_PATH . $layout . '/header.php');
             <?php } ?>
             </ul>
 
+            <a href="<?= ROOT_URL; ?>CommonAdmin/users/">회원관리</a>
             <a href="<?= $v['url']['oAuthServer']; ?>oAuth/server?mode=logout">로그아웃</a>
 
         </div>

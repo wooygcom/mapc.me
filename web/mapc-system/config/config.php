@@ -34,18 +34,18 @@ $config = [
 
         'dbadapter' => 'mysql',
         'dbhost'    => '127.0.0.1',
-        'dbname' => 'test',
-        'dbuser' => 'root',
-        'dbpass' => 'testtest'
+        'dbname' => 'dbname',
+        'dbuser' => 'dbuser',
+        'dbpass' => 'dbpass',
 
         'encrypt_method' => 'sha512',
         'pass_key' => 'A5iFjnm27zkWuqH3'
     ],
 
     'api' => [
-        'kakao' => [
+        'daum' => [
             'rest_api_key' => '#daum_api',
-            'javascript_key' => '650843e0f95d2e78739f779d738525df'
+            'javascript_key' => '#javascript_key'
         ],
         'naver' => [
             'client_id' => '#your client id#', // 오픈 API 키 발급받은 client ID
@@ -60,7 +60,7 @@ $config = [
             'list_category_api_uri' => 'https://openapi.naver.com/blog/listCategory.json',
             'write_post_api_uri' => 'https://openapi.naver.com/blog/writePost.json'
         ],
-        'juso_api' => [
+        'juso' => [
             'authKey' => '#JUSO_API_from_juso.go.kr'
         ]
     ]

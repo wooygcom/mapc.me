@@ -73,7 +73,7 @@ include(LAYOUT_PATH . $layout . DS . 'header.php');
 <!-- Modal -->
 <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form role="form">
+    <form role="form" action="<?= ROOT_URL; ?>CommonAdmin/users/">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>

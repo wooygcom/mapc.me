@@ -3,9 +3,9 @@ if(!defined("__MAPC__")) { exit(); }
 
 { // BLOCK:basic_config:20150807:기본값지정
 
-    define('DEFAULT_VENDOR', 'oAuth');
-    define('DEFAULT_MODULE', 'client');
-    define('DEFAULT_ACTION', 'login');
+    define('DEFAULT_VENDOR', 'Common');
+    define('DEFAULT_MODULE', 'core');
+    define('DEFAULT_ACTION', 'index');
 
 } // BLOCK
 
@@ -41,7 +41,7 @@ if(!defined("__MAPC__")) { exit(); }
     define('ROOT_URL', '//' . $_SERVER['SERVER_NAME'] . pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_DIRNAME) . '/'); // 웹에서 접근할 때의 ROOT 주소
     define('DOMAIN', str_replace('www.', '', $_SERVER['HTTP_HOST']));
     define('HOST',   explode('.', DOMAIN)[0]);
-    if($_SERVER['REMOTE_ADDR'] == '127.0.0.1' || $_SERVER['REMOTE_ADDR'] == '175.196.104.211') {
+    if($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
 /*
         ini_set('display_errors', 1);
         error_reporting(E_ALL);

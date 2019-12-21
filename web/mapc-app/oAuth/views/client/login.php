@@ -15,7 +15,7 @@ include(LAYOUT_PATH . $layout . '/header.php');
 
     <div class="login-box">
         <div class="login-logo">
-            <a href="#"><b><?= $v['site']['title']; ?></b> 통합로그인</a>
+            <b><?= $v['site']['title']; ?></b><br />통합로그인
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
@@ -23,7 +23,7 @@ include(LAYOUT_PATH . $layout . '/header.php');
 
             <form method="post" action="<?= $v['url']['oAuthServer']; ?>oAuth/server">
                 <input type="hidden" name="mode" value="login" /><!-- POST, PUT, PATCH, DELETE -->
-                <input type="hidden" name="redirect_uri" value="<?= ROOT_URL; ?>">
+                <input type="hidden" name="redirect_uri" value="<?= $v['url']['oAuthClient']; ?>">
                 <div class="form-group has-feedback">
                     <input type="text" name="user_email" class="form-control" placeholder="아이디" value="testclient">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

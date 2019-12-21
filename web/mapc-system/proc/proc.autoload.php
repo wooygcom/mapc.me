@@ -1,6 +1,4 @@
 <?php
-include_once(VENDOR_PATH . 'autoload.php');
-
 spl_autoload_register(function($className) {
 
     $classArray = explode("\\", $className);
@@ -11,5 +9,7 @@ spl_autoload_register(function($className) {
     }
 
 });
+
+include_once(VENDOR_PATH . 'autoload.php');
 
 // this is it

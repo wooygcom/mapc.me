@@ -17,7 +17,8 @@ $result = array(
 
 // validate the authorize request
 if (!$server->validateAuthorizeRequest($request, $response)) {
-    $result['msg'] = "validate the authorize request";
+    $response->send();
+    //$result['msg'] = "validate the authorize request";
     echo json_encode($result);
     exit;
     // $response->send();
