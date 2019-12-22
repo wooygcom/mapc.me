@@ -2,6 +2,13 @@
 $layout = 'admin-lte.page';
 
 $v['head']['extension'] = <<<EOT
+<meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-client_id" content="399540537784-3n1kco1g7en85pjl9ta7ii6mub62s3d9.apps.googleusercontent.com">
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 EOT;
 
@@ -48,7 +55,7 @@ include(LAYOUT_PATH . $layout . '/header.php');
                 </div>
             </form>
 
-            <!--
+            <!-- /.social-auth-links -->
             <div class="social-auth-links text-center">
               <p>- OR -</p>
               <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
@@ -56,7 +63,79 @@ include(LAYOUT_PATH . $layout . '/header.php');
               <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
                 Google+</a>
             </div>
-        -->
+
+
+
+    <!-- google 로그인 : B -->
+    <div id="my-signin2"></div>
+    <script>
+    function onSuccess(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+
+        $.ajax({
+          method: "POST",
+          url: "./core",
+          data: { id: profile.getId() }
+        });
+
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+    </script>
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+    <!-- google 로그인 : E -->
+
+
+    <!-- 카카오 로그인 : B -->
+    <a id="kakao-login-btn"></a>
+    <a href="http://developers.kakao.com/logout"></a>
+    <script type='text/javascript'>
+      //<![CDATA[
+        // 사용할 앱의 JavaScript 키를 설정해 주세요.
+        Kakao.init('650843e0f95d2e78739f779d738525df');
+        // 카카오 로그인 버튼을 생성합니다.
+        Kakao.Auth.createLoginButton({
+          container: '#kakao-login-btn',
+          success: function(authObj) {
+            $.ajax({
+              method: "POST",
+              dataType: "json",
+              url: "./core",
+              data: { access_token: authObj.access_token }
+            });
+            alert(JSON.stringify(authObj));
+          },
+          fail: function(err) {
+             alert(JSON.stringify(err));
+          }
+        });
+      //]]>
+    </script>
+    <!-- 카카오 로그인 : E -->
+
             <!-- /.social-auth-links -->
 
             <a href="regist">회원가입</a> || <a href="#">비밀번호 찾기</a><br>
