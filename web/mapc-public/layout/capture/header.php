@@ -9,7 +9,7 @@
 					<li class="colorlib-active"><a href="<?= ROOT_URL; ?>">처음</a></li>
 					<li><a href="<?= $v['url']['rankbest']; ?>etc/manual">설명서</a></li>
 					<li><a href="<?= $v['url']['rankbest']; ?>etc/contact">의견</a></li>
-					<li><a href="<?= ROOT_URL; ?>oAuth/client/login">로그인</a></li>
+					<li><a href="http://user.rank.best">로그인</a></li>
 				</ul>
 			</nav>
 

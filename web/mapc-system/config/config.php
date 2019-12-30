@@ -1,4 +1,12 @@
 <?php
+{ // BLOCK:basic_config:20150807:기본값지정
+
+    define('DEFAULT_VENDOR', 'Common');
+    define('DEFAULT_MODULE', 'core');
+    define('DEFAULT_ACTION', 'index');
+
+} // BLOCK
+
 $config = [
     'site' => [
         'title'       => '사이트제목',

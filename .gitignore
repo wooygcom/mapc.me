@@ -10,10 +10,12 @@ plan/*
 web/env.php
 web/sync.ffs_db
 web/composer.lock
+web/sftp-config.json
 
 web/mapc-public/npm/*
 web/mapc-public/vendor/*
 web/node_modules/*
+web/mapc-public/user/*
 
 # Upload directory
 web/mapc-data/*
