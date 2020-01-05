@@ -16,7 +16,7 @@ if(!defined("__MAPC__")) { exit(); }
     define('SYSTEM_PATH', ROOT_PATH . 'mapc-system' . DS);
     {
         // 다른 환경설정을 불러오려는 경우 이곳을 바꾸세요.
-        define('CONFIG_PATH',  SYSTEM_PATH . 'config.rankbest' . DS);
+        define('CONFIG_PATH',  SYSTEM_PATH . 'config' . DS);
         define('PROC_PATH',    SYSTEM_PATH . 'proc' . DS);
         define('LIBRARY_PATH', SYSTEM_PATH . 'library' . DS);
     }
@@ -29,8 +29,11 @@ if(!defined("__MAPC__")) { exit(); }
 
     define('VENDOR_PATH', ROOT_PATH . 'vendor' . DS);
 
+    $tempPath  = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_DIRNAME);
+    $tempPath .= substr($tempPath, -1) == '/' ? '' : '/';
+
 //  define('ROOT_URL', '/_mapc/'); // 웹에서 접근할 때의 ROOT 주소(.rewrite를 따로 설정했을 경우)
-    define('ROOT_URL', '//' . $_SERVER['SERVER_NAME'] . pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_DIRNAME) . '/'); // 웹에서 접근할 때의 ROOT 주소
+    define('ROOT_URL', '//' . $_SERVER['SERVER_NAME'] . $tempPath); 
     define('DOMAIN', str_replace('www.', '', $_SERVER['HTTP_HOST']));
     define('HOST',   explode('.', DOMAIN)[0]);
     if($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {

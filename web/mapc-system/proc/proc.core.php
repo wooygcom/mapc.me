@@ -18,21 +18,4 @@ if(false) // #TODO 아래 security_arguments.php 손봐야됨(지금 에러가 �
 
 } // BLOCK
 
-{ // BLOCK:session_setup:20121231:세션설정
-
-    include_once(PROC_PATH . 'proc.user.php');
-
-    session_start();
-
-	// 사용자정보
-    $_SESSION['mapc_user_type'] = $_SESSION['mapc_user_type'] ? $_SESSION['mapc_user_type'] : 'guest';
-
-} // BLOCK
-
-{ // BLOCK:language_setup:20141110:언어설정
-
-	include_once(PROC_PATH . 'proc.locale.php');
-
-} // BLOCK
-
 // this is it

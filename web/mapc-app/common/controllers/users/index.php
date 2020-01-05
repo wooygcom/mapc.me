@@ -4,7 +4,7 @@ if(!defined("__MAPC__")) { exit(); }
 include PROC_PATH . 'proc.autoload.php';
 include PROC_PATH . 'proc.user.php';
 
-use Mapc\Common\Users as Users;
+use Mapc\Common\Users;
 
 OAuth2\Autoloader::register();
 

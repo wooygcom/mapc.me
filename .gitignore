@@ -22,6 +22,9 @@ web/mapc-data/*
 
 # Cache, Session files
 web/temp/*
+!web/temp/cached/index.php
+!web/temp/log/index.php
+!web/temp/session/index.php
 
 web/vendor/*
 

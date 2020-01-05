@@ -29,8 +29,11 @@ if(!defined("__MAPC__")) { exit(); }
 
     define('VENDOR_PATH', ROOT_PATH . 'vendor' . DS);
 
+    $tempPath  = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_DIRNAME);
+    $tempPath .= substr($tempPath, -1) == '/' ? '' : '/';
+
 //  define('ROOT_URL', '/_mapc/'); // 웹에서 접근할 때의 ROOT 주소(.rewrite를 따로 설정했을 경우)
-    define('ROOT_URL', '//' . $_SERVER['SERVER_NAME'] . pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_DIRNAME)); // 웹에서 접근할 때의 ROOT 주소
+    define('ROOT_URL', '//' . $_SERVER['SERVER_NAME'] . $tempPath); 
     define('DOMAIN', str_replace('www.', '', $_SERVER['HTTP_HOST']));
     define('HOST',   explode('.', DOMAIN)[0]);
     if($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
