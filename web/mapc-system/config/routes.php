@@ -34,7 +34,7 @@
 			break;
 		*/
 		// 각각의 디렉토리의 routes설정을 가져오도록... common/config/routes.php
-		case 'common':
+		case 'Common':
 		case 'ext':
 
 			$routes = include(APP_PATH . $routes['vendor'] . DS . 'config' . DS . 'routes.php');

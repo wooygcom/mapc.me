@@ -6,7 +6,7 @@
  */
 if(!defined('__MAPC__')) { exit(); }
 
-include(SYSTEM_PATH . 'library/security_arguments.php');
+include_once(SYSTEM_PATH . 'library/security_arguments.php');
 
 /*
 $_GET  = security_arguments($_GET);
@@ -21,11 +21,10 @@ $_POST = security_arguments($_POST);
         echo 'CSRF Error';
         exit();
 
-    } else {
-
-        $_SESSION['csrf'] = hash($CONFIG_SECRET['encrypt_method'], $_SERVER['REMOTE_ADDR'] . $CONFIG_SECRET['pass_key'] . date('YmdHis'));
-
     }
+
+    // 한번 써먹었으면 새로운 CSRF 받기
+    $_SESSION['csrf'] = hash($CONFIG['secure']['encrypt_method'], $_SERVER['REMOTE_ADDR'] . $CONFIG['secure']['pass_key'] . date('YmdHis'));
 
 } // BLOCK
 

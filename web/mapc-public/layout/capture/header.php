@@ -6,24 +6,18 @@
 			<h1 id="colorlib-logo"><a href="<?= ROOT_URL; ?>"><span class="flaticon-camera"></span><?= $v['site']['title']; ?></a></h1>
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li class="colorlib-active"><a href="index.html">Home</a></li>
-					<li><a href="<?= $v['url']['rankbest']; ?>rank/new">순위만들기</a></li>
-					<li><a href="about.html">About</a></li>
-					<li><a href="blog.html">Blog</a></li>
-					<li><a href="contact.html">Contact</a></li>
+					<li class="colorlib-active"><a href="<?= ROOT_URL; ?>">처음</a></li>
+					<li><a href="<?= $v['url']['rankbest']; ?>etc/manual">설명서</a></li>
+					<li><a href="<?= $v['url']['rankbest']; ?>etc/contact">의견</a></li>
+					<li>
+					<?php if($user['user_id']) { ?>
+						<a href="http://user.rank.best/login/logout?url=http%3A%2F%2Frank.best">로그아웃</a>
+					<?php } else { ?>
+						<a href="http://user.rank.best">로그인</a>
+					<?php } ?>
+					</li>
 				</ul>
 			</nav>
 
-			<div class="colorlib-footer">
-				<h3>Follow Us Here!</h3>
-				<div class="d-flex justify-content-center">
-					<ul class="d-flex align-items-center">
-						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-facebook"></i></a></li>
-						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-twitter"></i></a></li>
-						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-instagram"></i></a></li>
-						<li class="d-flex align-items-center jusitfy-content-center"><a href="#"><i class="icon-linkedin"></i></a></li>
-					</ul>
-				</div>
-			</div>
 		</aside> <!-- END COLORLIB-ASIDE -->
 		<div id="colorlib-main">

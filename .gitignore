@@ -1,22 +1,30 @@
 # Files for deveopment
 .gitignore
 
+secure/*
+
 develop/*
 plan/*
 !plan/mapc.mwb
 
 web/env.php
 web/sync.ffs_db
+web/composer.lock
+web/sftp-config.json
 
 web/mapc-public/npm/*
 web/mapc-public/vendor/*
 web/node_modules/*
+web/mapc-public/user/*
 
 # Upload directory
 web/mapc-data/*
 
 # Cache, Session files
 web/temp/*
+!web/temp/cached/index.php
+!web/temp/log/index.php
+!web/temp/session/index.php
 
 web/vendor/*
 
@@ -26,7 +34,7 @@ web/mapc-system/*
 !web/mapc-system/proc
 
 web/mapc-app/*
-!web/mapc-app/common
-!web/mapc-app/commonAdmin
+!web/mapc-app/Common
+!web/mapc-app/CommonAdmin
 !web/mapc-app/bare
 !web/mapc-app/oAuth

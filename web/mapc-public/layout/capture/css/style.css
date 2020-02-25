@@ -7982,12 +7982,12 @@ h1, h2, h3, h4, h5,
   color: #000000; }
 
 .blog-entry {
-  margin-bottom: 6em; }
+  margin-bottom: 2em; }
   .blog-entry .img {
     display: block;
     height: 400px; }
     .blog-entry .img.img-2 {
-      height: 330px; }
+      height: 14rem; border:1px solid #000;}
   .blog-entry .text {
     position: relative;
     z-index: 0; }
@@ -8054,11 +8054,11 @@ textarea.form-control {
   font-size: 20px; }
 
 .ftco-section {
-  padding: 3em 1.8em;
+  padding: 1em 1.8em;
   position: relative; }
   @media (max-width: 991.98px) {
     .ftco-section {
-      padding: 3em 0; } }
+      padding: 1em 0; } }
 
 .ftco-section-no-padding {
   padding: 0; }
