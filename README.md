@@ -103,4 +103,4 @@ mapc.me
     Controller/posts/edit.php 에서 선처리!!!!! (array $v에 출력할 내용을 저장)
     View/posts/edit.php 에서 화면출력!!!!!
     전체에 같은 설정을 적용하려면 PostsView.php 에서 header 등 필요한 내용을 설정
-    각각의 페이지에서 화면출력을 따로 설정하려면 posts/edit.php 에서 header나 footer등을 불러오게 하면 됨
+    각각의 페이지에서 화면출력을 따로 설정하려면 posts/edit.php 에서 header나 footer등을 불러오게 하면 됨.
