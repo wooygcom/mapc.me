@@ -1,124 +1,53 @@
 <?php
-if(!defined("__MAPC__")) { exit(); }
 
 include_once PROC_PATH . 'proc.autoload.php';
+@include($ROUTES['callback'] . '.php');
 
-use Mapc\oAuth\oAuth;
-use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
-use League\OAuth2\Client\Provider\GenericProvider;
+// this is it
 
-// # oAuth 로그인
-if (!isset($_GET['code']) && $_REQUEST['mode'] == "login") {
-    $root_url = oAuth::getUrl();
-    $clientInfo = oAuth::clientInfo($_POST);
 
-    $clientId = $clientInfo['clientId'];
-    $clientSecret = $clientInfo['clientSecret'];
-    $redirectUri = $clientInfo['redirectUri'];
+$code = $_GET['code'];
+$state = $_GET['state'];
 
-    $provider = new GenericProvider([
-        'clientId'                => $clientId,    // The client ID assigned to you by the provider
-        'clientSecret'            => $clientSecret,   // The client password assigned to you by the provider
-        'redirectUri'             => $redirectUri,
-        'urlAuthorize'            => $root_url . 'oAuth/authorize',
-        'urlAccessToken'          => $root_url . 'oAuth/token',
-        'urlResourceOwnerDetails' => $root_url . 'oAuth/resource'
-    ]);
+// 임시 database connect
+$conn = mysqli_connect(
+    'localhost',
+    'root',
+    'root',
+    'mysql'
+);
+$sql = "SELECT * FROM oauth_authorization_codes WHERE authorization_code = '" . $code . "'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_array($result);
 
-    $authorizationUrl = $provider->getAuthorizationUrl();
+$client_id = $row["client_id"];
 
-    $_SESSION['oauth2state'] = $provider->getState();
+$sql = "SELECT * FROM oauth_clients WHERE client_id = '" . $client_id . "'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_array($result);
 
-    // # 1. authorization token 발급
-    // http://localhost/authorize.php?response_type=code&client_id=testclient&state=xyz
-    try {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept: application/json'));
-        curl_setopt($ch, CURLOPT_URL, $authorizationUrl);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+$client_secret = $row["client_secret"];
 
-        $data = curl_exec($ch);
-        $result = json_decode($data, true);
+// $ curl -u TestClient:TestSecret https://api.mysite.com/token -d 'grant_type=authorization_code&code=xyz'
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_USERPWD, "$client_id:$client_secret");
+curl_setopt($ch, CURLOPT_URL, "http://localhost/web/mapc-public/oAuth/token");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_POSTFIELDS, array(
+    'code' => $code,
+    'grant_type' => 'authorization_code',
+    'redirect_uri' => 'http://localhost/web/mapc-public/oAuth/server'
+));
 
-        if (empty($result)) {
-            echo 'Error: empty result';
-            exit;
-        }
+$data = curl_exec($ch);
 
-        if ($result['status'] === false) {
-            echo 'Error: ' . $result['msg'];
-            throw new Exception(curl_error($ch), curl_errno($ch));
-            exit;
-        }
-    } catch(Exception $e) {
-        trigger_error(sprintf(
-            'Curl failed with error #%d: %s',
-            $e->getCode(), $e->getMessage()),
-            E_USER_ERROR);
-    }
+var_dump($data);
+die();
 
-    // # 2. access_token 발급
-    $code = $result['code'];
-    if (empty($code)) {
-        echo "Error : authorize code empty!";
-        exit;
-    }
+//OAuth2\Request::createFromGlobals();
 
-    try {
-        $accessToken = $provider->getAccessToken('authorization_code', [
-            'code' => $code
-        ]);
+//$ curl -u testclient:testpass http://localhost/token.php -d 'grant_type=authorization_code&code=097e3c941d91a84861fef771c025cbb365dff010'
+//{"access_token":"1bde0a7785f78eaddcd3e4555ca382e884d9ad4f","expires_in":3600,"token_type":"Bearer","scope":null,"refresh_token":"c8d988fdcf8707f5e8f728a86aa0e49d3109b9b0"}
 
-        /*echo 'Access Token: ' . $accessToken->getToken() . "<br>";
-        echo 'Refresh Token: ' . $accessToken->getRefreshToken() . "<br>";
-        echo 'Expired in: ' . $accessToken->getExpires() . "<br>";
-        echo 'Already expired? ' . ($accessToken->hasExpired() ? 'expired' : 'not expired') . "<br>";
 
-        $resourceOwner = $provider->getResourceOwner($accessToken);
-
-        var_export($resourceOwner->toArray());
-
-        $request = $provider->getAuthenticatedRequest(
-            'GET',
-            'http://brentertainment.com/oauth2/lockdin/resource',
-            $accessToken
-        );*/
-
-        $access_token = $accessToken->getToken();
-
-    } catch (IdentityProviderException $e) {
-        exit($e->getMessage());
-    }
-
-    // # 3. login session 생성
-    if (!empty($access_token)) {
-        $userInfos = oAuth::getUserInfos($clientId);
-
-        if ($userInfos == false) {
-            // userInfos 오류 났을때
-            echo "userInfos Error!";
-            exit;
-        }
-
-        session_start();
-        $_SESSION['isLogin'] = true;
-        $_SESSION['access_token'] = $access_token;
-        $_SESSION['userInfos'] = $userInfos;
-
-        // 임시로 로그아웃 화면으로
-        header('Location: ' . $CONFIG['url']['oAuthServer'] . 'oAuth/client/logout');
-        exit;
-    }
-} else if ($_REQUEST['mode'] == "logout") {
-    // # oAuth 로그아웃
-    $result = oAuth::logout();
-
-    if ($result == false) {
-        echo "logout Error!";
-        exit;
-    }
-
-    header('Location: ' . $CONFIG['url']['oAuthServer']);
-    exit;
-}
