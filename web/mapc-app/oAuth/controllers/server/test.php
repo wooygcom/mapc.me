@@ -29,8 +29,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $item = new Item(['db' => $db, 'table' => 'items']);
 
     $v['itemsList'] = $item->search([
-        'searchField' => 'parent_slug',
-        'searchValue' => $ROUTES['option']
+        'query' => ' parent_slug = ? ',
+        'vars'  => [$ROUTES['option']]
     ]);
 
 }

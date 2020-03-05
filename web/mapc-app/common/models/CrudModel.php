@@ -58,16 +58,22 @@ class Crud {
     }
 
     /**
-     * @args
-        $args['searchField']
-        $args['searchValue']
-        $args['sign']
-        $args['order']
+     * @usage
+           $query  = ' field1 = ? and field2 = ? ';
+           $vars   = [$field1, $field2];
+           $result = search(['query' => $query, 'vars' => $vars]);
      */
     public function search($args = []) {
 
+        $result = R::find($this->table, $args['query'], $args['vars']);
+
+/*
+// 옛날버전
         $sql   = 'SELECT * FROM ' . $this->table;
-        if(isset($args['where'])) {
+        if(isset($args['query'])) {
+            $sql .= ' WHERE ' . $args['where'];
+        }
+        elseif(isset($args['where'])) {
             $sql .= ' WHERE ' . $args['where'];
         }
         // 아래 if문은 삭제 예정, $arg['search']값을 받는게 더 좋을 듯...
@@ -80,7 +86,7 @@ class Crud {
         $sql .= $args['limit'] ? ' limit ' . $args['limit'] : null;
 
         $result = R::getAll($sql, [':searchValue' => $args['searchValue']]);
-
+*/
         return $result;
 
     }
@@ -92,23 +98,9 @@ class Crud {
               FROM ' . $args['table'] . ' main
               LEFT JOIN ' . $args['table'] . 'meta sub ON
                    (main.uuid = sub.parent_uuid)
-            ';
+            WHERE ' . $args['query'];
 
-        if($args['where']) {
-            $sql .= ' where ' . $args['where'];
-        } elseif($args['searchField']) {
-            $sql .= "
-                 WHERE sub.key = :searchField
-                   AND sub.value = :searchValue
-                ";
-            $condit = [
-                ':searchField' => $args['searchField'],
-                ':searchValue' => $args['searchValue']
-                ];
-        }
-        $sql .= $args['order'] ? ' order by ' . $args['order'] : null;
-
-        $result = R::getAll($sql, $condit);
+        $result = R::getAll($sql, $args['vars']);
 
         return $result;
 

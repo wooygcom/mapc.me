@@ -1,5 +1,7 @@
   <body>
 
+	<!-- Go to www.addthis.com/dashboard to customize your tools --> <!--script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e25bcadd93e9057"></script-->
+
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
