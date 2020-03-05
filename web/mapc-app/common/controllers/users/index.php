@@ -11,6 +11,6 @@ OAuth2\Autoloader::register();
 $db   = include(PROC_PATH . 'proc.db.php');
 $users = new Users(['table' => 'mc_user_info']);
 
-$v['userList'] = $users->search(['query' => ' user_id = ? ', 'vars' => ['testclient']);
+$v['userList'] = $users->search(['user_id' => 'testclient']);
 
 // this is it
