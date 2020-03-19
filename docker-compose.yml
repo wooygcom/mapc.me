@@ -1,0 +1,42 @@
+version: "3"
+services:
+  db:
+    container_name: mariadb
+    build:
+      context: .
+      dockerfile: Dockerfile-mariadb
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./db:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      - "MYSQL_DATABASE=dbname"
+      - "MYSQL_USER=userid"
+      - "MYSQL_PASSWORD=userpass"
+      - "MYSQL_ROOT_PASSWORD=root_password"
+      - "TZ=Asia/Seoul"
+  web:
+    container_name: php
+    build:
+      context: .
+      dockerfile: Dockerfile-php-apache
+    volumes:
+      - ./web:/var/www/html/
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - db
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    links:
+      - db
+    ports:
+      - 8183:80
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root_password
+      PMA_ARBITRARY: 1

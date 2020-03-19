@@ -1,9 +1,10 @@
 # Files for deveopment
 .gitignore
 
+db/*
+
 secure/*
 
-develop/*
 plan/*
 !plan/mapc.mwb
 

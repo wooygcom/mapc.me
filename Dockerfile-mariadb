@@ -1,0 +1,4 @@
+FROM mariadb:latest
+MAINTAINER wooyg@wooyg.com
+
+EXPOSE 3306
