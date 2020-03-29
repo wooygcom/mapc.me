@@ -19,7 +19,19 @@ mapc.me
 * Fast running time
 
 
-설치방법
+Installation1 (with docker-compose)
+-------------------------------------------------------------------------------
+1. 처음 설치할 때
+    ```
+    $ sudo docker-compose -f docker-compose-environment.yml up -d
+    ```
+
+2. 서버만 실행할 때
+    ```
+    $ sudo docker-compose up -d
+    ```
+
+Installation2
 -------------------------------------------------------------------------------
 1. 데몬설치
 
@@ -44,12 +56,13 @@ mapc.me
     $ npx webpack
     ```
 
-5. 접속
+접속
+-------------------------------------------------------------------------------
 
-    1. 개발할 때의 접속주소
-        http://접속주소/mapc.me/web/mapc-public/
+1. 개발할 때의 접속주소
+    http://접속주소/mapc.me/web/mapc-public/
 
-    2. 실 서버에서는 "mapc-public'이 웹루트가 되도록 설정할 것!!!(보안)
+2. 실 서버에서는 "mapc-public'이 웹루트가 되도록 설정할 것!!!(보안)
 
 
 새로운 페이지 만드는 방법

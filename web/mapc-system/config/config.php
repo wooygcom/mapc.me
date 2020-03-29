@@ -43,8 +43,8 @@ $config = [
         'dbadapter' => 'mysql',
         'dbhost'    => '127.0.0.1',
         'dbname' => 'dbname',
-        'dbuser' => 'dbuser',
-        'dbpass' => 'dbpass',
+        'dbuser' => 'userid',
+        'dbpass' => 'userpass',
 
         'encrypt_method' => 'sha512',
         'pass_key' => 'A5iFjnm27zkWuqH3'

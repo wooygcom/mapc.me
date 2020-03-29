@@ -1,5 +1,6 @@
 # Files for deveopment
 .gitignore
+.tmp.drivedownload/
 
 db/*
 
