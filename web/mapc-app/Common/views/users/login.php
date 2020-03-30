@@ -7,11 +7,13 @@ include(LAYOUT_PATH . $layout . '/header.php');
 
     <form class="login-form bg-white p-6 mx-auto border bd-default win-shadow"
           data-role="validator"
-          action="login-exec"
+          action="login"
           method="post"
           data-clear-invalid="2000"
           data-on-error-form="invalidForm"
           data-on-validate-form="validateForm">
+        <input type="hidden" name="_csrf" value="<?= $_SESSION['csrf']; ?>" />
+        <input type="hidden" name="_method" value="update" /><!-- POST, PUT, PATCH, DELETE -->
         <span class="mif-vpn-lock mif-4x place-right" style="margin-top: -10px;"></span>
         <h2 class="text-light"><?php echo '로그인'; ?></h2>
         <hr class="thin mt-4 mb-4 bg-white">
