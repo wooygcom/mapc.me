@@ -1,13 +1,7 @@
 <?php
-
-include_once(SYSTEM_PATH . 'library/http_move.php');
+include(PROC_PATH . 'proc.exec.php');
+include(SYSTEM_PATH . 'library/http_move.php');
 include(APP_PATH  . 'Common/models/UsersModel.php');
-
-// 권한체크 #WITY
-if(!MODE_DEV && ! $_SESSION['SS_USR_ID']) {
-    httpMove(200, ROOT_URL . 'smu/users/signin');
-    exit;
-}
 
 use Mapc\Common\Users as Users;
 

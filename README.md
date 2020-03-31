@@ -199,6 +199,7 @@ vendor/index.php [2/2]
   module안에서만 필요한건 module.php에서 처리
 
 
+
 vendor/controllers/packageController.php
 --------------------------------------------------
 ```
@@ -235,7 +236,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 Autoload
 --------------------------------------------------
-include(PROC_PATH   . 'proc.autoload.php'); // Mapc 내부 패키지 불러오기 위해서
+include(PROC_PATH . 'proc.autoload.php'); // Mapc 내부 패키지 불러오기 위해서
 
 
 DB접근이 필요할 때
@@ -248,6 +249,9 @@ $user = new Users(['db' => $db, 'table' => $table]);
 --------------------------------------------------
 1. use Mapc\Common\Users;
 2. include APP_PATH . 'Common/models/UsersModel.php';
+
+### 실행화일일 경우
+include(PROC_PATH . 'proc.exec.php');
 
 
 기본형태 - Models
