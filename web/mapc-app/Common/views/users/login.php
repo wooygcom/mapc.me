@@ -18,14 +18,14 @@ include(LAYOUT_PATH . $layout . '/header.php');
         <h2 class="text-light"><?php echo '로그인'; ?></h2>
         <hr class="thin mt-4 mb-4 bg-white">
         <div class="form-group">
-            <input name="userid" type="text" data-role="input" data-prepend="<span class='mif-envelop'>" placeholder="Enter your email..." data-validate="required email">
+            <input name="userid" type="text" data-role="input" data-prepend="<span class='mif-envelop'>" placeholder="<?= ('이메일을 입력하세요.'); ?>" data-validate="required email">
         </div>
         <div class="form-group">
-            <input name="userpasswd" type="password" data-role="input" data-prepend="<span class='mif-key'>" placeholder="Enter your password..." data-validate="required minlength=6">
+            <input name="userpasswd" type="password" data-role="input" data-prepend="<span class='mif-key'>" placeholder="<?= ('비밀번호를 입력하세요.'); ?>" data-validate="required minlength=6">
         </div>
         <div class="form-group mt-10">
             <input type="checkbox" data-role="checkbox" data-caption="Remember me" class="place-right">
-            <button class="button">Submit form</button>
+            <button class="button"><?= ('확인'); ?></button>
         </div>
     </form>
 
