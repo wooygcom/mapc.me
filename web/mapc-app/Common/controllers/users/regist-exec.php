@@ -22,11 +22,11 @@ if(!defined("__MAPC__")) { exit(); }
     include(PROC_PATH . 'proc.exec.php');
     include(PROC_PATH . 'proc.autoload.php'); // compoesr 패키지 불러오기 위해서
 
+    $db = include(PROC_PATH . 'proc.db.php');
+
     $objUser = new Users(['db' => $db, 'table' => 'mc_user_info']);
 
 } // BLOCK
-
-    $db = include(PROC_PATH . 'proc.db.php');
 
 $objUser->vars->user_name  = $name;
 $objUser->vars->user_id = $email;
