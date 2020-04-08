@@ -332,6 +332,7 @@ $v['header']['extension'] = sprintf($v['header']['extension'], ROOT_URL);
 
 
 ### 폼 입력할 때 기본형태
+<!-- form:#formv1 -->
 <form method="post" action="./" enctype="multipart/form-data">
     <input type="hidden" name="_csrf" value="<?= $_SESSION['csrf']; ?>" />
     <input type="hidden" name="_method" value="update" /><!-- POST, PUT, PATCH, DELETE -->

@@ -7,7 +7,7 @@ include(LAYOUT_PATH . $layout . '/header.php');
 
     <form class="login-form bg-white p-6 mx-auto border bd-default win-shadow"
           data-role="validator"
-          action="login"
+          action="regist"
           method="post"
           data-clear-invalid="2000"
           data-on-error-form="invalidForm"
@@ -15,7 +15,7 @@ include(LAYOUT_PATH . $layout . '/header.php');
         <input type="hidden" name="_csrf" value="<?= $_SESSION['csrf']; ?>" />
         <input type="hidden" name="_method" value="update" /><!-- POST, PUT, PATCH, DELETE -->
         <span class="mif-vpn-lock mif-4x place-right" style="margin-top: -10px;"></span>
-        <h2 class="text-light"><?php echo '로그인'; ?></h2>
+        <h2 class="text-light"><?php echo '회원가입'; ?></h2>
         <hr class="thin mt-4 mb-4 bg-white">
         <div class="form-group">
             <input name="userid" type="text" data-role="input" data-prepend="<span class='mif-envelop'>" placeholder="<?= ('이메일을 입력하세요.'); ?>" data-validate="required email">
