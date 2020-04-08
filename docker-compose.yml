@@ -1,7 +1,7 @@
 version: "3"
 services:
-  db:
-    container_name: mariadb
+  mapcdb:
+    container_name: mapcdb
     build:
       context: .
       dockerfile: Dockerfile-mariadb
@@ -16,23 +16,23 @@ services:
       - "MYSQL_PASSWORD=userpass"
       - "MYSQL_ROOT_PASSWORD=root_password"
       - "TZ=Asia/Seoul"
-  web:
-    container_name: php
+  mapcweb:
+    container_name: mapcweb
     build:
       context: .
       dockerfile: Dockerfile-php-apache
     volumes:
       - ./web:/var/www/html/
     ports:
-      - 80:80
+      - 8081:80
       - 443:443
     depends_on:
-      - db
+      - mapcdb
   phpmyadmin:
     container_name: phpmyadmin
     image: phpmyadmin/phpmyadmin
     links:
-      - db
+      - mapcdb
     ports:
       - 8183:80
     environment:
