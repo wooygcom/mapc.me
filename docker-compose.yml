@@ -6,7 +6,6 @@ services:
       context: .
       dockerfile: Dockerfile-mariadb
     command: --default-authentication-plugin=mysql_native_password
-    restart: always
     volumes:
       - ./db:/var/lib/mysql
     ports:
@@ -17,6 +16,7 @@ services:
       - "MYSQL_PASSWORD=userpass"
       - "MYSQL_ROOT_PASSWORD=root_password"
       - "TZ=Asia/Seoul"
+    restart: always
   mapcweb:
     container_name: mapcweb
     build:
@@ -25,10 +25,11 @@ services:
     volumes:
       - ./web:/var/www/html/
     ports:
-      - 8081:80
+      - 80:80
       - 443:443
     depends_on:
       - mapcdb
+    restart: always
   phpmyadmin:
     container_name: phpmyadmin
     image: phpmyadmin/phpmyadmin
