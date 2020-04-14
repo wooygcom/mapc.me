@@ -30,15 +30,15 @@ services:
     depends_on:
       - mapcdb
     restart: always
-  phpmyadmin:
-    container_name: phpmyadmin
-    image: phpmyadmin/phpmyadmin
-    links:
-      - mapcdb
-    ports:
-      - 8183:80
-    environment:
-      PMA_HOST: mapcdb
-      PMA_USER: root
-      PMA_PASSWORD: root_password
-      PMA_ARBITRARY: 1
+#  phpmyadmin:
+#    container_name: phpmyadmin
+#    image: phpmyadmin/phpmyadmin
+#    links:
+#      - mapcdb
+#    ports:
+#      - 8185:80
+#    environment:
+#      PMA_HOST: mapcdb
+#      PMA_USER: root
+#      PMA_PASSWORD: root_password
+#      PMA_ARBITRARY: 1
