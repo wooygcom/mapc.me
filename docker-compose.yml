@@ -16,6 +16,7 @@ services:
       - "MYSQL_PASSWORD=userpass"
       - "MYSQL_ROOT_PASSWORD=root_password"
       - "TZ=Asia/Seoul"
+    restart: always
   mapcweb:
     container_name: mapcweb
     build:
@@ -28,15 +29,16 @@ services:
       - 443:443
     depends_on:
       - mapcdb
-  phpmyadmin:
-    container_name: phpmyadmin
-    image: phpmyadmin/phpmyadmin
-    links:
-      - mapcdb
-    ports:
-      - 8183:80
-    environment:
-      PMA_HOST: mapcdb
-      PMA_USER: root
-      PMA_PASSWORD: root_password
-      PMA_ARBITRARY: 1
+    restart: always
+#  phpmyadmin:
+#    container_name: phpmyadmin
+#    image: phpmyadmin/phpmyadmin
+#    links:
+#      - mapcdb
+#    ports:
+#      - 8185:80
+#    environment:
+#      PMA_HOST: mapcdb
+#      PMA_USER: root
+#      PMA_PASSWORD: root_password
+#      PMA_ARBITRARY: 1
