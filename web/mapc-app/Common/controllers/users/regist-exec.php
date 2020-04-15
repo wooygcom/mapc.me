@@ -33,7 +33,6 @@ $objUser->vars->user_id = $email;
 $objUser->vars->passwd   = $pwd;
 $objUser->vars->memo  = $memo;
 
-var_dump($objUser);
 $id = $objUser->create($objUser->vars);
 
 if($id) {
@@ -41,7 +40,7 @@ if($id) {
 } else {
     $return['result'] = 'fail';
 }
-
+print_r($return);
 return json_encode($return);
 
 exit;
