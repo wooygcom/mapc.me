@@ -43,4 +43,4 @@ web/mapc-app/*
 !web/mapc-app/bare
 !web/mapc-app/oAuth
 
-web/wordpress/*
+web/user/*

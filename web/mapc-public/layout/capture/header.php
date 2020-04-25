@@ -12,10 +12,10 @@
 					<li><a href="<?= $v['url']['rankbest']; ?>etc/manual">설명서</a></li>
 					<li><a href="<?= $v['url']['rankbest']; ?>etc/contact">의견</a></li>
 					<li>
-					<?php if($user['user_id']) { ?>
-						<a href="http://user.rank.best/login/logout?url=http%3A%2F%2Frank.best">로그아웃</a>
+					<?php if(empty($_SESSION['rb_user_id']) && $_SESSION['rb_user_id'] != '__guest__') { ?>
+						<a href="<?= $v['url']['user']['logout']; ?>">로그아웃</a>
 					<?php } else { ?>
-						<a href="http://user.rank.best">로그인</a>
+						<a href="<?= $v['url']['user']['login']; ?>">로그인</a>
 					<?php } ?>
 					</li>
 				</ul>
