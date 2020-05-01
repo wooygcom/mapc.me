@@ -8,6 +8,10 @@ if(!defined('__MAPC__')) { exit(); }
 
 include_once(SYSTEM_PATH . 'library/security_arguments.php');
 
+if(empty($_SESSION['csrf'])) {
+	session_start();
+}
+
 /*
 $_GET  = security_arguments($_GET);
 $_POST = security_arguments($_POST);
