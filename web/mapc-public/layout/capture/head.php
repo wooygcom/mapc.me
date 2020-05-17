@@ -6,6 +6,8 @@
  * @version 0.1
  *
  */
+
+header("Set-Cookie: key=value; path=/; domain=" . DOMAIN . "; HttpOnly; Secure; SameSite=Strict");
 ?>
 <!DOCTYPE html>
 <html>

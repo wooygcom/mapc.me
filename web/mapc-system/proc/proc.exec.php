@@ -8,10 +8,6 @@ if(!defined('__MAPC__')) { exit(); }
 
 include_once(SYSTEM_PATH . 'library/security_arguments.php');
 
-if(empty($_SESSION['csrf'])) {
-	session_start();
-}
-
 /*
 $_GET  = security_arguments($_GET);
 $_POST = security_arguments($_POST);
@@ -19,6 +15,7 @@ $_POST = security_arguments($_POST);
 
 { // BLOCK:init:20121231
 
+/*
     if(! empty($_POST) && ($_POST['_csrf'] != $_SESSION['csrf']) ) {
 
         header('HTTP/1.0 401 Unauthorized');
@@ -26,6 +23,7 @@ $_POST = security_arguments($_POST);
         exit();
 
     }
+*/
 
     // 한번 써먹었으면 새로운 CSRF 받기
     $_SESSION['csrf'] = hash($CONFIG['secure']['encrypt_method'], $_SERVER['REMOTE_ADDR'] . $CONFIG['secure']['pass_key'] . date('YmdHis'));

@@ -81,7 +81,14 @@ class Files {
             mkdir($uploads_dir_real, 0755, true);
         }
 
-        if(move_uploaded_file($file['tmp_name'], $uploads_dir_real . DIRECTORY_SEPARATOR . $server_filename)) {
+
+        $is_uploaded = move_uploaded_file($file['tmp_name'], $uploads_dir_real . DIRECTORY_SEPARATOR . $server_filename);
+
+        if(! $is_uploaded) {
+            $is_uploaded = copy($file['tmp_name'], $uploads_dir_real . DIRECTORY_SEPARATOR . $server_filename);
+        }
+
+        if($is_uploaded) {
 
             // 파일 정보 출력
             $this->fileUrls[] = ROOT_URL . 'Common/files/' . $server_filename . '?group=' . $this->group;

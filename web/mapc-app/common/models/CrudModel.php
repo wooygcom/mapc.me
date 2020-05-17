@@ -17,6 +17,7 @@ class Crud {
 
     public function __construct($args = []) {
 
+//      R::fancyDebug( TRUE );
         $this->table = $args['table'];
         $this->vars  = R::xdispense($this->table);
 
@@ -91,6 +92,16 @@ class Crud {
 
     }
 
+    /**
+     * @usage
+        $query  = ' sub.key="rank_uuid" and sub.value = ? ';
+
+        $v['itemsList'] = $items->searchByMeta([
+            'table' => 'rb_items',
+            'query' => $query,
+            'vars'  => [$rankId]
+        ]);
+     */
     public function searchByMeta($args) {
 
         $sql = '

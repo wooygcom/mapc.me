@@ -25,7 +25,7 @@ if(!defined("__MAPC__")) { exit(); }
         define('LAYOUT_PATH', PUBLIC_PATH . 'layout' . DS);
     }
     define('DATA_PATH', ROOT_PATH . 'mapc-data' . DS);
-    define('TEMP_PATH', ROOT_PATH . 'temp' . DS);
+    define('TEMP_PATH', ROOT_PATH . 'mapc-temp' . DS);
 
     define('VENDOR_PATH', ROOT_PATH . 'vendor' . DS);
 
