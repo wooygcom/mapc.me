@@ -130,7 +130,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if(! is_file($imgpath)) {
         $imgpath = PUBLIC_PATH . 'images/blank.png';
-    } // if(is_file($imgpath))
+    } // if(is_file($imgpath))...
 
     // return mime type ala mimetype extension
     $mime_type = finfo_file($finfo, $imgpath);

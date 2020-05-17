@@ -25,10 +25,10 @@ web/mapc-public/user/*
 web/mapc-data/*
 
 # Cache, Session files
-web/temp/*
-!web/temp/cached/index.php
-!web/temp/log/index.php
-!web/temp/session/index.php
+web/mapc-temp/*
+!web/mapc-temp/cached/index.php
+!web/mapc-temp/log/index.php
+!web/mapc-temp/session/index.php
 
 web/vendor/*
 
@@ -43,4 +43,4 @@ web/mapc-app/*
 !web/mapc-app/bare
 !web/mapc-app/oAuth
 
-web/user/*
+web/exta/*
