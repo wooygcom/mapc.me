@@ -94,7 +94,7 @@ class Crud {
     public function searchByMeta($args) {
 
         $sql = '
-             SELECT *
+             SELECT main.uuid as main_uuid, main.*, sub.*
               FROM ' . $args['table'] . ' main
               LEFT JOIN ' . $args['table'] . 'meta sub ON
                    (main.uuid = sub.parent_uuid)
