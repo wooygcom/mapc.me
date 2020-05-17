@@ -85,7 +85,9 @@ class Files {
         $is_uploaded = move_uploaded_file($file['tmp_name'], $uploads_dir_real . DIRECTORY_SEPARATOR . $server_filename);
 
         if(! $is_uploaded) {
+
             $is_uploaded = copy($file['tmp_name'], $uploads_dir_real . DIRECTORY_SEPARATOR . $server_filename);
+
         }
 
         if($is_uploaded) {
