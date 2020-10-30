@@ -1,11 +1,4 @@
-mapc.me
-==================================================
-
-정의
--------------------------------------------------------------------------------
-
-* MapC.me = PHP Codebone + CMS With Dublin core
-
+# mapc.me
 
 특징
 -------------------------------------------------------------------------------
@@ -21,33 +14,17 @@ mapc.me
 
 Installation1 (with docker-compose)
 -------------------------------------------------------------------------------
-1. 처음 설치할 때
-    ```
-    $ sudo docker-compose -f docker-compose-environment.yml up -d
-    ```
 
-2. 서버만 실행할 때
-    ```
-    $ sudo docker-compose up -d
-    ```
-
-Installation2
--------------------------------------------------------------------------------
-1. 데몬설치
-
-    Apache, PHP, MySQL 설치
-
-2. 의존성도구 설치
+1. 의존성도구 설치
 
     Composer, NPM, NPX 설치 ($ npm i -g npx)
 
-3. Git Clone
-
+2. Git 클론(최초 1회)
     ```
     $ git clone https://github.com/wooygcom/mapc.me.git
     ```
 
-4. composer update
+3. 필요한 패키지 설치
 
     ```
     $ cd MAPC_ME_ROOT/web
@@ -55,6 +32,17 @@ Installation2
     $ npm install
     $ npx webpack
     ```
+
+4. 서버만 실행할 때
+    ```
+    $ sudo docker-compose up -d
+    ```
+
+5. 추가로 설치할 경우(필요할 때만)
+    ```
+    npm install PACKAGE --save
+    ```
+
 
 접속
 -------------------------------------------------------------------------------

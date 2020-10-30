@@ -25,7 +25,7 @@ if(!defined("__MAPC__")) { exit(); }
         define('LAYOUT_PATH', PUBLIC_PATH . 'layout' . DS);
     }
     define('DATA_PATH', ROOT_PATH . 'mapc-data' . DS);
-    define('TEMP_PATH', ROOT_PATH . 'temp' . DS);
+    define('TEMP_PATH', ROOT_PATH . 'mapc-temp' . DS);
 
     define('VENDOR_PATH', ROOT_PATH . 'vendor' . DS);
 
@@ -36,8 +36,9 @@ if(!defined("__MAPC__")) { exit(); }
     define('ROOT_URL', '//' . $_SERVER['SERVER_NAME'] . $tempPath); 
     define('DOMAIN', str_replace('www.', '', $_SERVER['HTTP_HOST']));
     define('HOST',   explode('.', DOMAIN)[0]);
-    if($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
-/*
+
+    if( false && in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '172.19.0.1']) ) {
+//*
         ini_set('display_errors', 1);
         error_reporting(E_ALL);
         define('DEBUG', true);
