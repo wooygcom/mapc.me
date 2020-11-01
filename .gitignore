@@ -16,7 +16,7 @@ web/sync.ffs_db
 web/composer.lock
 web/sftp-config.json
 
-web/mapc-public/npm/*
+web/mapc-public/dist/*
 web/mapc-public/vendor/*
 web/node_modules/*
 web/mapc-public/user/*

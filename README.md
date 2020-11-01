@@ -30,7 +30,7 @@ Installation1 (with docker-compose)
     $ cd MAPC_ME_ROOT/web
     $ composer update (또는 php composer.phar update)
     $ npm install
-    $ npx webpack
+    $ npm run build
     ```
 
 4. 서버만 실행할 때

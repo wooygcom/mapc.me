@@ -1,26 +1,42 @@
 const path = require('path');
-const webpack = require('webpack');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-
-// assets.js
-const Assets = require('./assets');
 
 module.exports = {
-    entry: {
-        app: "./app.js",
-    },
-    output: {
-        path: __dirname + "/mapc-public/",
-        filename: "[name].bundle.js"
-    },
-    plugins: [
-      new CopyWebpackPlugin(
-        Assets.map(asset => {
-          return {
-            from: path.resolve(__dirname, `./node_modules/${asset}`),
-            to: path.resolve(__dirname, './mapc-public/npm')
-          };
-        })
-      )
+  entry: './src/app.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'mapc-public/dist')
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(scss)$/,
+        use: [
+          {
+            // Adds CSS to the DOM by injecting a `<style>` tag
+            loader: 'style-loader'
+          },
+          {
+            // Interprets `@import` and `url()` like `import/require()` and will resolve them
+            loader: 'css-loader'
+          },
+          {
+            // Loader for webpack to process CSS with PostCSS
+            loader: 'postcss-loader',
+            options: {
+              plugins: function () {
+                return [
+                  require('precss'),
+                  require('autoprefixer')
+                ];
+              }
+            }
+          },
+          {
+            // Loads a SASS/SCSS file and compiles it to CSS
+            loader: 'sass-loader'
+          }
+        ]
+      }
     ]
+  }
 };
