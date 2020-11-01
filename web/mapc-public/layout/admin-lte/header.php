@@ -13,7 +13,7 @@
     <nav class="navbar navbar-static-top">
       <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only"><?= _('메뉴'); ?></span>
+        <span class="sr-only">메뉴</span>
       </a>
 
 <?php
