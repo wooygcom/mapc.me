@@ -18,8 +18,9 @@ web/sftp-config.json
 
 web/mapc-public/dist/*
 web/mapc-public/vendor/*
-web/node_modules/*
 web/mapc-public/user/*
+web/mapc-public/layout/sbadmin/*
+web/node_modules/*
 
 # Upload directory
 web/mapc-data/*

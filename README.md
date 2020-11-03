@@ -1,7 +1,8 @@
-# mapc.me
+mapc.me
+==============================
 
-특징
--------------------------------------------------------------------------------
+About Mapc
+------------------------------
 
 * Pure PHP
 
@@ -12,12 +13,12 @@
 * Fast running time
 
 
-Installation1 (with docker-compose)
--------------------------------------------------------------------------------
+Installation
+------------------------------
 
-1. 의존성도구 설치
+1. Install Server daemon and utils
 
-    Composer, NPM, NPX 설치 ($ npm i -g npx)
+    Git, Docker, Composer, NPM, NPX 설치 ($ npm i -g npx)
 
 2. Git 클론(최초 1회)
     ```
@@ -33,19 +34,22 @@ Installation1 (with docker-compose)
     $ npm run build
     ```
 
-4. 서버만 실행할 때
+4. 서버 실행(도커활용)
     ```
     $ sudo docker-compose up -d
     ```
 
-5. 추가로 설치할 경우(필요할 때만)
+
+Etc
+------------------------------
+1. 추가로 설치할 경우(필요할 때만)
     ```
     npm install PACKAGE --save
     ```
 
 
 접속
--------------------------------------------------------------------------------
+------------------------------
 
 1. 개발할 때의 접속주소
     http://접속주소/mapc.me/web/mapc-public/
@@ -54,19 +58,19 @@ Installation1 (with docker-compose)
 
 
 새로운 페이지 만드는 방법
--------------------------------------------------------------------------------
+------------------------------
 
-1. /my/diary/edit 라는 페이지를 만드려면
+1. SERVER_URL/my/diary/edit 라는 페이지를 만드려면
 
     1. mapc-app/ 디렉토리의 "bare" 디렉토리를 "my"라는 디렉토리로 복사하고
     2. "my/controllers 와 views 각 디렉토리 안의 index.php를 edit.php로 복사하면
     3. 설치된URL/my/diary/edit 로 접속 할 수 있다.
 
-2. // #TODO 설명서 만들어야 됨
+2. // #TODO 위 내용의 설명서 만들어야 됨
 
 
 프로그램 구동절차
--------------------------------------------------------------------------------
+------------------------------
 
 0. //URL/[VENDOR]/[MODULE]/[ACTION] 로 접속 할 경우 벌어지는 일~
     (아래는 //URL/Common/posts/123/edit 으로 접속 할 경우를 예로 들었음)
@@ -113,66 +117,66 @@ Installation1 (with docker-compose)
 vendor/index.php [1/2]
 --------------------------------------------------
 
-    * 일반적인 형태(vendor/Common/index.php)와 별다른 차이가 없으면
+* 일반적인 형태(vendor/Common/index.php)와 별다른 차이가 없으면 아래 내용 그대로 사용
 
-```
-<?php
-{ // BLOCK:get_common:20150825:Common/index.php 그대로 가져오기
-
-    $rootDir = __DIR__;
-    @include($rootDir . DS . '..' . DS . 'Common' . DS . 'index.php');
-
-} // BLOCK
-
-// this is it
-
-```
+    ```
+    <?php
+    { // BLOCK:get_common:20150825:Common/index.php 그대로 가져오기
+    
+        $rootDir = __DIR__;
+        @include($rootDir . DS . '..' . DS . 'Common' . DS . 'index.php');
+    
+    } // BLOCK
+    
+    // this is it
+    
+    ```
 
 vendor/index.php [2/2]
 --------------------------------------------------
 
-    * vendor/index.php를 처음 만들 때는 [1/2] 또는 [2/2]를 복사 붙여넣기 하면 됨
-    * vendor/Common/index.php(일반적인형태)와 다른 형태로 만들고 싶을때 사용
+* vendor/index.php를 처음 만들 때는 [1/2] 또는 [2/2]를 복사 붙여넣기 하면 됨
+* vendor/Common/index.php(일반적인형태)와 다른 형태로 만들고 싶을때 사용
 
-```
-<?php
-{ // BLOCK:proc:20191204:선처리
-
-    $rootDir = $rootDir ? $rootDir : __DIR__;
-
-} // BLOCK
-
-{ // BLOCK:get_controller:20150825:컨트롤러 불러오기
-
-    /**
-     *
-     * Get Controller...
-     *
-     */
-    $v = [];
-    @include($rootDir . '/controllers/' . $ROUTES['module'] . 'Controller.php');
-
-} // BLOCK
-
-{ // BLOCK:publish:20150825:출력처리
-
-    /**
-     *
-     * Get VIEW file and publish
-     *
-     */
-    // 보안을 위해 CONFIG에서 필요한 값을 제외한 모든 환경설정값 지우기
-    $v['url']  = $CONFIG['url'];
-    $v['menu'] = $CONFIG['menu'];
-    $v['site'] = $CONFIG['site'];
-    unset($CONFIG);
-    @include($rootDir . '/views/' . $ROUTES['module'] . 'View.php');
-
-} // BLOCK
-
-// this is it
-
-```
+    ```
+    <?php
+    { // BLOCK:proc:20191204:선처리
+    
+        $rootDir = $rootDir ? $rootDir : __DIR__;
+    
+    } // BLOCK
+    
+    { // BLOCK:get_controller:20150825:컨트롤러 불러오기
+    
+        /**
+         *
+         * Get Controller...
+         *
+         */
+        $v = [];
+        @include($rootDir . '/controllers/' . $ROUTES['module'] . 'Controller.php');
+    
+    } // BLOCK
+    
+    { // BLOCK:publish:20150825:출력처리
+    
+        /**
+         *
+         * Get VIEW file and publish
+         *
+         */
+        // 보안을 위해 CONFIG에서 필요한 값을 제외한 모든 환경설정값 지우기
+        $v['url']  = $CONFIG['url'];
+        $v['menu'] = $CONFIG['menu'];
+        $v['site'] = $CONFIG['site'];
+        unset($CONFIG);
+        @include($rootDir . '/views/' . $ROUTES['module'] . 'View.php');
+    
+    } // BLOCK
+    
+    // this is it
+    
+    ```
 
 기본형태 - Controllers
 ==================================================
@@ -291,7 +295,9 @@ include($ROUTES['callback'] . '.php');
  * @version 0.1
  *
  */
-$layout = 'core';
+$layout = $config['site']['layout'];
+$v['layout_url'] = ROOT_URL . 'layout' . DS . $layout . DS;
+
 include(LAYOUT_PATH . $layout . DS . 'head.php');
 include(LAYOUT_PATH . $layout . DS . 'header.php');
 ?>

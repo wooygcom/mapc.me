@@ -7,7 +7,8 @@
     "require": {
         "php": ">=5.5.9",
         "erusev/parsedown": "*",
-        "erusev/parsedown-extra": "*"
+        "erusev/parsedown-extra": "*",
+        "gabordemooij/redbean": "dev-master"
     },
     "autoload": {
         "psr-4": {
