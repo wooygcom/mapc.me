@@ -296,7 +296,6 @@ include($ROUTES['callback'] . '.php');
  *
  */
 $layout = $config['site']['layout'];
-$v['layout_url'] = ROOT_URL . 'layout' . DS . $layout . DS;
 
 include(LAYOUT_PATH . $layout . DS . 'head.php');
 include(LAYOUT_PATH . $layout . DS . 'header.php');
@@ -333,16 +332,10 @@ $v['header']['extension'] = sprintf($v['header']['extension'], ROOT_URL);
     <input type="hidden" name="content_type" value="<?= $ROUTES['action'] ? $ROUTES['action'] : 'intro'; ?>" />
 </form>
 
+### 스크립트, CSS 앞에...
 
-기타(지워도 무관)
----------------------------------------------------------
-
-### admin-lte 를 쓸 경우
+아래처럼 $v['url']['layout']를 붙일 것...
 
 ```
-<!-- Content : B -->
-  <section class="content">
-
-  </section>
-<!-- Content : E -->
+<script src="$v['url']['layout']path/src.js">
 ```

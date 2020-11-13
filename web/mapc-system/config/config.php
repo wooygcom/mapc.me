@@ -5,6 +5,19 @@
     define('DEFAULT_MODULE', 'core');
     define('DEFAULT_ACTION', 'index');
 
+    if( in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '172.19.0.1']) ) {
+
+        define('DEBUG', true);
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+
+    } else {
+
+        define('DEBUG', false);
+        error_reporting(0);
+
+    }
+
 } // BLOCK
 
 $config = [

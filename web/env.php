@@ -37,20 +37,6 @@ if(!defined("__MAPC__")) { exit(); }
     define('DOMAIN', str_replace('www.', '', $_SERVER['HTTP_HOST']));
     define('HOST',   explode('.', DOMAIN)[0]);
 
-    if( false && in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '172.19.0.1']) ) {
-//*
-        ini_set('display_errors', 1);
-        error_reporting(E_ALL);
-        define('DEBUG', true);
-/*/
-        error_reporting(0);
-        define('DEBUG', false);
-//*/
-    } else {
-        error_reporting(0);
-        define('DEBUG', false);
-    }
-
 } // BLOCK
 
 // this is it
