@@ -1,6 +1,7 @@
 <?php
 namespace Mapc\Common;
 
+use \RedBeanPHP\R;
 use Mapc\Common\Crud;
 
 /**

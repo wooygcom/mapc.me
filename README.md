@@ -237,10 +237,9 @@ $db   = include(PROC_PATH . 'proc.db.php');
 $user = new Users(['db' => $db, 'table' => $table]);
 
 
-모델클래스 가져오기(1번 방식 추천)
+모델클래스 가져오기
 --------------------------------------------------
-1. use Mapc\Common\Users;
-2. include APP_PATH . 'Common/models/UsersModel.php';
+use Mapc\Common\Users;
 
 ### 실행화일일 경우
 include(PROC_PATH . 'proc.exec.php');
