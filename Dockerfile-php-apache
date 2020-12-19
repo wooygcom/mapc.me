@@ -1,15 +1,15 @@
-FROM php:7.4.3-apache
+FROM library/php:7.4.3-apache
 MAINTAINER wooyg@wooyg.com
 
-RUN apt-get -y -qq update
-RUN apt-get install -y -qq libpng-dev libjpeg-dev
+RUN apt -y -qq update
+RUN apt install -y -qq libpng-dev libjpeg-dev
 RUN echo "ServerName localhost" \
     | tee /etc/apache2/conf-available/servername.conf
 RUN docker-php-ext-configure gd --with-jpeg \
 && docker-php-ext-install gd
-RUN apt-get install -y -qq mariadb-client
-RUN apt-get install -y libssl-dev openssl
-RUN apt-get install -y libonig-dev
+RUN apt install -y -qq mariadb-client
+RUN apt install -y libssl-dev openssl
+RUN apt install -y libonig-dev
 
 RUN docker-php-ext-install mbstring
 RUN docker-php-ext-install mysqli
@@ -25,7 +25,7 @@ RUN apache2ctl -k graceful
 WORKDIR /var/www/html
 RUN chmod 707 /var/www/html
 
-RUN apt-get clean \
+RUN apt clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 EXPOSE 80

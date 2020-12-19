@@ -1,4 +1,4 @@
-FROM mariadb:latest
+FROM library/mariadb:latest
 MAINTAINER wooyg@wooyg.com
 
 EXPOSE 3306
