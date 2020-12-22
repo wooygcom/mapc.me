@@ -336,5 +336,5 @@ $v['header']['extension'] = sprintf($v['header']['extension'], ROOT_URL);
 아래처럼 $v['url']['layout']를 붙일 것...
 
 ```
-<script src="$v['url']['layout']path/src.js">
+<script src="<?= $v['url']['layout']; ?>path/src.js">
 ```
